@@ -16,7 +16,7 @@
 
             <div class="row py-2">
                <div class="col-lg-12  col-sm-12 col-12">
-                  <img src="{{ asset('assets/backend/img/spmheader.jpg') }}">
+                  <img src="{{ asset('assets/backend/img/spmheader.png') }}">
                </div>
             </div>
             <h6 class="py-1" style="font-size:15px;color: black; font-weight:500">Customer : {{ $customer_upper }}</h6>
