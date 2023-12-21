@@ -17,7 +17,7 @@
                 @method('PUT')
                 @csrf
                     <div class="row">
-                        <div class="col-lg-3 col-sm-3 col-12">
+                        <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span
                                         style="color: red;">*</span></label>
@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-sm-3 col-12">
+                        <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span
                                         style="color: red;">*</span></label>
@@ -35,7 +35,7 @@
 
 
 
-                        <div class="col-lg-5 col-sm-5 col-12">
+                        <div class="col-lg-5 col-sm-5 col-12" hidden>
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Branch<span
                                         style="color: red;">*</span></label>
@@ -48,8 +48,9 @@
                             </div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-12">
-                            <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Action</label>
-                            
+                            <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Action <span
+                                style="color: red;">*</span></label>
+
                         </div>
                     </div>
 

@@ -99,7 +99,7 @@ class ExpenceController extends Controller
 
     public function expensedata_branch($today, $branch_id)
     {
-       
+
         $branch = Branch::where('soft_delete', '!=', 1)->get();
         $timenow = Carbon::now()->format('H:i');
 
@@ -155,7 +155,7 @@ class ExpenceController extends Controller
         $data = Expence::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
         $expense_data = [];
         $terms = [];
-        
+
         foreach ($data as $key => $datas) {
             $branch_name = Branch::findOrFail($datas->branch_id);
 
@@ -279,8 +279,9 @@ class ExpenceController extends Controller
         }
 
         $total = 0;
+        
         foreach ($request->get('expense_detialid') as $key => $expense_detialid) {
-            
+
             if ($expense_detialid > 0) {
                 $total =  $request->get('tot_expense_amount');
 
@@ -309,7 +310,7 @@ class ExpenceController extends Controller
                 ]);
             }
 
-           
+
         }
 
         return redirect()->route('expence.index')->with('update', 'Expence Data updated successfully!');
@@ -345,14 +346,14 @@ class ExpenceController extends Controller
 
             //         $ExpenseDetails = Expensedetail::where('expense_id', '=', $branchwise_datas->id)->get();
             //         foreach ($ExpenseDetails as $key => $ExpenseDetails_arr) {
-        
+
             //             $terms[] = array(
             //                 'expense_note' => $ExpenseDetails_arr->expense_note,
             //                 'expense_amount' => $ExpenseDetails_arr->expense_amount,
             //                 'expense_id' => $ExpenseDetails_arr->expense_id,
-        
+
             //             );
-        
+
             //         }
 
             //         $expense_data[] = array(

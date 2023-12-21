@@ -5,7 +5,7 @@
    <div class="content">
       <div class="page-header">
          <div class="page-title">
-            <h4>Add Purchase Order</h4>
+            <h4>Create New Purchase</h4>
          </div>
       </div>
 
@@ -16,7 +16,7 @@
                 <form autocomplete="off" method="POST" action="{{ route('purchaseorder.purchaseorder_store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6 col-12">
+                        <div class="col-lg-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span
                                         style="color: red;">*</span></label>
@@ -24,10 +24,10 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-sm-6 col-12">
+                        <div class="col-lg-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                 <input type="time" name="time" placeholder="" value="{{ $timenow }}" required>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="col-lg-4 col-sm-4 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Supplier<span
-                                        style="color: red;">*</span> </label>
+                                        style="color: red;"> *</span> </label>
                                 <select class="form-control js-example-basic-single select invoice_supplier" name="supplier_id" id="supplier_id" required>
                                     <option value="" disabled selected hiddden>Select Supplier</option>
                                     @foreach ($supplier as $suppliers)
@@ -45,28 +45,14 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-sm-4 col-12">
+                        <div class="col-lg-4 col-sm-4 col-12" hidden>
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Branch<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                 <select class="form-control js-example-basic-single select invoice_branchid" name="branch_id" id="branch_id" required>
                                     <option value="" disabled selected hiddden>Select Branch</option>
                                     @foreach ($branch as $branches)
-                                        <option value="{{ $branches->id }}">{{ $branches->shop_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Bank<span
-                                        style="color: red;">*</span></label>
-                                <select class="form-control js-example-basic-single select" name="bank_id" id="bank_id" required>
-                                    <option value="" disabled selected hiddden>Select Bank</option>
-                                    @foreach ($bank as $banks)
-                                        <option
-                                            value="{{ $banks->id }}">
-                                            {{ $banks->name }}</option>
+                                        <option value="{{ $branches->id }}" selected>{{ $branches->shop_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -80,12 +66,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="font-size:15px; width:20%;">Product</th>
-                                        <th style="font-size:15px; width:15%;">Bag / Kg</th>
-                                        <th style="font-size:15px; width:10%;">Count </th>
-                                        <th style="font-size:15px; width:10%;">Price Per Count</th>
-                                        <th style="font-size:15px; width:15%;">Amount</th>
-                                        <th style="font-size:15px; width:15%;">Amount</th>
+                                        <th style="font-size:15px; width:20%;">Product<span style="color: red;"> *</span></th>
+                                        <th style="font-size:15px; width:10%;">Bag / Kg<span style="color: red;"> *</span></th>
+                                        <th style="font-size:15px; width:10%;">Count<span style="color: red;"> *</span></th>
+                                        <th style="font-size:15px; width:10%;">Note </th>
+                                        <th style="font-size:15px; width:10%;">Price Per Count<span style="color: red;"> *</span></th>
+                                        <th style="font-size:15px; width:15%;"></th>
+                                        <th style="font-size:15px; width:15%;"></th>
                                         <th style="font-size:15px; width:10%;">Action </th>
                                     </tr>
                                 </thead>
@@ -93,12 +80,12 @@
                                     <tr>
                                         <td>
                                             <input type="hidden"id="purchase_detail_id"name="purchase_detail_id[]" />
-                                            <select class="form-control js-example-basic-single product_id select" name="product_id[]"
+                                            <select class="form-control product_id" name="product_id[]"
                                                 id="product_id1"required>
                                                 <option value="" selected hidden class="text-muted">Select Product
                                                 </option>
                                                 @foreach ($productlist as $productlists)
-                                                    <option value="{{ $productlists->id }}">{{ $productlists->name }}
+                                                    <option value="{{ $productlists->id }}">{{ $productlists->id }} - {{ $productlists->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -113,6 +100,10 @@
                                         <td>
                                             <input type="text" class="form-control count" id="count" name="count[]"
                                                 placeholder="count" value="" required />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control note" id="note" name="note[]"
+                                                placeholder="note" value=""/>
                                         </td>
                                         <td><input type="text" class="form-control price_per_kg" id="price_per_kg"
                                                     name="price_per_kg[]" placeholder="Price Per count" required /></td>
@@ -129,7 +120,7 @@
                                 </tbody>
                                 <tbody>
                                     <tr>
-                                        <td colspan="3">
+                                        <td colspan="4">
 
 
                                             <div class="form-check form-check-inline">
@@ -155,7 +146,7 @@
                                     <tr>
                                         <td style="font-size:15px; color: black;" class="text-end">Extra Cost<span
                                             style="color: red;">*</span></td>
-                                        <td colspan="3"><input type="hidden" name="purchase_extracost_id"/>
+                                        <td colspan="4"><input type="hidden" name="purchase_extracost_id"/>
                                             <input type="text" class="form-control"
                                                 id="extracost_note" placeholder="Note" value=""
                                                 name="extracost_note[]" required /></td>
@@ -171,7 +162,7 @@
                                 </tbody>
                                 <tbody>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Total</td>
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Total</td>
                                         <td><input type="hidden" class="form-control total_extracost" value="" name="total_extracost" id="total_extracost" readonly />
                                             <input type="text" class="form-control tot_comm_extracost" value="" readonly name="tot_comm_extracost"
                                             style="background-color: #e9ecef;"/></td>
@@ -182,7 +173,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Gross
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Gross
                                             Amount</td>
                                         <td colspan="2"><input type="text" class="form-control gross_amount" id="gross_amount"
                                                 placeholder="Gross Amount" value=""
@@ -191,7 +182,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: red;">Old
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: red;">Old
                                             Balance</td>
                                         <td colspan="2"><input type="text" class="form-control old_balance" id="old_balance"
                                                 placeholder="Old Balance" readonly value="0"
@@ -200,7 +191,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: green;">Grand
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: green;">Grand
                                             Total</td>
                                         <td colspan="2"><input type="text" class="form-control grand_total" id="grand_total"
                                                 readonly placeholder="Grand Total"
@@ -210,16 +201,25 @@
 
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Payable
-                                            Amount<span style="color: red;">*</span></td>
-                                        <td colspan="2"><input type="text" class="form-control payable_amount"
-                                                name="payable_amount" placeholder="Payable Amount" required
-                                                value="" id="payable_amount"></td>
+                                        <td colspan="1" class="text-end" style="font-size:15px;color: black;">Bank<span style="color: red;"> *</span></td>
+                                        <td colspan="3">
+                                            <select class="form-control js-example-basic-single select" name="bank_id" id="bank_id" required>
+                                                <option value="" disabled selected hiddden>Select Bank</option>
+                                                @foreach ($bank as $banks)
+                                                    <option
+                                                        value="{{ $banks->id }}">
+                                                        {{ $banks->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td colspan="1" class="text-end" style="font-size:15px;color: black;">Payable Amount<span style="color: red;"> *</span></td>
+                                        <td colspan="2">
+                                            <input type="text" class="form-control payable_amount" name="payable_amount" placeholder="Payable Amount" required value="" id="payable_amount"></td>
                                         <td></td>
 
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Pending
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Pending
                                             Amount</td>
                                         <td colspan="2"><input type="text" class="form-control pending_amount"
                                                 name="pending_amount" value=""

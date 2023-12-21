@@ -17,6 +17,7 @@ class PurchaseProduct extends Model
         'productlist_id',
         'bagorkg',
         'count',
+        'note',
         'price_per_kg',
         'total_price',
         'purchase_order',

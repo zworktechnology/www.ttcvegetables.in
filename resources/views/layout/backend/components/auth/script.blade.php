@@ -115,7 +115,7 @@ $(".purchaseclose").click(function() {
                 $(".purchaseorder_fields").append(
                     '<tr>' +
                     '<td class=""><input type="hidden"id="purchase_detail_id"name="purchase_detail_id[]" />' +
-                    '<select class="form-control js-example-basic-single product_id select"name="product_id[]" id="product_id' + i + '"required>' +
+                    '<select class="form-control js-example-basic-single product_id select" name="product_id[]" id="product_id' + i + '"required>' +
                     '<option value="" selected hidden class="text-muted">Select Product</option></select>' +
                     '</td>' +
                     '<td><select class=" form-control bagorkg" name="bagorkg[]" id="bagorkg1"required>' +
@@ -123,6 +123,7 @@ $(".purchaseclose").click(function() {
                     '<option value="bag">Bag</option><option value="kg">Kg</option>' +
                     '</select></td>' +
                     '<td><input type="text" class="form-control count" id="count" name="count[]" placeholder="count" value="" required /></td>' +
+                    '<td><input type="text" class="form-control note" id="note" name="note[]" placeholder="note" value="" /></td>' +
                     '<td><input type="text" class="form-control price_per_kg" id="price_per_kg" name="price_per_kg[]" placeholder="Price Per count" required /></td>' +
                     '<td></td>' +
                     '<td class="text-end"><input type="text" class="form-control total_price" id="total_price" style="background-color: #e9ecef;" readonly name="total_price[]" placeholder=""required /></td>' +
@@ -146,7 +147,7 @@ $(".purchaseclose").click(function() {
 
                                     var id = response['data'][i].id;
                                     var name = response['data'][i].name;
-                                    var option = "<option value='" + id + "'>" + name +
+                                    var option = "<option value='" + id + "'>" + id + ' - ' + name +
                                         "</option>";
                                     selectedValues.push(option);
                             }
@@ -264,7 +265,7 @@ $(".purchaseclose").click(function() {
                 var payment_payableamount = $(".payment_payableamount").val();
                 var payment_pending_amount = Number(Total_purchasepayment) - Number(payment_payableamount);
                 $('.payment_pending').val(payment_pending_amount.toFixed(2));
-                
+
             });
 
             $(document).on("keyup", 'input.payment_payableamount', function() {
@@ -338,7 +339,7 @@ $(".purchaseclose").click(function() {
                 var spayment_payableamount = $(".spayment_payableamount").val();
                 var spayment_pending_amount = Number(Total_salespayment) - Number(spayment_payableamount);
                 $('.spayment_pending').val(spayment_pending_amount.toFixed(2));
-                
+
             });
 
             $(document).on("keyup", 'input.spayment_payableamount', function() {
@@ -386,7 +387,7 @@ $(".purchaseclose").click(function() {
                                 $('.purchase_commisionpercentage').html(response[i].purchase_commisionpercentage);
                                 $('.tot_comm_extracost').html(response[i].tot_comm_extracost);
                                 $('.purchase_extra_cost').html(Totalextraamount);
-                                
+
                                 $('.purchase_grossamont').html(response[i].purchase_gross_amount);
                                 $('.purchase_old_balance').html(response[i].purchase_old_balance);
                                 $('.purchase_grand_total').html(response[i].purchase_grand_total);
@@ -440,7 +441,10 @@ $(".purchaseclose").click(function() {
                                 var Totalextraamount = Number(response[i].tot_comm_extracost) - Number(response[i].commission_amount);
                                 $('.purchaseorder_bill_no').html(response[i].purchase_bill_no);
                                 $('.purchaseorder_total_amount').html(response[i].purchase_total_amount);
+                                $('.purchaseorder_commission_ornet').html(response[i].commission_ornet);
+                                $('.purchaseorder_commisionpercentage').html(response[i].commission_percent);
                                 $('.purchaseorder_commision').html(response[i].commission_amount);
+                                $('.purchaseorder_tot_comm_extracost').html(response[i].tot_comm_extracost);
                                 $('.purchaseorder_extra_cost').html(Totalextraamount);
                                 $('.purchaseorder_grossamont').html(response[i].purchase_gross_amount);
                                 $('.purchaseorder_old_balance').html(response[i].purchase_old_balance);
@@ -710,7 +714,7 @@ $(".purchaseclose").click(function() {
                                             tot_expense_amount);
                                     });
                 });
-                
+
             });
 
 
@@ -919,7 +923,7 @@ $(".purchaseclose").click(function() {
             });
 
 
-           
+
 
             var invoice_supplier = $(".invoice_supplier").val();
             var invoice_branchid = $(".invoice_branchid").val();
@@ -950,7 +954,7 @@ $(".purchaseclose").click(function() {
                     });
             }
 
-            
+
         });
 
 
@@ -1021,7 +1025,7 @@ $(".purchaseclose").click(function() {
 
 
 
-       
+
 
        // $(document).ready(function() {
 
@@ -1332,7 +1336,7 @@ $(document).on('click', '.remove-salestr', function() {
                     }
                 });
             }
-                
+
 
 
 

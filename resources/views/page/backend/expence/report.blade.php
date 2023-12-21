@@ -15,19 +15,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="col-lg-5 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>From Date</label>
                                 <input type="date" name="expencereport_fromdate" id="expencereport_fromdate">
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="col-lg-5 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>To Date</label>
                                 <input type="date" name="expencereport_todate" id="expencereport_todate">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        {{-- <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Branch</label>
                                 <select class="select expencereport_branch" name="expencereport_branch"
@@ -38,12 +38,20 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-1 col-sm-6 col-12">
                             <div class="form-group">
                                 <label style="color: white">Action</label>
-                                <input type="submit" class="btn btn-primary" name="submit" value="Search" />
+                                <input type="submit" class="btn btn-primary" name="submit" value="Filter" />
                             </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-6 col-12">
+                            <a href="{{ route('expence.report') }}">
+                            <div class="form-group">
+                                <label style="color: white">Action</label>
+                                <input type="button" class="btn btn-warning" name="submit" value="Clear" />
+                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -56,21 +64,21 @@
                         @if ($expense_datas['unique_key'] != '')
 
                         @if($keydata == 0)
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>From Date <span style="color: red">{{ $expense_datas['fromdateheading'] }}</span></label>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group" style="margin-bottom: 0px;">
+                                <label>From Date : <span style="color: red">{{ $expense_datas['fromdateheading'] }}</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>To Date <span style="color: red">{{ $expense_datas['todateheading'] }}</span></label>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group" style="margin-bottom: 0px;">
+                                <label>To Date : <span style="color: red">{{ $expense_datas['todateheading'] }}</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
+                        {{-- <div class="col-lg-4 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Branch <span style="color: red">{{ $expense_datas['branchheading'] }}</span></label>
                             </div>
-                        </div>
+                        </div> --}}
 
                         @endif
                         @endif
@@ -86,7 +94,7 @@
                         <thead style="background: #5e54c966;">
                             <tr>
                                 <th>Sl. No</th>
-                                <th>Branch</th>
+                                {{-- <th>Branch</th> --}}
                                 <th>Date</th>
                                 <th>Amount</th>
                             </tr>
@@ -96,13 +104,13 @@
                             @if ($expenceData['unique_key'] != '')
                                 <tr>
                                     <td>{{ ++$keydata }}</td>
-                                    <td>{{ $expenceData['branch_name'] }}</td>
+                                    {{-- <td>{{ $expenceData['branch_name'] }}</td> --}}
                                     <td>{{ date('d M Y', strtotime($expenceData['date'])) }} - {{ date('h:i A', strtotime($expenceData['time'])) }}</td>
                                     <td>{{ $expenceData['amount'] }}</td>
-                                   
+
                                 </tr>
 
-                               
+
                                 @endif
                             @endforeach
                         </tbody>

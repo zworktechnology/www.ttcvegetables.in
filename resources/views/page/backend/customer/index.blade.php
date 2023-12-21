@@ -42,7 +42,7 @@
         </div>
 
 
-        <div class="row py-2" style="margin-bottom:10px;">
+        {{-- <div class="row py-2" style="margin-bottom:10px;">
             <div class="col-lg-2 col-sm-4 col-6">
                 <a href="{{ route('customer.index') }}" style="color: black">
                     <div class="dash-widget" @if ($pos == "customer")
@@ -69,7 +69,7 @@
                     </a>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="row" style="display:none" id="totaldiv">
             <div class="col-lg-3 col-sm-6 col-12">

@@ -43,6 +43,7 @@ class CustomerController extends Controller
             }else {
                 $total_paid_Amount = '0';
             }
+
             $payment_total_paid = Salespayment::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->sum('amount');
             if($payment_total_paid != ""){
                 $total_payment_paid = $payment_total_paid;
@@ -50,27 +51,22 @@ class CustomerController extends Controller
                 $total_payment_paid = '0';
             }
 
-
             $payment_discount = Salespayment::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->sum('salespayment_discount');
             if($payment_discount != ""){
                 $totpayment_discount = $payment_discount;
             }else {
                 $totpayment_discount = '0';
             }
+
             $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
             $TotaSalePaid += $total_amount_paid;
 
             // Total Balance
             $total_balance = $tot_saleAmount - $total_amount_paid;
-
-
-
             $totalsale = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_amount');
             $totalpaidsale = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_paid');
             $totalsalebla = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_balance');
             
-
-
             $customerarr_data[] = array(
                 'unique_key' => $datas->unique_key,
                 'name' => $Customer_name->name,
@@ -109,11 +105,11 @@ class CustomerController extends Controller
                 if($last_idrow != ""){
                     if($last_idrow->sales_balance != NULL){
                         $tot_balace = $last_idrow->sales_balance;
-        
+
                     }else {
 
                         $tot_balace = 0;
-                       
+
                     }
 
                 }else {
@@ -170,7 +166,7 @@ class CustomerController extends Controller
     }
 
 
-    public function branchdata($branch_id) 
+    public function branchdata($branch_id)
     {
         $data = Customer::where('soft_delete', '!=', 1)->get();
         $totalSAleAmount = 0;
@@ -264,11 +260,11 @@ class CustomerController extends Controller
                 if($last_idrow != ""){
                     if($last_idrow->sales_balance != NULL){
                         $tot_balace = $last_idrow->sales_balance;
-        
+
                     }else {
 
                         $tot_balace = 0;
-                       
+
                     }
 
                 }else {
@@ -325,7 +321,7 @@ class CustomerController extends Controller
     }
 
 
-    public function allbranchpdf_export() 
+    public function allbranchpdf_export()
     {
 
         $data = Customer::where('soft_delete', '!=', 1)->get();
@@ -444,17 +440,17 @@ class CustomerController extends Controller
                 'saletotal_balance' => $saletotal_balance,
                 'today' => date('d-m-Y', strtotime($today)),
                 'branch_name' => 'All Branches',
-    
+
             ]);
-    
+
             $name = 'Customers.' . 'pdf';
-    
+
             return $pdf->stream($name);
     }
 
 
 
-    public function customerpdf_export($last_word) 
+    public function customerpdf_export($last_word)
     {
 
         $data = Customer::where('soft_delete', '!=', 1)->get();
@@ -581,11 +577,11 @@ class CustomerController extends Controller
                 'saletotal_balance' => $saletotal_balance,
                 'branch_name' => $branch_name->shop_name,
                 'today' => date('d-m-Y', strtotime($today)),
-    
+
             ]);
-    
+
             $name = 'Customers.' . 'pdf';
-    
+
             return $pdf->stream($name);
     }
 
@@ -605,6 +601,22 @@ class CustomerController extends Controller
 
         $data->save();
 
+        $customerid = $data->id;
+        $PaymentBalanceDAta = BranchwiseBalance::where('customer_id', '=', $customerid)->first();
+        if($PaymentBalanceDAta == "")
+        {
+            $balance_amount = $request->get('balance_amount');
+
+            $paymentbalacedata = new BranchwiseBalance();
+
+            $paymentbalacedata->customer_id = $customerid;
+            $paymentbalacedata->branch_id = 1;
+            $paymentbalacedata->sales_balance = $balance_amount;
+            $paymentbalacedata->sales_amount = 0;
+            $paymentbalacedata->sales_paid = 0;
+
+            $paymentbalacedata->save();
+        }
 
         return redirect()->route('customer.index')->with('add', 'Customer Data added successfully!');
     }
@@ -658,11 +670,11 @@ class CustomerController extends Controller
 
 
             foreach ($merge as $key => $datas) {
-    
+
                 $branch_name = Branch::findOrFail($datas->branch_id);
                 $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->where('branch_id', '=', $last_word)->get();
                 foreach ($SalesProducts as $key => $SalesProducts_arr) {
-    
+
                     $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                     $terms[] = array(
                         'bag' => $SalesProducts_arr->bagorkg,
@@ -671,9 +683,9 @@ class CustomerController extends Controller
                         'total_price' => $SalesProducts_arr->total_price,
                         'product_name' => $productlist_ID->name,
                         'sales_id' => $SalesProducts_arr->sales_id,
-    
+
                     );
-    
+
                 }
 
 
@@ -686,7 +698,7 @@ class CustomerController extends Controller
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
                 }
-    
+
                 $Sales_data[] = array(
                     'unique_key' => $datas->unique_key,
                     'branch_name' => $branch_name->shop_name,
@@ -709,19 +721,19 @@ class CustomerController extends Controller
 
                 );
             }
-    
+
             $branch = Branch::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
             $Customer = Customer::where('soft_delete', '!=', 1)->get();
-    
-    
+
+
             $Customername = $CustomerData->name;
             $customer_id = $CustomerData->id;
             $unique_key = $CustomerData->unique_key;
-    
-    
-    
-    
-    
+
+
+
+
+
             $fromdate = '';
             $todate = '';
             $branchid = '';
@@ -737,7 +749,7 @@ class CustomerController extends Controller
             // }
 
 
-           
+
             // $total_paid = Sales::where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->where('branch_id', '=', $last_word)->sum('paid_amount');
             // if($total_paid != ""){
             //     $total_paid_Amount = $total_paid;
@@ -761,7 +773,7 @@ class CustomerController extends Controller
             // $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
 
 
-           
+
             // $total_balance = $tot_saleAmount - $total_amount_paid;
 
 
@@ -788,7 +800,7 @@ class CustomerController extends Controller
                 $value2 = strtotime($a2['date']);
                 return ($value1 < $value2) ? 1 : -1;
              });
-    
+
             return view('page.backend.customer.view', compact('CustomerData', 'Sales_data', 'branch', 'Customer', 'Customername', 'customer_id', 'unique_key', 'today',
                          'fromdate','todate', 'branchid', 'customerid',  'tot_saleAmount', 'total_amount_paid', 'total_balance', 'GETBranchname'));
 
@@ -869,18 +881,18 @@ class CustomerController extends Controller
 
             );
         }
-    
+
             $branch = Branch::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
             $Customer = Customer::where('soft_delete', '!=', 1)->get();
-    
-    
+
+
             $Customername = $CustomerData->name;
             $customer_id = $CustomerData->id;
             $unique_key = $CustomerData->unique_key;
-    
-         
-    
-    
+
+
+
+
             $fromdate = '';
             $todate = '';
             $branchid = '';
@@ -896,7 +908,7 @@ class CustomerController extends Controller
             // }
 
 
-           
+
             // $total_paid = Sales::where('soft_delete', '!=', 1)->where('customer_id', '=', $CustomerData->id)->sum('paid_amount');
             // if($total_paid != ""){
             //     $total_paid_Amount = $total_paid;
@@ -920,7 +932,7 @@ class CustomerController extends Controller
             // $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
 
 
-           
+
             // $total_balance = $tot_saleAmount - $total_amount_paid;
 
 
@@ -938,12 +950,12 @@ class CustomerController extends Controller
                 $value2 = strtotime($a2['date']);
                 return ($value1 < $value2) ? 1 : -1;
              });
-    
+
             return view('page.backend.customer.view', compact('CustomerData', 'Sales_data', 'branch', 'Customer', 'Customername', 'customer_id', 'unique_key', 'today',
                          'fromdate', 'todate', 'branchid', 'customerid', 'tot_saleAmount', 'total_amount_paid', 'total_balance', 'GETBranchname'));
 
         }
-        
+
     }
 
 
@@ -955,7 +967,7 @@ class CustomerController extends Controller
         $CustomerData = Customer::where('unique_key', '=', $unique_key)->first();
 
         $Customer = Customer::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
-        
+
 
 
         $fromdate = $request->get('fromdate');
@@ -968,7 +980,7 @@ class CustomerController extends Controller
                 $GETBranchname = $GETbranch->shop_name;
 
                 $data = Sales::where('date', '=', $fromdate)->where('customer_id', '=', $CustomerData->id)->where('branch_id', '=', $branchid)->where('soft_delete', '!=', 1)->get();
-                
+
                 $sales = [];
                 foreach ($data as $key => $datas_arr) {
                     $sales[] = $datas_arr;
@@ -990,11 +1002,11 @@ class CustomerController extends Controller
 
 
                 foreach ($merge as $key => $datas) {
-        
+
                     $branch_name = Branch::findOrFail($datas->branch_id);
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->where('branch_id', '=', $branchid)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1003,12 +1015,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1018,7 +1030,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1038,7 +1050,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1082,7 +1094,7 @@ class CustomerController extends Controller
 
 
 
-               
+
 
             }
 
@@ -1113,11 +1125,11 @@ class CustomerController extends Controller
 
                 $merge = array_merge($sales, $salepayment_s);
                 foreach ($merge as $key => $datas) {
-        
+
                     $branch_name = Branch::findOrFail($datas->branch_id);
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->where('branch_id', '=', $branchid)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1126,12 +1138,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1141,7 +1153,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1161,7 +1173,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1226,11 +1238,11 @@ class CustomerController extends Controller
 
                 $merge = array_merge($sales, $salepayment_s);
                 foreach ($merge as $key => $datas) {
-        
+
                     $branch_name = Branch::findOrFail($datas->branch_id);
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->where('branch_id', '=', $branchid)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1239,12 +1251,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1254,7 +1266,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1274,7 +1286,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1317,7 +1329,7 @@ class CustomerController extends Controller
                 $total_balance = $tot_saleAmount - $total_amount_paid;
 
             }
-            
+
 
         }else if($branchid == 'customer'){
 
@@ -1352,7 +1364,7 @@ class CustomerController extends Controller
 
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1361,12 +1373,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1376,7 +1388,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1396,7 +1408,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1466,10 +1478,10 @@ class CustomerController extends Controller
 
                     $branch_name = Branch::findOrFail($datas->branch_id);
 
-        
+
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1478,12 +1490,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1493,7 +1505,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1513,7 +1525,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1582,7 +1594,7 @@ class CustomerController extends Controller
 
                     $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arr) {
-        
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arr->productlist_id);
                         $terms[] = array(
                             'bag' => $SalesProducts_arr->bagorkg,
@@ -1591,12 +1603,12 @@ class CustomerController extends Controller
                             'total_price' => $SalesProducts_arr->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arr->sales_id,
-        
+
                         );
-        
+
                     }
-        
-        
+
+
                     if($datas->status != ""){
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
@@ -1606,7 +1618,7 @@ class CustomerController extends Controller
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
                     }
-        
+
                     $Sales_data[] = array(
                         'unique_key' => $datas->unique_key,
                         'branch_name' => $branch_name->shop_name,
@@ -1626,7 +1638,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
-        
+
                     );
                 }
 
@@ -1681,7 +1693,7 @@ class CustomerController extends Controller
          });
 
 
-            return view('page.backend.customer.view', compact('CustomerData', 'Sales_data', 'Customer', 'Customername', 'customer_id', 'unique_key', 
+            return view('page.backend.customer.view', compact('CustomerData', 'Sales_data', 'Customer', 'Customername', 'customer_id', 'unique_key',
             'branchid', 'customerid', 'tot_saleAmount', 'total_amount_paid', 'total_balance', 'GETBranchname', 'last_word', 'fromdate', 'todate',));
     }
 
@@ -1716,7 +1728,7 @@ class CustomerController extends Controller
         {
             $query = request()->get('query');
             $supplierdata = Customer::where('contact_number', '=', $query)->first();
-            
+
             $userData['data'] = $supplierdata;
             echo json_encode($userData);
         }
@@ -1726,6 +1738,6 @@ class CustomerController extends Controller
 
 
 
-    
+
 
 }

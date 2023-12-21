@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
         @php
 
            preg_match("/[^\/]+$/", Request::url(), $matches);
@@ -61,7 +61,7 @@
                     </a>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="card">
             <div class="card-body">
@@ -70,9 +70,9 @@
                         <thead>
                             <tr>
                                 <th>Sl. No</th>
-                                <th>Branch</th>
-                                <th>Date</th>
-                                <th>Amount</th>
+                                {{-- <th>Branch</th> --}}
+                                <th>Date & Time</th>
+                                <th>Grand Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -80,12 +80,19 @@
                             @foreach ($expense_data as $keydata => $expenceData)
                                 <tr>
                                     <td>{{ ++$keydata }}</td>
-                                    <td>{{ $expenceData['branch_name'] }}</td>
+                                    {{-- <td>{{ $expenceData['branch_name'] }}</td> --}}
                                     <td>{{ date('d M Y', strtotime($expenceData['date'])) }} -
                                         {{ date('h:i A', strtotime($expenceData['time'])) }}</td>
                                     <td>{{ $expenceData['amount'] }}</td>
                                     <td>
                                         <ul class="list-unstyled hstack gap-1 mb-0">
+                                            <li>
+                                                <a href="#expenseview{{ $expenceData['unique_key'] }}"
+                                                    data-bs-toggle="modal" data-id="{{ $expenceData['id'] }}"
+                                                    data-bs-target=".expenseview-modal-xl{{ $expenceData['unique_key'] }}"
+                                                    class="badges bg-lightgrey expenseview" style="color: white">View</a>
+
+                                            </li>
                                             <li>
                                                 <a href="{{ route('expence.edit', ['unique_key' => $expenceData['unique_key']]) }}"
                                                 class="badges bg-lightyellow" style="color: white">Edit</a>
@@ -95,21 +102,14 @@
                                                 <a href="#delete{{ $expenceData['unique_key'] }}" data-bs-toggle="modal"
                                                     data-id="{{ $expenceData['unique_key'] }}"
                                                     data-bs-target=".expencedelete-modal-xl{{ $expenceData['unique_key'] }}"
-                                                    class="badges bg-lightgrey" style="color: white">Delete</a>
-                                            </li>
-                                            <li>
-                                                <a href="#expenseview{{ $expenceData['unique_key'] }}"
-                                                    data-bs-toggle="modal" data-id="{{ $expenceData['id'] }}"
-                                                    data-bs-target=".expenseview-modal-xl{{ $expenceData['unique_key'] }}"
-                                                    class="badges bg-lightred expenseview" style="color: white">View</a>
-
+                                                    class="badges bg-lightred" style="color: white">Delete</a>
                                             </li>
 
                                         </ul>
                                     </td>
                                 </tr>
 
-                                
+
                                 <div class="modal fade expencedelete-modal-xl{{ $expenceData['unique_key'] }}"
                                     tabindex="-1" role="dialog"data-bs-backdrop="static"
                                     aria-labelledby="expencedeleteLargeModalLabel{{ $expenceData['unique_key'] }}"
@@ -129,7 +129,7 @@
             </div>
         </div>
 
-       
+
 
 
     </div>
