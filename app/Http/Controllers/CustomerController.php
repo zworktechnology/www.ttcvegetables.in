@@ -66,7 +66,7 @@ class CustomerController extends Controller
             $totalsale = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_amount');
             $totalpaidsale = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_paid');
             $totalsalebla = BranchwiseBalance::where('customer_id', '=', $datas->id)->sum('sales_balance');
-            
+
             $customerarr_data[] = array(
                 'unique_key' => $datas->unique_key,
                 'name' => $Customer_name->name,
@@ -612,7 +612,7 @@ class CustomerController extends Controller
             $paymentbalacedata->customer_id = $customerid;
             $paymentbalacedata->branch_id = 1;
             $paymentbalacedata->sales_balance = $balance_amount;
-            $paymentbalacedata->sales_amount = 0;
+            $paymentbalacedata->sales_amount = $balance_amount;
             $paymentbalacedata->sales_paid = 0;
 
             $paymentbalacedata->save();
@@ -704,6 +704,7 @@ class CustomerController extends Controller
                     'branch_name' => $branch_name->shop_name,
                     'customer_name' => $CustomerData->name,
                     'date' => $datas->date,
+                    'time' => $datas->time,
                     'gross_amount' => $datas->gross_amount,
                     'paid_amount' => $paid,
                     'bill_no' => $datas->bill_no,

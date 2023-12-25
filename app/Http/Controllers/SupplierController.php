@@ -598,7 +598,8 @@ class SupplierController extends Controller
             $paymentbalacedata->supplier_id = $supplierid;
             $paymentbalacedata->branch_id = 1;
             $paymentbalacedata->purchase_balance = $balance_amount;
-            $paymentbalacedata->purchase_amount = 0;
+            $paymentbalacedata->purchase_amount = $balance_amount;
+            $paymentbalacedata->purchase_paid = 0;
 
             $paymentbalacedata->save();
         }

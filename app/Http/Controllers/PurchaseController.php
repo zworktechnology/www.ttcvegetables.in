@@ -2740,7 +2740,6 @@ class PurchaseController extends Controller
                     'bag' => $PurchaseProducts_arrdata->bagorkg,
                     'kgs' => $PurchaseProducts_arrdata->count,
                     'price_per_kg' => $PurchaseProducts_arrdata->price_per_kg,
-                    'note' => $PurchaseProducts_arrdata->note,
                     'total_price' => $PurchaseProducts_arrdata->total_price,
                     'product_name' => $productlist_ID->name,
                     'purchase_id' => $PurchaseProducts_arrdata->purchase_id,

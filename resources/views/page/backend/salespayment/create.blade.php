@@ -19,7 +19,7 @@
                         <div class="col-lg-3 col-sm-3 col-3">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                 <input type="date" name="date" placeholder="" value="{{ $today }}" required>
                             </div>
                         </div>
@@ -27,17 +27,17 @@
                         <div class="col-lg-3 col-sm-3 col-3">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                 <input type="time" name="time" placeholder="" value="{{ $timenow }}" required>
                             </div>
                         </div>
 
-                        
+
 
                         <div class="col-lg-3 col-sm-3 col-3">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Customer<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                 <select class="form-control js-example-basic-single select spayment_customer_id" name="customer_id" id="customer_id" required>
                                     <option value="" disabled selected hiddden>Select Customer</option>
                                     @foreach ($customer as $customers)
@@ -48,14 +48,14 @@
                         </div>
 
 
-                        <div class="col-lg-3 col-sm-3 col-3">
+                        <div class="col-lg-3 col-sm-3 col-3" hidden>
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Branch<span
                                         style="color: red;">*</span></label>
                                 <select class="form-control js-example-basic-single select spayment_branch_id" name="branch_id" id="branch_id" required>
                                     <option value="" disabled selected hiddden>Select Branch</option>
                                     @foreach ($allbranch as $branches)
-                                        <option value="{{ $branches->id }}">{{ $branches->shop_name }}</option>
+                                        <option value="{{ $branches->id }}" selected>{{ $branches->shop_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,7 +72,7 @@
                         <div class="col-lg-3 col-sm-3 col-3">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Discount<span
-                                        style="color: red;">*</span></label>
+                                        style="color: red;"> *</span></label>
                                     <input type="text" name="salespayment_discount" id="salespayment_discount" style="color:black" value="0"class="salespayment_discount" placeholder="Enter Discount Amount" required>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
 
 
 
-                        
+
 
 
                         <div class="col-lg-3 col-sm-3 col-3">
@@ -107,7 +107,7 @@
 
                     <br />
 
-                    
+
 
                     <br /><br />
 

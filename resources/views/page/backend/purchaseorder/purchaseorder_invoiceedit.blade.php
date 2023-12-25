@@ -5,7 +5,7 @@
    <div class="content">
       <div class="page-header">
          <div class="page-title">
-            <h4>Update Purchase Order</h4>
+            <h4>Update Purchase</h4>
          </div>
       </div>
 
@@ -15,19 +15,19 @@
             @method('PUT')
             @csrf
             <div class="row">
-                <div class="col-lg-3 col-sm-3 col-12">
+                <div class="col-lg-4 col-sm-4 col-12">
                     <div class="form-group">
                        <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span style="color: red;">*</span></label>
                        <input type="date" name="date" placeholder="" readonly value="{{ $PurchaseData->date }}">
                     </div>
                  </div>
-                 <div class="col-lg-3 col-sm-3 col-12">
+                 <div class="col-lg-4 col-sm-4 col-12">
                     <div class="form-group">
                        <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span style="color: red;">*</span></label>
                        <input type="time" name="time" placeholder="" readonly value="{{ $PurchaseData->time }}">
                     </div>
                  </div>
-               <div class="col-lg-3 col-sm-3 col-12">
+               <div class="col-lg-4 col-sm-4 col-12">
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Supplier<span style="color: red;">*</span> </label>
                      <select class="form-control js-example-basic-single select" name="supplier_id" id="supplier_id" disabled>
@@ -39,7 +39,7 @@
                   </div>
                </div>
 
-               <div class="col-lg-3 col-sm-3 col-12">
+               <div class="col-lg-3 col-sm-3 col-12" hidden>
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Branch<span style="color: red;">*</span></label>
                      <select class="form-control js-example-basic-single select" name="branch_id" id="branch_id" disabled>
@@ -58,16 +58,15 @@
                <div class="table-responsive col-12">
                   <table class="table">
                      <thead>
-                           
+
                         <tr>
                            <th style="font-size:15px; width:20%;">Product</th>
-                           <th style="font-size:15px; width:20%;">Bag / Kg</th>
+                           <th style="font-size:15px; width:10%;">Bag / Kg</th>
                            <th style="font-size:15px; width:10%;">Count </th>
-                           
+                           <th style="font-size:15px; width:10%;">Note </th>
                            <th style="font-size:15px; width:23%;">Price / Count</th>
-                           <th style="font-size:15px; width:2%;">Amount</th>
-                           <th style="font-size:15px; width:25%;">Amount</th>
-                           
+                           <th style="font-size:15px; width:15%;"></th>
+
                         </tr>
                      </thead>
                      <tbody id="product_fields">
@@ -84,6 +83,7 @@
                            </td>
                            <td><input type="text" class="form-control" id="bagorkg" readonly name="bagorkg[]" placeholder="bagorkg" value="{{ $Purchase_Products->bagorkg }}"  /></td>
                            <td><input type="text" class="form-control count" id="count"  name="count[]" placeholder="count" value="{{ $Purchase_Products->count }}"  /></td>
+                           <td><input type="text" class="form-control count" id="count"  name="count[]" placeholder="count" value="{{ $Purchase_Products->note }}"  /></td>
                            <td><input type="text" class="form-control price_per_kg" id="price_per_kg"
                                                     name="price_per_kg[]" placeholder="Price Per count"  value="{{ $Purchase_Products->price_per_kg }}" /></td>
                                             <td></td>
@@ -99,8 +99,8 @@
 
                                 <tbody>
                                     <tr>
-                                        <td colspan="2">
-                                            
+                                        <td colspan="4">
+
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input commission_ornet" type="radio" {{ $PurchaseData->commission_ornet == 'commission' ? 'checked' :''}}
@@ -119,7 +119,7 @@
                                         </td>
                                         <td colspan="1"><input type="text"  value="{{ $PurchaseData->commission_percent }}" class="form-control commission_percent" name="commission_percent" id="commission_percent"/></td>
                                         <td colspan="1"><input type="text" class="form-control commission_amount" readonly   name="commission_amount" id="commission_amount" value="{{ $PurchaseData->commission_amount }}"/></td>
-                                        
+
                                     </tr>
                                 </tbody>
                                 <tbody id="extracost_tr">
@@ -127,11 +127,11 @@
                                     <tr>
                                         <td style="font-size:15px; color: black;" class="text-end">Extra Cost<span
                                             style="color: red;">*</span></td>
-                                        <td colspan="2"><input type="hidden" name="purchase_extracost_id"/>
+                                        <td colspan="4"><input type="hidden" name="purchase_extracost_id"/>
                                             <input type="text" class="form-control"readonly
                                                 id="extracost_note" placeholder="Note" value="{{ $Purchase_Extracosts->extracost_note }}"
                                                 name="extracost_note[]"  /></td>
-                                        
+
                                         <td colspan="1"><input type="text" class="form-control extracost" id="extracost"
                                                 placeholder="Extra Cost"  name="extracost[]" readonly
                                                 value="{{ $Purchase_Extracosts->extracost }}" /></td>
@@ -140,30 +140,30 @@
                                 </tbody>
                                 <tbody>
                                     <tr>
-                                        <td colspan="2" class="text-end" style="font-size:15px;color: black;">Total</td>
-                                        <td colspan="2" ><input type="hidden" class="form-control total_extracost" value="" name="total_extracost" id="total_extracost" readonly />
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Total</td>
+                                        <td colspan="1" ><input type="hidden" class="form-control total_extracost" value="" name="total_extracost" id="total_extracost" readonly />
                                             <input type="text" class="form-control tot_comm_extracost"  readonly name="tot_comm_extracost"
                                             style="background-color: #e9ecef;" value="{{ $PurchaseData->tot_comm_extracost }}"/></td>
-                                        <td colspan="2"><input type="text" class="form-control total_amount" id="total_amount"
+                                        <td colspan="1"><input type="text" class="form-control total_amount" id="total_amount"
                                                 name="total_amount" value="{{ $PurchaseData->total_amount }}" readonly
                                                 style="background-color: #e9ecef;" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Gross
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Gross
                                             Amount</td>
                                         <td colspan="2"><input type="text" class="form-control gross_amount" id="gross_amount"
                                                 placeholder="Gross Amount" value="{{ $PurchaseData->gross_amount }}"
                                                 readonly style="background-color: #e9ecef;" name="gross_amount" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: red;">Old
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: red;">Old
                                             Balance</td>
                                         <td colspan="2"><input type="text" class="form-control old_balance" id="old_balance"
                                                 placeholder="Old Balance" readonly value="{{ $PurchaseData->old_balance }}"
                                                 style="background-color: #e9ecef;" name="old_balance" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: green;">Grand
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: green;">Grand
                                             Total</td>
                                         <td colspan="2"><input type="text" class="form-control grand_total" id="grand_total"
                                                 readonly placeholder="Grand Total"
@@ -171,14 +171,14 @@
                                                 style="background-color: #e9ecef;" name="grand_total" /></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Payable
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Payable
                                             Amount<span style="color: red;">*</span></td>
-                                        <td colspan="2"><input type="text" class="form-control payable_amount" 
+                                        <td colspan="2"><input type="text" class="form-control payable_amount"
                                                 name="payable_amount" placeholder="Payable Amount" required
                                                 value="{{ $PurchaseData->paid_amount }}" id="payable_amount"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" class="text-end" style="font-size:15px;color: black;">Pending
+                                        <td colspan="5" class="text-end" style="font-size:15px;color: black;">Pending
                                             Amount</td>
                                         <td colspan="2"><input type="text" class="form-control pending_amount"
                                                 name="pending_amount" value="{{ $PurchaseData->balance_amount }}"
@@ -200,7 +200,7 @@
 
                <br/><br/>
 
-            
+
             <div class="modal-footer">
                <input type="submit" class="btn btn-primary" name="submit" value="submit" />
                <a href="{{ route('purchaseorder.purchaseorder_index') }}" class="btn btn-danger" value="">Cancel</a>
@@ -208,7 +208,7 @@
          </form>
 
 
-            
+
 
 
 

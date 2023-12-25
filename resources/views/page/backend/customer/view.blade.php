@@ -21,14 +21,12 @@
 
                     <div class="col-lg-4 col-sm-6 col-12" style="margin: 0px 3px;">
                         <div class="form-group">
-                            <label>From</label>
                             <input type="date" name="fromdate" id="fromdate" value="{{$fromdate}}"
                                 style="color:black">
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-12" style="margin: 0px 3px;">
                         <div class="form-group">
-                            <label>To</label>
                             <input type="date" name="todate" id="todate" value="{{$todate}}"
                                 style="color:black">
                         </div>
@@ -38,21 +36,19 @@
                     <input type="hidden" name="branchid" id="branchid" value="{{ $last_word }}" />
                     <div class="col-lg-2 col-sm-6 col-12" style="margin: 0px 3px;">
                         <div class="form-group">
-                            <label style="opacity: 0%;">Action</label>
                             <input type="submit" class="btn btn-primary" name="submit" value="Search" />
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
-            <a href="{{ route('customer.index') }}" class="badges bg-green" style="color: white;margin-right: 10px;">Back</a>   
         </div>
         <div class="row" >
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget">
                     <div class="dash-widgetcontent">
                         <h5>{{ $Customername }}</h5>
-                        <h6 style="color:red">Branch - {{$GETBranchname}}</h6>
+                        <h6 style="color:red">Customer</h6>
                     </div>
                 </div>
             </div>
@@ -60,7 +56,7 @@
                 <div class="dash-widget dash1">
                     <div class="dash-widgetcontent">
                         <h5>₹ <span class="counters" data-count="{{ $tot_saleAmount }}"></span></h5>
-                        <h6>Total Sales Value</h6>
+                        <h6>Total Sales Amount</h6>
                     </div>
                 </div>
             </div>
@@ -68,7 +64,7 @@
                 <div class="dash-widget dash2">
                     <div class="dash-widgetcontent">
                         <h5>₹ <span class="counters" data-count="{{ $total_amount_paid }}"></span></h5>
-                        <h6>Total Paid Value</h6>
+                        <h6>Total Payment Received Amount</h6>
                     </div>
                 </div>
             </div>
@@ -76,7 +72,7 @@
                 <div class="dash-widget dash3">
                     <div class="dash-widgetcontent">
                         <h5>₹ <span class="counters" data-count="{{ $total_balance }}"></span></h5>
-                        <h6>Total Balance Value</h6>
+                        <h6>Total Pending Balance Amount</h6>
                     </div>
                 </div>
             </div>
@@ -86,7 +82,7 @@
         <div class="col-lg-12 col-sm-12 col-12" >
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Sales</h4>
+                        <h4>Accounting view</h4>
                     </div>
                 </div>
 
@@ -99,9 +95,9 @@
                                     <thead style="background: #5e54c966;">
                                         <tr>
                                         <th>S.No</th>
-                                            <th>Date</th>
-                                            <th>Customer</th>
-                                            <th>Branch</th>
+                                            <th>Date & Time</th>
+                                            {{-- <th>Customer</th> --}}
+                                            {{-- <th>Branch</th> --}}
                                             <th>Type</th>
                                             <th>Bill No</th>
                                             <th style="">Particulars</th>
@@ -116,9 +112,9 @@
                                             @if ($Sales_datas['unique_key'] != '')
                                                 <tr>
                                                 <td>{{ ++$keydata }}</td>
-                                                    <td>{{ $Sales_datas['date'] }}</td>
-                                                    <td>{{ $Sales_datas['customer_name'] }}</td>
-                                                    <td>{{ $Sales_datas['branch_name'] }}</td>
+                                                    <td>{{ date('d M Y', strtotime($Sales_datas['date'])) }} - {{ date('h:i A', strtotime($Sales_datas['time'])) }}</td>
+                                                    {{-- <td>{{ $Sales_datas['customer_name'] }}</td> --}}
+                                                    {{-- <td>{{ $Sales_datas['branch_name'] }}</td> --}}
                                                     <td>{{ $Sales_datas['type'] }}</td>
                                                     <td>{{ $Sales_datas['bill_no'] }}</td>
                                                     <td style="text-transform: uppercase;">
@@ -132,7 +128,7 @@
                                                     </td>
 
                                                     <td>{{ $Sales_datas['gross_amount'] }}</td>
-                                                    
+
                                                     <td>{{ $Sales_datas['paid_amount'] }}</td>
                                                     <td>{{ $Sales_datas['balance_amount'] }}</td>
                                                 </tr>
@@ -148,9 +144,9 @@
                         @endif
                     </div>
                 </div>
-            
 
-            
+
+
 
 
 

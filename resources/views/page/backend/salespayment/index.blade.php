@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Payment - Sales</h4>
+                <h4>Sales - Payment</h4>
             </div>
             <div class="page-btn">
                 <div class="row">
@@ -19,14 +19,14 @@
                                         value="Search" /></div>
                             </div>
                         </form>
-                        <a href="{{ route('salespayment.create') }}" class="btn btn-added" style="margin-right: 10px;">Add
+                        <a href="{{ route('salespayment.create') }}" class="btn btn-added" style="margin-right: 10px;">Add New
                             Sales Payment</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
         @php
 
            preg_match("/[^\/]+$/", Request::url(), $matches);
@@ -61,7 +61,7 @@
                     </a>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="card">
             <div class="card-body">
@@ -71,7 +71,7 @@
                             <tr>
                                 <th>Sl. No</th>
                                 <th>Date</th>
-                                <th>Branch</th>
+                                {{-- <th>Branch</th> --}}
                                 <th>Customer</th>
                                 <th>Old Balance</th>
                                 <th>Discount</th>
@@ -85,7 +85,7 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ date('d M Y', strtotime($P_PaymentData->date)) }} -
                                         {{ date('h:i A', strtotime($P_PaymentData->time)) }}</td>
-                                    <td>{{ $P_PaymentData->branch->shop_name }}</td>
+                                    {{-- <td>{{ $P_PaymentData->branch->shop_name }}</td> --}}
                                     <td>{{$P_PaymentData->customer->name }}</td>
                                     <td>{{$P_PaymentData->oldblance }}</td>
                                     <td>{{ $P_PaymentData->salespayment_discount }}</td>
