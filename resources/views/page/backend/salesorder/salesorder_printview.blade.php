@@ -21,11 +21,10 @@
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px; margin-top: -15px;">
                         <div>
-                            <p style="text-align: left; margin-bottom: 5px; color: green;">தேதி மற்றும் நேரம் : <span
-                                    style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }} -
-                                    {{ date('h:i A', strtotime($SalesData->time)) }}</span></p>
-                            <p style="text-align: left; margin-bottom: 5px; color: green;">ரசிது எண் : <span style="color: black;">#
-                                    {{ $SalesData->bill_no }}</span></p>
+                            <p style="text-align: left; margin-bottom: 5px; color: green;">தேதி : <span
+                                    style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
+                            {{-- <p style="text-align: left; margin-bottom: 5px; color: green;">ரசிது எண் : <span style="color: black;">#
+                                    {{ $SalesData->bill_no }}</span></p> --}}
                             <p style="text-align: left; color: green;">உயர்திரு : <span
                                     style="color: black;">{{ $customer_upper }}</span> அவர்கள்</p>
                         </div>
@@ -33,23 +32,23 @@
                             <table style="line-height: inherit;text-align: left;overflow: auto;margin:15px auto;">
                                 <tr class="heading " style="background:#eee;">
                                     <td
-                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        style="vertical-align: middle;color: black;padding: 10px; ">
                                         Rate
                                     </td>
                                     <td
-                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        style="vertical-align: middle;color: black;padding: 10px; ">
                                         Particulars
                                     </td>
                                     <td
-                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        style="vertical-align: middle;color: black;padding: 10px; ">
                                         Count
                                     </td>
                                     <td
-                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        style="vertical-align: middle;color: black;padding: 10px; ">
                                         Note
                                     </td>
                                     <td
-                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        style="vertical-align: middle;color: black;padding: 10px; ">
                                         Amount
                                     </td>
                                 </tr>
@@ -57,11 +56,11 @@
                                     @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
                                         <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
                                             <td
-                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
                                                 {{ $SalesProduct_darta_arr->price_per_kg }}
                                             </td>
                                             <td
-                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
                                                 @foreach ($productlist as $products)
                                                     @if ($products->id == $SalesProduct_darta_arr->productlist_id)
                                                         {{ $products->name }}
@@ -69,16 +68,16 @@
                                                 @endforeach
                                             </td>
                                             <td
-                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
                                                 {{ $SalesProduct_darta_arr->count }} -
                                                 {{ $SalesProduct_darta_arr->bagorkg }}
                                             </td>
                                             <td
-                                                style="padding: 10px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 5px 10px 5px 10px; vertical-align: top;vertical-align: inherit; color:#000;">
                                                 {{ $SalesProduct_darta_arr->note }}
                                             </td>
                                             <td
-                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
                                                 {{ $SalesProduct_darta_arr->total_price }}
                                             </td>
                                         </tr>
