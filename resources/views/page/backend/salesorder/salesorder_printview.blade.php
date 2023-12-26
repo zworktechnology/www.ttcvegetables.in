@@ -33,19 +33,19 @@
                         <div>
                             <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
                                 <tr class="heading " style="background:#eee; border-bottom: 1px solid black ; border-top: 1px solid black ;">
-                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                    <td style="padding: 2px;vertical-align: middle;color: black;">
                                         <b>Rate</b>
                                     </td>
-                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                    <td style="padding: 2px;vertical-align: middle;color: black;">
                                         <b>Particulars</b>
                                     </td>
-                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                    <td style="padding: 2px;vertical-align: middle;color: black;">
                                         <b>Count</b>
                                     </td>
-                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                    <td style="padding: 2px;vertical-align: middle;color: black;">
                                         <b>Note</b>
                                     </td>
-                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                    <td style="padding: 2px;vertical-align: middle;color: black;">
                                         <b>Amount</b>
                                     </td>
                                 </tr>
