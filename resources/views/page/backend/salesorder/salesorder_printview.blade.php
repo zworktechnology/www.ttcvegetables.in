@@ -14,7 +14,7 @@
 
         <div class="content">
             <div id="printableArea" style="width:148mm; height:210mm">
-                <div class="card">
+                <div>
                     <div>
                         <img src="{{ asset('assets/backend/img/spmheader.png') }}" style="margin-top: 5px;">
                         <hr style="margin-top: -8px; background-color : blue">
@@ -37,19 +37,19 @@
                             <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
                                 <tr class="heading "
                                     style="background:#eee; border-bottom: 1px solid black ; border-top: 1px solid black ;">
-                                    <td style="padding: 2px;vertical-align: middle;color: black;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Rate</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: black;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Particulars</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: black;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Count</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: black;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Note</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: black;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Amount</b>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
                                 @endforeach
                             </table>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-top: 3px;">
                             <div class="col-5"></div>
                             <div class="col-3">
                                 <p style="text-align: left; margin-bottom: 3px; color: black;">EXTRA CHARGE</p>
