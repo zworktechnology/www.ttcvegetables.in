@@ -89,39 +89,39 @@
                             <div class="total-order w-100 max-widthauto">
                                 <ul style="text-align: right;">
                                     <li style="margin-top: -5px;">
-                                        <h4 style="color:black;">Extra Charge</h4>
-                                        <h5 style="color:black;">₹ <span
-                                                class="">{{ $SalesData->extra_cost }}</span></h5>
+                                        <p style="color:black;">Extra Charge</p>
+                                        <p style="color:black;">₹ <span
+                                                class="">{{ $SalesData->extra_cost }}</span></p>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
-                                        <h4 style="color:blue;">Gross Amount</h4>
-                                        <h5 style="color:blue;">₹ <span
-                                                class="">{{ $SalesData->gross_amount }}</span></h5>
+                                        <p style="color:blue;">Gross Amount</p>
+                                        <p style="color:blue;">₹ <span
+                                                class="">{{ $SalesData->gross_amount }}</span></p>
                                     </li>
                                     <hr style="margin-top: -4px;">
                                     <li style="margin-top: -20px;">
-                                        <h4 style="color:red;">Old Balance</h4>
-                                        <h5 style="color:red;">₹ <span
-                                                class="">{{ $SalesData->old_balance }}</span></h5>
+                                        <p style="color:red;">Old Balance</p>
+                                        <p style="color:red;">₹ <span
+                                                class="">{{ $SalesData->old_balance }}</span></p>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
-                                        <h4 style="color:blue;">Grand Total</h4>
-                                        <h5 style="color:blue;">₹ <span
-                                                class="">{{ $SalesData->grand_total }}</span></h5>
+                                        <p style="color:blue;">Grand Total</p>
+                                        <p style="color:blue;">₹ <span
+                                                class="">{{ $SalesData->grand_total }}</span></p>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
-                                        <h4 style="color:green;">Paid Amount</h4>
-                                        <h5 style="color:green;">₹ <span
-                                                class="">{{ $SalesData->paid_amount }}</span></h5>
+                                        <p style="color:green;">Paid Amount</p>
+                                        <p style="color:green;">₹ <span
+                                                class="">{{ $SalesData->paid_amount }}</span></p>
                                     </li>
                                     <hr style="margin-top: -4px;">
                                     <li style="margin-top: -20px;">
-                                        <h4 style="color:red;">Nett Balance</h4>
-                                        <h5 style="color:red;">₹ <span
-                                                class="">{{ $SalesData->balance_amount }}</span></h5>
+                                        <p style="color:red;">Nett Balance</p>
+                                        <p style="color:red;">₹ <span
+                                                class="">{{ $SalesData->balance_amount }}</span></p>
                                     </li>
                                 </ul>
                             </div>
