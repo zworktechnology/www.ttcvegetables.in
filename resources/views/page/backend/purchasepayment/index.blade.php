@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Payment - Purchase</h4>
+                <h4>Payment Purchase</h4>
             </div>
             <div class="page-btn">
                 <div class="row">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
         @php
 
            preg_match("/[^\/]+$/", Request::url(), $matches);
@@ -61,7 +61,7 @@
                     </a>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="card">
             <div class="card-body">
@@ -70,8 +70,8 @@
                         <thead>
                             <tr>
                                 <th>Sl. No</th>
-                                <th>Date</th>
-                                <th>Branch</th>
+                                <th>Time</th>
+                                {{-- <th>Branch</th> --}}
                                 <th>Supplier</th>
                                 <th>Old Balance</th>
                                 <th>Discount</th>
@@ -83,9 +83,8 @@
                             @foreach ($data as $keydata => $P_PaymentData)
                                 <tr>
                                     <td>{{ ++$keydata }}</td>
-                                    <td>{{ date('d M Y', strtotime($P_PaymentData->date)) }} -
-                                        {{ date('h:i A', strtotime($P_PaymentData->time)) }}</td>
-                                    <td>{{ $P_PaymentData->branch->shop_name }}</td>
+                                    <td>{{ date('h:i A', strtotime($P_PaymentData->time)) }}</td>
+                                    {{-- <td>{{ $P_PaymentData->branch->shop_name }}</td> --}}
                                     <td>{{$P_PaymentData->supplier->name }}</td>
                                     <td>{{$P_PaymentData->oldblance }}</td>
                                     <td>{{$P_PaymentData->purchasepayment_discount }}</td>
@@ -111,7 +110,7 @@
             </div>
         </div>
 
-       
+
 
 
     </div>

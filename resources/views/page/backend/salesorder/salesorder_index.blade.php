@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Sales Order</h4>
+                <h4>Sales</h4>
             </div>
             <div style="display: flex;">
                 <form autocomplete="off" method="POST" action="{{ route('salesorder.salesorder_datefilter') }}" style="display: flex;">
@@ -17,10 +17,10 @@
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('salesorder.salesorder_create') }}" class="btn btn-added">Add Sales - Order</a>
+                <a href="{{ route('salesorder.salesorder_create') }}" class="btn btn-added">Add New Sales</a>
             </div>
         </div>
-        <div class="row py-2" style="margin-bottom:10px;">
+        {{-- <div class="row py-2" style="margin-bottom:10px;">
         @php
 
            preg_match("/[^\/]+$/", Request::url(), $matches);
@@ -55,7 +55,7 @@
                     </a>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
         <div class="card">
             <div class="card-body">
@@ -63,10 +63,10 @@
                     <table class="table  customerdatanew">
                         <thead>
                             <tr>
-                                <th>Date</th>
+                                {{-- <th>Date</th> --}}
                                 <th>Bill No</th>
                                 <th>Customer</th>
-                                <th>Branch</th>
+                                {{-- <th>Branch</th> --}}
                                 <th>Product Details</th>
                                 <th>Total</th>
                                 <th>Action</th>
@@ -75,14 +75,14 @@
                         <tbody>
                             @foreach ($Sales_data as $keydata => $Sales_datas)
                                 <tr>
-                                    <td>{{ date('d-m-Y', strtotime($Sales_datas['date'])) }}</td>
+                                    {{-- <td>{{ date('d-m-Y', strtotime($Sales_datas['date'])) }}</td> --}}
                                     <td>#{{ $Sales_datas['bill_no'] }}</td>
                                     <td>{{ $Sales_datas['customer_name'] }}</td>
-                                    <td>{{ $Sales_datas['branch_name'] }}</td>
+                                    {{-- <td>{{ $Sales_datas['branch_name'] }}</td> --}}
                                     <td style="text-transform: uppercase;">
                                     @foreach ($Sales_datas['sales_terms'] as $index => $terms_array)
                                                     @if ($terms_array['sales_id'] == $Sales_datas['id'])
-                                                    {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }}{{ $terms_array['bag'] }},<br/>
+                                                    {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }} {{ $terms_array['bag'] }}  x ₹ {{ $terms_array['price_per_kg'] }}<br/>
                                                     @endif
                                                     @endforeach
                                     </td>
@@ -108,7 +108,7 @@
 
                                                 @if ($Sales_datas['status'] == 1)
                                                     <a href="{{ route('salesorder.salesorder_printview', ['unique_key' => $Sales_datas['unique_key']]) }}"
-                                                        class="badges bg-green" style="color: white">Generated Invoice</a>
+                                                        class="badges bg-green" style="color: white">Invoice</a>
                                                 @endif
                                             </li>
 

@@ -95,7 +95,7 @@
                             <tr>
                                 <th>Sl. No</th>
                                 {{-- <th>Branch</th> --}}
-                                <th>Date</th>
+                                <th>Date & Time</th>
                                 <th>Amount</th>
                             </tr>
                         </thead>

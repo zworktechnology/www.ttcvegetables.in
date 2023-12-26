@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-2 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>From Date</label>
                                 <input type="date" name="purchasereport_fromdate" id="purchasereport_fromdate">
@@ -27,19 +27,19 @@
                                 <input type="date" name="purchasereport_todate" id="purchasereport_todate">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" hidden>
                             <div class="form-group">
                                 <label>Branch</label>
                                 <select class="purchasereport_branch form-control js-example-basic-single select" name="purchasereport_branch"
                                     id="purchasereport_branch">
                                     <option value="" selected>Select Branch</option>
                                     @foreach ($branch as $branches)
-                                        <option value="{{ $branches->id }}">{{ $branches->shop_name }}</option>
+                                        <option value="{{ $branches->id }}" selected>{{ $branches->shop_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-4 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Supplier</label>
                                 <select class="form-control js-example-basic-single select" name="purchasereport_supplier" id="purchasereport_supplier">
@@ -53,8 +53,16 @@
                         <div class="col-lg-1 col-sm-6 col-12">
                             <div class="form-group">
                                 <label style="color: white">Action</label>
-                                <input type="submit" class="btn btn-primary" name="submit" value="Search" />
+                                <input type="submit" class="btn btn-primary" name="submit" value="Filter" />
                             </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-6 col-12">
+                            <a href="{{ route('purchase.report') }}">
+                            <div class="form-group">
+                                <label style="color: white">Action</label>
+                                <input type="button" class="btn btn-warning" name="submit" value="Clear" />
+                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -69,22 +77,22 @@
                         @if ($purchase['unique_key'] != '')
 
                         @if($keydata == 0)
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="margin-bottom: 0px;">
                             <div class="form-group">
                                 <label>From Date :<span style="color: red">{{ $purchase['fromdateheading'] }}</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="margin-bottom: 0px;">
                             <div class="form-group">
                                 <label>To Date :<span style="color: red">{{ $purchase['todateheading'] }}</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" hidden style="margin-bottom: 0px;">
                             <div class="form-group">
                                 <label>Branch :<span style="color: red"> {{ $purchase['branchheading'] }}</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="margin-bottom: 0px;">
                             <div class="form-group">
                                 <label>Supplier : <span style="color: red">{{ $purchase['supplierheading'] }}</span></label>
                             </div>
@@ -105,14 +113,14 @@
                                     <thead style="background: #5e54c966;">
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Type</th>
+                                            {{-- <th>Type</th> --}}
                                             <th>Bill No</th>
                                             <th>Date & Time</th>
                                             <th>Supplier</th>
-                                            <th>Branch</th>
-                                            <th>Products</th>
+                                            {{-- <th>Branch</th> --}}
+                                            <th>Particulars</th>
                                             <th>Grand Total</th>
-                                            <th>Paid</th>
+                                            {{-- <th>Paid</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody style="background: #f8f9fa;">
@@ -122,24 +130,24 @@
                                                 <tr>
 
                                                     <td>{{ ++$keydata }}</td>
-                                                    @if ($purchasedata['purchase_order'] == NULL) 
+                                                    {{-- @if ($purchasedata['purchase_order'] == NULL)
                                                     <td style="text-transform: uppercase;color:#198754"> Purchase </td>
                                                     @elseif ($purchasedata['purchase_order'] == '1')
                                                     <td style="text-transform: uppercase;color:red;">Purchase Order</td>
-                                                    @endif
+                                                    @endif --}}
                                                     <td>#{{ $purchasedata['bill_no'] }}</td>
-                                                    <td>{{ date('d M Y', strtotime($purchasedata['date'])) }}</td>
+                                                    <td>{{ date('d M Y', strtotime($purchasedata['date'])) }} - {{ date('h:i A', strtotime($purchasedata['time'])) }}</td>
                                                     <td>{{ $purchasedata['supplier_name'] }}</td>
-                                                    <td>{{ $purchasedata['branch_name'] }}</td>
+                                                    {{-- <td>{{ $purchasedata['branch_name'] }}</td> --}}
                                                     <td style="text-transform: uppercase;">
                                                     @foreach ($purchasedata['terms'] as $index => $terms_array)
                                                     @if ($terms_array['purchase_id'] == $purchasedata['id'])
-                                                    {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }}{{ $terms_array['bag'] }},<br/>
+                                                    {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }} {{ $terms_array['bag'] }} - ₹ {{ $terms_array['price_per_kg'] }}<br/>
                                                     @endif
                                                     @endforeach
                                                     </td>
                                                     <td>{{ $purchasedata['gross_amount'] }}</td>
-                                                    <td>{{ $purchasedata['paid_amount'] }}</td>
+                                                    {{-- <td>{{ $purchasedata['paid_amount'] }}</td> --}}
                                                 </tr>
 
                                                 <div class="modal fade purchaseview-modal-xl{{ $purchasedata['unique_key'] }}"

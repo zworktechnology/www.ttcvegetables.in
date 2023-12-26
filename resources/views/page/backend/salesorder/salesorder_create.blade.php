@@ -5,7 +5,7 @@
    <div class="content">
       <div class="page-header">
          <div class="page-title">
-            <h4>Add Sales Order</h4>
+            <h4>Add New Sales</h4>
          </div>
       </div>
 
@@ -16,52 +16,40 @@
             <div class="row">
 
 
-                <div class="col-lg-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-4 col-12">
                     <div class="form-group">
-                       <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span style="color: red;">*</span></label>
+                       <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span style="color: red;"> *</span></label>
                        <input type="date" name="sales_date" placeholder="" value="{{ $today }}">
                     </div>
                  </div>
 
-                 <div class="col-lg-6 col-sm-6 col-12">
+                 <div class="col-lg-4 col-sm-4 col-12">
                     <div class="form-group">
-                       <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span style="color: red;">*</span></label>
+                       <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span style="color: red;"> *</span></label>
                        <input type="time" name="sales_time" placeholder="" value="{{ $timenow }}">
                     </div>
                  </div>
 
-               <div class="col-lg-4 col-sm-6 col-12">
+                 <div class="col-lg-4 col-sm-4 col-12">
+                    <div class="form-group">
+                       <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Customer<span style="color: red;"> *</span> </label>
+                       <select class="form-control js-example-basic-single select sales_customerid" name="sales_customerid" id="sales_customerid">
+                          <option value="" disabled selected hiddden>Select Customer</option>
+                             @foreach ($customer as $customer_array)
+                                <option value="{{ $customer_array->id }}">{{ $customer_array->name }}</option>
+                             @endforeach
+                       </select>
+                    </div>
+                 </div>
+
+               <div class="col-lg-4 col-sm-6 col-12" hidden>
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Branch<span style="color: red;">*</span></label>
                      <select class="form-control js-example-basic-single select sales_branch_id" name="sales_branch_id" id="sales_branch_id">
                         <option value="" disabled selected hiddden>Select Branch</option>
                            @foreach ($branch as $branches)
-                              <option value="{{ $branches->id }}">{{ $branches->shop_name }}</option>
+                              <option value="{{ $branches->id }}" selected>{{ $branches->shop_name }}</option>
                            @endforeach
-                     </select>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-sm-6 col-12">
-                  <div class="form-group">
-                     <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Customer<span style="color: red;">*</span> </label>
-                     <select class="form-control js-example-basic-single select sales_customerid" name="sales_customerid" id="sales_customerid">
-                        <option value="" disabled selected hiddden>Select Customer</option>
-                           @foreach ($customer as $customer_array)
-                              <option value="{{ $customer_array->id }}">{{ $customer_array->name }}</option>
-                           @endforeach
-                     </select>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-sm-6 col-12">
-                  <div class="form-group">
-                     <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Bank<span style="color: red;">*</span></label>
-                     <select class="select" name="sales_bank_id" id="sales_bank_id">
-                        <option value="" disabled selected hiddden>Select Bank</option>
-                        @foreach ($bank as $banks)
-                           <option value="{{ $banks->id }}">{{ $banks->name }}</option>
-                        @endforeach
                      </select>
                   </div>
                </div>
@@ -75,12 +63,13 @@
                   <table class="table">
                      <thead>
                         <tr>
-                           <th style="font-size:15px; width:28%;">Product</th>
-                           <th style="font-size:15px; width:12%;">Bag / Kg</th>
-                           <th style="font-size:15px; width:12%;">Count </th>
-                           <th style="font-size:15px; width:18%;">Price / Count</th>
-                           <th style="font-size:15px; width:20%;">Amount</th>
-                           <th style="font-size:15px; width:20%;">Action</th>
+                           <th style="font-size:15px; width:28%;">Product<span style="color: red;"> *</span></th>
+                           <th style="font-size:15px; width:12%;">Bag / Kg<span style="color: red;"> *</span></th>
+                           <th style="font-size:15px; width:12%;">Count<span style="color: red;"> *</span></th>
+                           <th style="font-size:15px; width:10%;">Note </th>
+                           <th style="font-size:15px; width:18%;">Price / Count<span style="color: red;"> *</span></th>
+                           <th style="font-size:15px; width:10%;">Amount</th>
+                           <th style="font-size:15px; width:10%;">Action</th>
 
                         </tr>
                      </thead>
@@ -88,11 +77,11 @@
                         <tr>
                            <td class="">
                               <input type="hidden"id="sales_detail_id"name="sales_detail_id[]" />
-                              <select class="form-control js-example-basic-single select sales_product_id" name="sales_product_id[]" id="sales_product_id1"required>
+                              <select class="form-control sales_product_id" name="sales_product_id[]" id="sales_product_id1"required>
                               <option value="" selected hidden class="text-muted">Select Product
                                                 </option>
                                                 @foreach ($productlist as $productlists)
-                                                    <option value="{{ $productlists->id }}">{{ $productlists->name }}
+                                                    <option value="{{ $productlists->id }}">{{ $productlists->id }} - {{ $productlists->name }}
                                                     </option>
                                                 @endforeach
 
@@ -105,6 +94,7 @@
                               </select>
                            </td>
                            <td><input type="text" class="form-control sales_count" id="sales_count" name="sales_count[]" placeholder="count" value="" required /></td>
+                           <td><input type="text" class="form-control sales_note" id="sales_note" name="sales_note[]" placeholder="note" value="" required /></td>
                            <td><input type="text" class="form-control sales_priceperkg" id="sales_priceperkg" name="sales_priceperkg[]" placeholder="Price Per Count" value="" required /></td>
                            <td class="text-end"><input type="text" class="form-control sales_total_price" readonly id="sales_total_price"  style="background-color: #e9ecef;" name="sales_total_price[]" placeholder="" value="" required /></td>
                            <td><button style="width: 35px;"class="py-1 text-white font-medium rounded-lg text-sm  text-center btn btn-primary addsalesorderfields"
@@ -144,9 +134,15 @@
 
                         </tr>
                         <tr>
-                           <td colspan="4" class="text-end" style="font-size:15px;color: black;">Payable Amount<span style="color: red;">*</span></td>
+                           <td colspan="1" class="text-end" style="font-size:15px;color: black;">Bank<span style="color: red;"> *</span></td>
+                           <td colspan="2"><select class="select" name="sales_bank_id" id="sales_bank_id">
+                            <option value="" disabled selected hiddden>Select Bank</option>
+                            @foreach ($bank as $banks)
+                               <option value="{{ $banks->id }}">{{ $banks->name }}</option>
+                            @endforeach
+                         </select></td>
+                           <td colspan="1" class="text-end" style="font-size:15px;color: black;">Payable Amount<span style="color: red;"> *</span></td>
                            <td colspan="2"><input type="text" class="form-control salespayable_amount" name="salespayable_amount" placeholder="Payable Amount" id="salespayable_amount" required></td>
-
                         </tr>
                         <tr>
                            <td colspan="4" class="text-end" style="font-size:15px;color: black;">Pending Amount</td>
@@ -156,8 +152,6 @@
                   </table>
                </div>
             </div>
-
-               <br/><br/>
 
 
             <div class="modal-footer">

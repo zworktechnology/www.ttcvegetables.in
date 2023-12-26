@@ -70,14 +70,14 @@ class SalesController extends Controller
 
 
                 $PSTodayStockArr = [];
-           
+
                 $sales_branchwise_data = Sales::where('date', '=', $today)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
                 $Sales_Branch = [];
                 foreach ($sales_branchwise_data as $key => $sales_Data) {
                     $Sales_Branch[] = $sales_Data->branch_id;
                 }
-              
-               
+
+
                 foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
 
                     $merge_salesProduct = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->get();
@@ -93,7 +93,7 @@ class SalesController extends Controller
 
 
                     foreach (array_unique($sales_Array) as $key => $sales_productlist) {
-                       
+
                         $getSalebagcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
                         $getSalekgcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
 
@@ -119,16 +119,16 @@ class SalesController extends Controller
                                 'getSalebagcount' => $bag_count,
                                 'getSalekgcount' => $kg_count,
                                 'today' => $today,
-    
+
                             );
 
-                        
+
                     }
-                    
+
                 }
 
-              
-            
+
+
 
 
                 $today_date = Carbon::now()->format('Y-m-d');
@@ -181,14 +181,14 @@ class SalesController extends Controller
 
 
         $PSTodayStockArr = [];
-           
+
         $sales_branchwise_data = Sales::where('date', '=', $today)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_Branch = [];
         foreach ($sales_branchwise_data as $key => $sales_Data) {
             $Sales_Branch[] = $sales_Data->branch_id;
         }
-      
-       
+
+
         foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
 
             $merge_salesProduct = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->get();
@@ -204,7 +204,7 @@ class SalesController extends Controller
 
 
             foreach (array_unique($sales_Array) as $key => $sales_productlist) {
-               
+
                 $getSalebagcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('date', '=', $today)->where('sales_order', '=', NULL)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
                 $getSalekgcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('date', '=', $today)->where('sales_order', '=', NULL)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
 
@@ -233,9 +233,9 @@ class SalesController extends Controller
 
                     );
 
-                
+
             }
-            
+
         }
 
         $today_date = Carbon::now()->format('Y-m-d');
@@ -245,7 +245,7 @@ class SalesController extends Controller
 
     public function sales_branchdata($today, $branch_id)
     {
-        
+
         $branchwise_data = Sales::where('date', '=', $today)->where('branch_id', '=', $branch_id)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_data = [];
         $sales_terms = [];
@@ -288,14 +288,14 @@ class SalesController extends Controller
 
 
         $PSTodayStockArr = [];
-           
+
         $sales_branchwise_data = Sales::where('date', '=', $today)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_Branch = [];
         foreach ($sales_branchwise_data as $key => $sales_Data) {
             $Sales_Branch[] = $sales_Data->branch_id;
         }
-      
-       
+
+
         foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
 
             $merge_salesProduct = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->get();
@@ -311,7 +311,7 @@ class SalesController extends Controller
 
 
             foreach (array_unique($sales_Array) as $key => $sales_productlist) {
-               
+
                 $getSalebagcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('date', '=', $today)->where('sales_order', '=', NULL)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
                 $getSalekgcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('date', '=', $today)->where('sales_order', '=', NULL)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
 
@@ -340,9 +340,9 @@ class SalesController extends Controller
 
                     );
 
-                
+
             }
-            
+
         }
 
         $today_date = Carbon::now()->format('Y-m-d');
@@ -399,14 +399,14 @@ class SalesController extends Controller
 
 
         $PSTodayStockArr = [];
-           
+
         $sales_branchwise_data = Sales::where('date', '=', $today)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_Branch = [];
         foreach ($sales_branchwise_data as $key => $sales_Data) {
             $Sales_Branch[] = $sales_Data->branch_id;
         }
-      
-       
+
+
         foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
 
             $merge_salesProduct = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->get();
@@ -422,7 +422,7 @@ class SalesController extends Controller
 
 
             foreach (array_unique($sales_Array) as $key => $sales_productlist) {
-               
+
                 $getSalebagcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
                 $getSalekgcount = SalesProduct::where('branch_id', '=', $Merge_Branchs)->where('sales_order', '=', NULL)->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
 
@@ -451,9 +451,9 @@ class SalesController extends Controller
 
                     );
 
-                
+
             }
-            
+
         }
 
 
@@ -475,7 +475,7 @@ class SalesController extends Controller
 
     public function store(Request $request)
     {
-       
+
 
             $sales_customerid = $request->get('sales_customerid');
             $sales_branch_id = $request->get('sales_branch_id');
@@ -595,7 +595,7 @@ class SalesController extends Controller
                 DB::table('branchwise_balances')->where('customer_id', $sales_customerid)->where('branch_id', $sales_branch_id)->update([
                     'sales_amount' => $new_grossamount,  'sales_paid' => $new_paid, 'sales_balance' => $new_balance
                 ]);
-                
+
             }else {
                 $gross_amount = $request->get('sales_gross_amount');
                 $payable_amount = $request->get('salespayable_amount');
@@ -634,7 +634,7 @@ class SalesController extends Controller
             $customer_upper = strtoupper($customer_idname->name);
             $productlist = Productlist::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
             $SalesProduct_darta = SalesProduct::where('sales_id', '=', $SalesData->id)->where('sales_order', '=', NULL)->get();
-            
+
 
         return view('page.backend.sales.print_view', compact('customer_upper', 'SalesData', 'customer_idname', 'branchname', 'bankname', 'SalesProduct_darta', 'productlist'));
     }
@@ -659,7 +659,7 @@ class SalesController extends Controller
     public function update(Request $request, $unique_key)
     {
 
-        
+
 
 
         $Sales_Data = Sales::where('unique_key', '=', $unique_key)->where('sales_order', '=', NULL)->first();
@@ -688,18 +688,18 @@ class SalesController extends Controller
                 $new_balance = $new_gross - $new_paid;
 
 
-                
+
 
                 DB::table('branchwise_balances')->where('customer_id', $sales_customer_id)->where('branch_id', $branch_id)->update([
                     'sales_amount' => $new_gross,  'sales_paid' => $new_paid, 'sales_balance' => $new_balance
                 ]);
-                
-            } 
+
+            }
 
 
-        
 
-        
+
+
 
         $Sales_Data->total_amount = $request->get('sales_total_amount');
         $Sales_Data->gross_amount = $request->get('sales_gross_amount');
@@ -731,14 +731,14 @@ class SalesController extends Controller
             }
         }
 
-       
-            
+
+
         foreach ($request->get('sales_detail_id') as $key => $sales_detail_id) {
             if ($sales_detail_id > 0) {
 
                 $updatesales_product_id = $request->sales_product_id[$key];
 
-                
+
 
                 $product_Data = Product::where('soft_delete', '!=', 1)->where('productlist_id', '=', $updatesales_product_id)->where('branchtable_id', '=', $branch_id)->first();
                 if($product_Data != ""){
@@ -751,7 +751,7 @@ class SalesController extends Controller
 
                         $old_count = $getP_Productbag->count;
                         $new_count = $request->sales_count[$key];
-    
+
                         if($old_count > $new_count){
 
                             $total_count = $old_count - $new_count;
@@ -774,10 +774,10 @@ class SalesController extends Controller
                     }else if($request->sales_bagorkg[$key] == 'kg'){
 
                         $getP_Productkg = SalesProduct::where('id', '=', $sales_detail_id)->where('bagorkg', '=', 'kg')->first();
-    
+
                         $oldkg_count = $getP_Productkg->count;
                         $newkg_count = $request->sales_count[$key];
-    
+
                         if($oldkg_count > $newkg_count){
 
                             $total_count = $oldkg_count - $newkg_count;
@@ -862,7 +862,7 @@ class SalesController extends Controller
             }
         }
 
-       
+
 
         return redirect()->route('sales.index')->with('update', 'Updated Sales information has been added to your list.');
 
@@ -934,7 +934,7 @@ class SalesController extends Controller
     public function report() {
         $branch = Branch::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
         $Customer = Customer::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
-        
+
 
        // $sales = [];
         $data = Sales::where('soft_delete', '!=', 1)->get();
@@ -1052,7 +1052,7 @@ class SalesController extends Controller
 
                 $merge = array_merge($sales, $salepayment_s);
 
-                
+
                 $sales_terms = [];
                 foreach ($merge as $key => $branchwise_datas) {
                     $branch_name = Branch::findOrFail($branchwise_datas->branch_id);
@@ -1105,7 +1105,7 @@ class SalesController extends Controller
                         'todateheading' => '',
 
                     );
-                    
+
                 }
             }else{
 
@@ -1220,7 +1220,7 @@ class SalesController extends Controller
                     );
 
 
-                    
+
                 }
             }else{
 
@@ -1251,7 +1251,7 @@ class SalesController extends Controller
             $customer_id = $salesreport_customer;
             $branch_id = '';
 
-            
+
         }
 
 
@@ -2535,7 +2535,7 @@ class SalesController extends Controller
         }
 
 
-        
+
         usort($Sales_data, function($a1, $a2) {
             $value1 = strtotime($a1['date']);
             $value2 = strtotime($a2['date']);
@@ -2563,7 +2563,7 @@ class SalesController extends Controller
             $SalesData->status = 3;
             $SalesData->update();
         }
-        
+
 
 
         $customer_idname = Customer::where('id', '=', $SalesData->customer_id)->first();
@@ -2572,7 +2572,7 @@ class SalesController extends Controller
             $customer_upper = strtoupper($customer_idname->name);
             $productlist = Productlist::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
             $SalesProduct_darta = SalesProduct::where('sales_id', '=', $SalesData->id)->where('sales_order', '=', NULL)->get();
-            
+
 
         return view('page.backend.sales.print_view', compact('customer_upper', 'SalesData', 'customer_idname', 'branchname', 'bankname', 'SalesProduct_darta', 'productlist'));
     }
@@ -2585,7 +2585,7 @@ class SalesController extends Controller
         $sales_branch_id = request()->get('sales_branch_id');
 
         $last_idrow = BranchwiseBalance::where('customer_id', '=', $sales_customerid)->where('branch_id', '=', $sales_branch_id)->first();
-        
+
         if($last_idrow != ""){
             $output = [];
             if($last_idrow->sales_balance != NULL){
@@ -2593,8 +2593,8 @@ class SalesController extends Controller
                     'payment_pending' => $last_idrow->sales_balance,
                 );
             }
-            
-            
+
+
         }else {
             $output[] = array(
                 'payment_pending' => 0,
@@ -2714,7 +2714,7 @@ class SalesController extends Controller
                 $output[] = array(
                     'payment_pending' => 0,
                 );
-                
+
 
             }
         }else {
@@ -2758,6 +2758,7 @@ class SalesController extends Controller
                     'price_per_kg' => $SalesProducts_arrdata->price_per_kg,
                     'total_price' => $SalesProducts_arrdata->total_price,
                     'product_name' => $productlist_ID->name,
+                    'note' => $SalesProducts_arrdata->note,
                     'sales_id' => $SalesProducts_arrdata->sales_id,
 
                 );
@@ -2808,6 +2809,7 @@ class SalesController extends Controller
                     'price_per_kg' => $SalesProducts_arrdata->price_per_kg,
                     'total_price' => $SalesProducts_arrdata->total_price,
                     'product_name' => $productlist_ID->name,
+                    'note' => $SalesProducts_arrdata->note,
                     'sales_id' => $SalesProducts_arrdata->sales_id,
 
                 );
@@ -2858,6 +2860,7 @@ class SalesController extends Controller
                     'price_per_kg' => $SalesProducts_arrdata->price_per_kg,
                     'total_price' => $SalesProducts_arrdata->total_price,
                     'product_name' => $productlist_ID->name,
+                    'note' => $SalesProducts_arrdata->note,
                     'sales_id' => $SalesProducts_arrdata->sales_id,
 
                 );
@@ -2885,7 +2888,7 @@ class SalesController extends Controller
 
     public function salesorder_branchdata($today, $branch_id)
     {
-        
+
         $branchwise_data = Sales::where('date', '=', $today)->where('branch_id', '=', $branch_id)->where('sales_order', '=', '1')->where('soft_delete', '!=', 1)->get();
         $Sales_data = [];
         $sales_terms = [];
@@ -2904,6 +2907,7 @@ class SalesController extends Controller
                     'price_per_kg' => $SalesProducts_arrdata->price_per_kg,
                     'total_price' => $SalesProducts_arrdata->total_price,
                     'product_name' => $productlist_ID->name,
+                    'note' => $SalesProducts_arrdata->note,
                     'sales_id' => $SalesProducts_arrdata->sales_id,
 
                 );
@@ -2943,7 +2947,7 @@ class SalesController extends Controller
 
     public function salesorder_store(Request $request)
     {
-       
+
 
             $sales_customerid = $request->get('sales_customerid');
             $sales_branch_id = $request->get('sales_branch_id');
@@ -3010,6 +3014,7 @@ class SalesController extends Controller
                 $SalesProduct->productlist_id = $sales_product_id;
                 $SalesProduct->bagorkg = $request->sales_bagorkg[$key];
                 $SalesProduct->count = $request->sales_count[$key];
+                $SalesProduct->note = $request->sales_note[$key];
                 $SalesProduct->price_per_kg = $request->sales_priceperkg[$key];
                 $SalesProduct->total_price = $request->sales_total_price[$key];
                 $SalesProduct->sales_order = 1;
@@ -3035,7 +3040,7 @@ class SalesController extends Controller
                 DB::table('branchwise_balances')->where('customer_id', $sales_customerid)->where('branch_id', $sales_branch_id)->update([
                     'sales_amount' => $new_grossamount,  'sales_paid' => $new_paid, 'sales_balance' => $new_balance
                 ]);
-                
+
             }else {
                 $gross_amount = $request->get('sales_gross_amount');
                 $payable_amount = $request->get('salespayable_amount');
@@ -3118,14 +3123,14 @@ class SalesController extends Controller
                 }
 
 
-                
+
                 $new_balance = $updated_gross - $updated_paid;
 
                 DB::table('branchwise_balances')->where('customer_id', $sales_customer_id)->where('branch_id', $branch_id)->update([
                     'sales_amount' => $updated_gross,  'sales_paid' => $updated_paid, 'sales_balance' => $new_balance
                 ]);
-                
-        } 
+
+        }
         $Sales_Data->total_amount = $request->get('sales_total_amount');
         $Sales_Data->gross_amount = $request->get('sales_gross_amount');
         $Sales_Data->old_balance = $request->get('sales_old_balance');
@@ -3139,8 +3144,8 @@ class SalesController extends Controller
         // Purchase Products Table
 
 
-       
-            
+
+
         foreach ($request->get('sales_detail_id') as $key => $sales_detail_id) {
             if ($sales_detail_id > 0) {
 
@@ -3158,10 +3163,10 @@ class SalesController extends Controller
                     'sales_id' => $Sales_Id,  'productlist_id' => $updatesales_product_id,  'bagorkg' => $bagorkg,  'count' => $count, 'price_per_kg' => $price_per_kg, 'total_price' => $total_price
                 ]);
 
-            } 
+            }
         }
 
-       
+
 
         return redirect()->route('salesorder.salesorder_index')->with('update', 'Updated Sales information has been added to your list.');
 
@@ -3247,7 +3252,7 @@ class SalesController extends Controller
 
 
 
-    public function f_sales_pdfexport($fromdate) 
+    public function f_sales_pdfexport($fromdate)
     {
         if($fromdate != ""){
 
@@ -3365,16 +3370,16 @@ class SalesController extends Controller
                 'Sales_data' => $Sales_data,
                 'fromdate' => $fromdate,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function t_sales_pdfexport($todate) 
+    public function t_sales_pdfexport($todate)
     {
         if($todate != ""){
 
@@ -3491,17 +3496,17 @@ class SalesController extends Controller
                 'Sales_data' => $Sales_data,
                 'todate' => $todate,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
         }
     }
 
 
-    public function b_sales_pdfexport($branch_id) 
+    public function b_sales_pdfexport($branch_id)
     {
         if($branch_id != ""){
             $GetBranch = Branch::findOrFail($branch_id);
@@ -3619,20 +3624,20 @@ class SalesController extends Controller
                 'Sales_data' => $Sales_data,
                 'branch' => $GetBranch->shop_name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function c_sales_pdfexport($customer_id) 
+    public function c_sales_pdfexport($customer_id)
     {
         if($customer_id != ""){
             $GetCustomer = Customer::findOrFail($customer_id);
-    
+
             $branchwise_report = Sales::where('customer_id', '=', $customer_id)->where('soft_delete', '!=', 1)->get();
             $Sales_data = [];
             if($branchwise_report != ''){
@@ -3660,11 +3665,11 @@ class SalesController extends Controller
                 foreach ($merge as $key => $branchwise_datas) {
                     $branch_name = Branch::findOrFail($branchwise_datas->branch_id);
                     $customer_name = Customer::findOrFail($branchwise_datas->customer_id);
-    
-    
+
+
                     $SalesProducts = SalesProduct::where('sales_id', '=', $branchwise_datas->id)->get();
                     foreach ($SalesProducts as $key => $SalesProducts_arrdata) {
-    
+
                         $productlist_ID = Productlist::findOrFail($SalesProducts_arrdata->productlist_id);
                         $sales_terms[] = array(
                             'bag' => $SalesProducts_arrdata->bagorkg,
@@ -3673,11 +3678,11 @@ class SalesController extends Controller
                             'total_price' => $SalesProducts_arrdata->total_price,
                             'product_name' => $productlist_ID->name,
                             'sales_id' => $SalesProducts_arrdata->sales_id,
-    
+
                         );
                     }
-    
-    
+
+
 
                     if($branchwise_datas->status != ""){
                         $paid = $branchwise_datas->paid_amount;
@@ -3690,7 +3695,7 @@ class SalesController extends Controller
                     }
 
 
-    
+
                     $Sales_data[] = array(
                         'sales_order' => $branchwise_datas->sales_order,
                         'unique_key' => $branchwise_datas->unique_key,
@@ -3712,11 +3717,11 @@ class SalesController extends Controller
                         'customerheading' => $GetCustomer->name,
                         'fromdateheading' => '',
                         'todateheading' => '',
-    
+
                     );
                 }
             }else{
-    
+
                 $Sales_data[] = array(
                     'unique_key' => '',
                     'branch_name' => '',
@@ -3735,10 +3740,10 @@ class SalesController extends Controller
                     'customerheading' => $GetCustomer->name,
                     'fromdateheading' => '',
                     'todateheading' => '',
-    
+
                 );
             }
-    
+
 
             usort($Sales_data, function($a1, $a2) {
                 $value1 = strtotime($a1['date']);
@@ -3750,17 +3755,17 @@ class SalesController extends Controller
                 'Sales_data' => $Sales_data,
                 'customer' => $GetCustomer->name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
 
-    public function ft_sales_pdfexport($fromdate, $todate) 
+    public function ft_sales_pdfexport($fromdate, $todate)
     {
         if($fromdate && $todate){
 
@@ -3871,7 +3876,7 @@ class SalesController extends Controller
                 );
             }
 
-           
+
             usort($Sales_data, function($a1, $a2) {
                 $value1 = strtotime($a1['date']);
                 $value2 = strtotime($a2['date']);
@@ -3883,17 +3888,17 @@ class SalesController extends Controller
                 'fromdate' => date('d M Y', strtotime($fromdate)),
                 'todate' => date('d M Y', strtotime($todate)),
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
         }
     }
 
 
-    public function fb_sales_pdfexport($fromdate, $branch_id) 
+    public function fb_sales_pdfexport($fromdate, $branch_id)
     {
         if($branch_id && $fromdate){
             $GetBranch = Branch::findOrFail($branch_id);
@@ -4013,16 +4018,16 @@ class SalesController extends Controller
                 'fromdate' => date('d M Y', strtotime($fromdate)),
                 'branch' => $GetBranch->shop_name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function fc_sales_pdfexport($fromdate, $customer_id) 
+    public function fc_sales_pdfexport($fromdate, $customer_id)
     {
         if($fromdate && $customer_id){
             $GetCustomer = Customer::findOrFail($customer_id);
@@ -4141,10 +4146,10 @@ class SalesController extends Controller
                 'fromdate' => date('d M Y', strtotime($fromdate)),
                 'customer' => $GetCustomer->name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
 
@@ -4152,7 +4157,7 @@ class SalesController extends Controller
     }
 
 
-    public function tb_sales_pdfexport($todate, $branch_id) 
+    public function tb_sales_pdfexport($todate, $branch_id)
     {
         if($branch_id && $todate){
             $GetBranch = Branch::findOrFail($branch_id);
@@ -4260,7 +4265,7 @@ class SalesController extends Controller
                 );
             }
 
-           
+
             usort($Sales_data, function($a1, $a2) {
                 $value1 = strtotime($a1['date']);
                 $value2 = strtotime($a2['date']);
@@ -4272,16 +4277,16 @@ class SalesController extends Controller
                 'todate' => date('d M Y', strtotime($todate)),
                 'branch' => $GetBranch->shop_name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function tc_sales_pdfexport($todate, $customer_id) 
+    public function tc_sales_pdfexport($todate, $customer_id)
     {
         if($todate && $customer_id){
             $GetCustomer = Customer::findOrFail($customer_id);
@@ -4404,10 +4409,10 @@ class SalesController extends Controller
                 'todate' => date('d M Y', strtotime($todate)),
                 'customer' => $GetCustomer->name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
         }
@@ -4415,7 +4420,7 @@ class SalesController extends Controller
     }
 
 
-    public function bc_sales_pdfexport($branch_id, $customer_id) 
+    public function bc_sales_pdfexport($branch_id, $customer_id)
     {
         if($branch_id && $customer_id){
 
@@ -4530,23 +4535,23 @@ class SalesController extends Controller
                 $value2 = strtotime($a2['date']);
                 return $value1 - $value2;
              });
-           
+
 
             $pdf = Pdf::loadView('page.backend.sales.bc_pdfexport_view', [
                 'Sales_data' => $Sales_data,
                 'customer' => $GetCustomer->name,
                 'branch' => $GetBranch->shop_name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function ftc_sales_pdfexport($fromdate, $todate, $customer_id) 
+    public function ftc_sales_pdfexport($fromdate, $todate, $customer_id)
     {
         if($fromdate && $todate && $customer_id){
 
@@ -4667,17 +4672,17 @@ class SalesController extends Controller
                 'todate' => date('d M Y', strtotime($todate)),
                 'customer' => $GetCustomer->name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
         }
     }
 
 
-    public function ftb_sales_pdfexport($fromdate, $todate, $branch_id) 
+    public function ftb_sales_pdfexport($fromdate, $todate, $branch_id)
     {
         if($fromdate && $todate && $branch_id){
             $GetBrach = Branch::findOrFail($branch_id);
@@ -4797,16 +4802,16 @@ class SalesController extends Controller
                 'todate' => date('d M Y', strtotime($todate)),
                 'branch' => $GetBrach->shop_name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
         }
     }
 
 
-    public function ftbc_sales_pdfexport($fromdate, $todate, $branch_id, $customer_id) 
+    public function ftbc_sales_pdfexport($fromdate, $todate, $branch_id, $customer_id)
     {
         if($fromdate && $todate && $customer_id && $branch_id){
 
@@ -4932,10 +4937,10 @@ class SalesController extends Controller
                 'branch' => $GetBrach->shop_name,
                 'customer' => $GetCustomer->name,
             ]);
-    
-    
+
+
             $name = 'SalesReport.' . 'pdf';
-        
+
                 return $pdf->stream($name);
 
         }
@@ -4944,10 +4949,10 @@ class SalesController extends Controller
 
 
 
-    public function sales_pdfexport() 
+    public function sales_pdfexport()
     {
-       
-        
+
+
             $data = Sales::where('soft_delete', '!=', 1)->get();
 
             foreach ($data as $key => $data_arr) {
@@ -4958,21 +4963,21 @@ class SalesController extends Controller
             foreach ($Salespaymentdata as $key => $Salespaymentdatas) {
                 $salepayment_s[] = $Salespaymentdatas;
             }
-    
-    
+
+
             $Sales_data = [];
             $sales_terms = [];
-    
+
             $merge = array_merge($sales, $salepayment_s);
 
 
             foreach ($merge as $key => $datas) {
                 $branch_name = Branch::findOrFail($datas->branch_id);
                 $customer_name = Customer::findOrFail($datas->customer_id);
-    
+
                 $SalesProducts = SalesProduct::where('sales_id', '=', $datas->id)->get();
                 foreach ($SalesProducts as $key => $SalesProducts_arrdata) {
-    
+
                     $productlist_ID = Productlist::findOrFail($SalesProducts_arrdata->productlist_id);
                     $sales_terms[] = array(
                         'bag' => $SalesProducts_arrdata->bagorkg,
@@ -4981,7 +4986,7 @@ class SalesController extends Controller
                         'total_price' => $SalesProducts_arrdata->total_price,
                         'product_name' => $productlist_ID->name,
                         'sales_id' => $SalesProducts_arrdata->sales_id,
-    
+
                     );
                 }
 
@@ -4995,10 +5000,10 @@ class SalesController extends Controller
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
                 }
-    
-    
-    
-    
+
+
+
+
                 $Sales_data[] = array(
                     'sales_order' => $datas->sales_order,
                     'unique_key' => $datas->unique_key,
@@ -5021,13 +5026,13 @@ class SalesController extends Controller
                     'todateheading' => date('d-M-Y', strtotime($datas->date)),
                 );
             }
-    
+
             usort($Sales_data, function($a1, $a2) {
                 $value1 = strtotime($a1['date']);
                 $value2 = strtotime($a2['date']);
                 return $value1 - $value2;
              });
-        
+
 
         $pdf = Pdf::loadView('page.backend.sales.pdfexport_view', [
             'Sales_data' => $Sales_data,
@@ -5035,7 +5040,7 @@ class SalesController extends Controller
 
 
         $name = 'SalesReport.' . 'pdf';
-    
+
             return $pdf->stream($name);
 
     }
@@ -5044,7 +5049,7 @@ class SalesController extends Controller
 
 
 
-    public function salesindex_pdfexport($today) 
+    public function salesindex_pdfexport($today)
     {
         $data = Sales::where('date', '=', $today)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_data = [];
@@ -5099,7 +5104,7 @@ class SalesController extends Controller
 
 
 
-    public function salesindex_pdfexport_branchwise($last_word, $today) 
+    public function salesindex_pdfexport_branchwise($last_word, $today)
     {
         $data = Sales::where('date', '=', $today)->where('branch_id', '=', $last_word)->where('sales_order', '=', NULL)->where('soft_delete', '!=', 1)->get();
         $Sales_data = [];
@@ -5154,5 +5159,5 @@ class SalesController extends Controller
 
 }
 
-    
+
 

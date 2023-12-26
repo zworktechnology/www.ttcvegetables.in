@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Sales - Payment</h4>
+                <h4>Sales Payment</h4>
             </div>
             <div class="page-btn">
                 <div class="row">
@@ -70,7 +70,7 @@
                         <thead>
                             <tr>
                                 <th>Sl. No</th>
-                                <th>Date</th>
+                                <th>Time</th>
                                 {{-- <th>Branch</th> --}}
                                 <th>Customer</th>
                                 <th>Old Balance</th>
@@ -83,8 +83,7 @@
                             @foreach ($data as $keydata => $P_PaymentData)
                                 <tr>
                                     <td>{{ ++$keydata }}</td>
-                                    <td>{{ date('d M Y', strtotime($P_PaymentData->date)) }} -
-                                        {{ date('h:i A', strtotime($P_PaymentData->time)) }}</td>
+                                    <td>{{ date('h:i A', strtotime($P_PaymentData->time)) }}</td>
                                     {{-- <td>{{ $P_PaymentData->branch->shop_name }}</td> --}}
                                     <td>{{$P_PaymentData->customer->name }}</td>
                                     <td>{{$P_PaymentData->oldblance }}</td>

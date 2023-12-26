@@ -27,6 +27,7 @@ return new class extends Migration
 
             $table->string('bagorkg')->nullable();
             $table->string('count')->nullable();
+            $table->string('note')->nullable();
             $table->string('price_per_kg')->nullable();
             $table->string('total_price')->nullable();
             $table->string('sales_order')->nullable();
