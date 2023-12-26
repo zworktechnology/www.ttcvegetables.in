@@ -29,8 +29,8 @@
                                     style="color: black;">{{ $customer_upper }}</span> அவர்கள்</p>
                         </div>
                         <div>
-                            <table style="line-height: inherit;text-align: left;overflow: auto;margin:15px auto;">
-                                <tr class="heading " style="background:#eee;">
+                            <table style="line-height: inherit; text-align: left; overflow: auto;">
+                                <tr class="heading " style="background:#eee; margin-top: 2px;">
                                     <td
                                         style="vertical-align: middle;color: black;padding: 10px; ">
                                         Rate
@@ -54,7 +54,7 @@
                                 </tr>
                                 @foreach ($SalesProduct_darta as $index => $SalesProduct_darta_arr)
                                     @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
-                                        <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
+                                        <tr class="details" style="border-bottom:1px solid #E9ECEF ; font-size: 10px;">
                                             <td
                                                 style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
                                                 {{ $SalesProduct_darta_arr->price_per_kg }}
@@ -88,7 +88,7 @@
                         <div>
                             <div class="total-order w-100 max-widthauto">
                                 <ul style="text-align: right;">
-                                    <li style="margin-top: -15px;">
+                                    <li style="margin-top: -5px;">
                                         <h4 style="color:black;">Extra Charge</h4>
                                         <h5 style="color:black;">₹ <span
                                                 class="">{{ $SalesData->extra_cost }}</span></h5>
