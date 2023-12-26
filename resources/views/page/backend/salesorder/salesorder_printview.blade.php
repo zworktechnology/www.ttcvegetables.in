@@ -16,7 +16,7 @@
             <div id="printableArea" style="width:148mm; height:210mm">
                 <div class="card">
                     <div>
-                        <img src="{{ asset('assets/backend/img/spmheader.png') }}" style="margin-top: 10px;">
+                        <img src="{{ asset('assets/backend/img/spmheader.png') }}" style="margin-top: 5px;">
                         <hr style="margin-top: -8px; background-color : blue">
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
