@@ -3129,137 +3129,137 @@ class PurchaseController extends Controller
     //     return view('page.backend.purchaseorder.purchaseorder_index', compact('purchase_data', 'allbranch', 'branch_id', 'today', 'PSTodayStockArr'));
     // }
 
-    // public function purchaseorder_datefilter(Request $request)
-    // {
+    public function purchaseorder_datefilter(Request $request)
+    {
 
-    //     $today = $request->get('from_date');
+        $today = $request->get('from_date');
 
-    //     $data = Purchase::where('date', '=', $today)->where('purchase_order', '=', '1')->where('soft_delete', '!=', 1)->get();
-    //     $purchase_data = [];
-    //     $terms = [];
-    //     $Extracost_Arr = [];
-    //     $null_grossarr = [];
-    //     foreach ($data as $key => $datas) {
-    //         $branch_name = Branch::findOrFail($datas->branch_id);
-    //         $supplier_name = Supplier::findOrFail($datas->supplier_id);
+        $data = Purchase::where('date', '=', $today)->where('purchase_order', '=', '1')->where('soft_delete', '!=', 1)->get();
+        $purchase_data = [];
+        $terms = [];
+        $Extracost_Arr = [];
+        $null_grossarr = [];
+        foreach ($data as $key => $datas) {
+            $branch_name = Branch::findOrFail($datas->branch_id);
+            $supplier_name = Supplier::findOrFail($datas->supplier_id);
 
-    //         $PurchaseProducts = PurchaseProduct::where('purchase_id', '=', $datas->id)->where('purchase_order', '=', '1')->get();
-    //         foreach ($PurchaseProducts as $key => $PurchaseProducts_arrdata) {
+            $PurchaseProducts = PurchaseProduct::where('purchase_id', '=', $datas->id)->where('purchase_order', '=', '1')->get();
+            foreach ($PurchaseProducts as $key => $PurchaseProducts_arrdata) {
 
-    //             $productlist_ID = Productlist::findOrFail($PurchaseProducts_arrdata->productlist_id);
-    //             $terms[] = array(
-    //                 'bag' => $PurchaseProducts_arrdata->bagorkg,
-    //                 'kgs' => $PurchaseProducts_arrdata->count,
-    //                 'price_per_kg' => $PurchaseProducts_arrdata->price_per_kg,
-    //                 'total_price' => $PurchaseProducts_arrdata->total_price,
-    //                 'note' => $PurchaseProducts_arrdata->note,
-    //                 'product_name' => $productlist_ID->name,
-    //                 'purchase_id' => $PurchaseProducts_arrdata->purchase_id,
+                $productlist_ID = Productlist::findOrFail($PurchaseProducts_arrdata->productlist_id);
+                $terms[] = array(
+                    'bag' => $PurchaseProducts_arrdata->bagorkg,
+                    'kgs' => $PurchaseProducts_arrdata->count,
+                    'price_per_kg' => $PurchaseProducts_arrdata->price_per_kg,
+                    'total_price' => $PurchaseProducts_arrdata->total_price,
+                    'note' => $PurchaseProducts_arrdata->note,
+                    'product_name' => $productlist_ID->name,
+                    'purchase_id' => $PurchaseProducts_arrdata->purchase_id,
 
-    //             );
-    //         }
-
-
-    //         $PurchaseExtracosts = PurchaseExtracost::where('purchase_id', '=', $datas->id)->where('purchase_order', '=', '1')->get();
-    //         foreach ($PurchaseExtracosts as $key => $PurchaseExtracosts_arr) {
-
-    //             $Extracost_Arr[] = array(
-    //                 'extracost_note' => $PurchaseExtracosts_arr->extracost_note,
-    //                 'extracost' => $PurchaseExtracosts_arr->extracost,
-    //                 'purchase_id' => $PurchaseExtracosts_arr->purchase_id,
-
-    //             );
-
-    //         }
-
-    //         $All_supplier = Supplier::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
-    //         foreach ($All_supplier as $key => $All_supplierarr) {
-    //             $PurchaseArray = Purchase::where('supplier_id', '=', $All_supplierarr->id)->where('purchase_order', '=', '1')->where('gross_amount', '=', NULL)->where('soft_delete', '!=', 1)->first();
-    //             if($PurchaseArray){
-    //                 $null_grossarr[] = $PurchaseArray->id;
-    //             }
-    //         }
+                );
+            }
 
 
-    //         $purchase_data[] = array(
-    //             'unique_key' => $datas->unique_key,
-    //             'branch_id' => $datas->branch_id,
-    //             'branch_name' => $branch_name->shop_name,
-    //             'supplier_name' => $supplier_name->name,
-    //             'date' => $datas->date,
-    //             'time' => $datas->time,
-    //             'gross_amount' => $datas->gross_amount,
-    //             'bill_no' => $datas->bill_no,
-    //             'id' => $datas->id,
-    //             'terms' => $terms,
-    //             'Extracost_Arr' => $Extracost_Arr,
-    //             'null_grossarr' => $null_grossarr,
-    //             'status' => $datas->status,
-    //         );
-    //     }
-    //     $allbranch = Branch::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
+            $PurchaseExtracosts = PurchaseExtracost::where('purchase_id', '=', $datas->id)->where('purchase_order', '=', '1')->get();
+            foreach ($PurchaseExtracosts as $key => $PurchaseExtracosts_arr) {
+
+                $Extracost_Arr[] = array(
+                    'extracost_note' => $PurchaseExtracosts_arr->extracost_note,
+                    'extracost' => $PurchaseExtracosts_arr->extracost,
+                    'purchase_id' => $PurchaseExtracosts_arr->purchase_id,
+
+                );
+
+            }
+
+            $All_supplier = Supplier::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
+            foreach ($All_supplier as $key => $All_supplierarr) {
+                $PurchaseArray = Purchase::where('supplier_id', '=', $All_supplierarr->id)->where('purchase_order', '=', '1')->where('gross_amount', '=', NULL)->where('soft_delete', '!=', 1)->first();
+                if($PurchaseArray){
+                    $null_grossarr[] = $PurchaseArray->id;
+                }
+            }
 
 
-    //     $PSTodayStockArr = [];
-
-    //     $sales_branchwise_data = Purchase::where('date', '=', $today)->where('purchase_order', '=', '1')->where('soft_delete', '!=', 1)->get();
-    //     $Sales_Branch = [];
-    //     foreach ($sales_branchwise_data as $key => $sales_Data) {
-    //         $Sales_Branch[] = $sales_Data->branch_id;
-    //     }
-
-
-    //     foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
-
-    //         $merge_salesProduct = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->get();
-    //         $sales_Array = [];
-    //         if($merge_salesProduct != ""){
-    //             foreach ($merge_salesProduct as $key => $merge_salesProducts) {
-    //                 $sales_Array[] = $merge_salesProducts->productlist_id;
-    //             }
-    //         }else {
-    //             $sales_Array[] = '';
-    //         }
+            $purchase_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'branch_id' => $datas->branch_id,
+                'branch_name' => $branch_name->shop_name,
+                'supplier_name' => $supplier_name->name,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'gross_amount' => $datas->gross_amount,
+                'bill_no' => $datas->bill_no,
+                'id' => $datas->id,
+                'terms' => $terms,
+                'Extracost_Arr' => $Extracost_Arr,
+                'null_grossarr' => $null_grossarr,
+                'status' => $datas->status,
+            );
+        }
+        $allbranch = Branch::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
 
 
+        $PSTodayStockArr = [];
 
-    //         foreach (array_unique($sales_Array) as $key => $sales_productlist) {
-
-    //             $getSalebagcount = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
-    //             $getSalekgcount = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
-
-
-    //             if($getSalebagcount != 0){
-    //                 $bag_count = $getSalebagcount;
-    //             }else {
-    //                 $bag_count = '';
-    //             }
-
-    //             if($getSalekgcount != 0){
-    //                 $kg_count = $getSalekgcount;
-    //             }else {
-    //                 $kg_count = '';
-    //             }
+        $sales_branchwise_data = Purchase::where('date', '=', $today)->where('purchase_order', '=', '1')->where('soft_delete', '!=', 1)->get();
+        $Sales_Branch = [];
+        foreach ($sales_branchwise_data as $key => $sales_Data) {
+            $Sales_Branch[] = $sales_Data->branch_id;
+        }
 
 
-    //                 $productlist_ID = Productlist::findOrFail($sales_productlist);
+        foreach (array_unique($Sales_Branch) as $key => $Merge_Branchs) {
 
-    //                 $PSTodayStockArr[] = array(
-    //                     'branch_id' => $Merge_Branchs,
-    //                     'product_name' => $productlist_ID->name,
-    //                     'getSalebagcount' => $bag_count,
-    //                     'getSalekgcount' => $kg_count,
-    //                     'today' => $today,
+            $merge_salesProduct = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->get();
+            $sales_Array = [];
+            if($merge_salesProduct != ""){
+                foreach ($merge_salesProduct as $key => $merge_salesProducts) {
+                    $sales_Array[] = $merge_salesProducts->productlist_id;
+                }
+            }else {
+                $sales_Array[] = '';
+            }
 
-    //                 );
 
 
-    //         }
+            foreach (array_unique($sales_Array) as $key => $sales_productlist) {
 
-    //     }
-    //     return view('page.backend.purchaseorder.purchaseorder_index', compact('purchase_data', 'allbranch', 'today', 'PSTodayStockArr'));
+                $getSalebagcount = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'bag')->sum('count');
+                $getSalekgcount = PurchaseProduct::where('branch_id', '=', $Merge_Branchs)->where('purchase_order', '=', '1')->where('date', '=', $today)->where('productlist_id', '=', $sales_productlist)->where('bagorkg', '=', 'kg')->sum('count');
 
-    // }
+
+                if($getSalebagcount != 0){
+                    $bag_count = $getSalebagcount;
+                }else {
+                    $bag_count = '';
+                }
+
+                if($getSalekgcount != 0){
+                    $kg_count = $getSalekgcount;
+                }else {
+                    $kg_count = '';
+                }
+
+
+                    $productlist_ID = Productlist::findOrFail($sales_productlist);
+
+                    $PSTodayStockArr[] = array(
+                        'branch_id' => $Merge_Branchs,
+                        'product_name' => $productlist_ID->name,
+                        'getSalebagcount' => $bag_count,
+                        'getSalekgcount' => $kg_count,
+                        'today' => $today,
+
+                    );
+
+
+            }
+
+        }
+        return view('page.backend.purchaseorder.purchaseorder_index', compact('purchase_data', 'allbranch', 'today', 'PSTodayStockArr'));
+
+    }
 
 
 

@@ -1,129 +1,134 @@
 @extends('layout.backend.auth')
 
 @section('content')
-
-
-<div class="content">
-<button  onclick="printDiv('printableArea')"  class="btn-success btn-sm" ><i class="fa fa-print"></i> Print</button>
-      <a href="{{ route('salesorder.salesorder_index') }}"><button  class="btn-danger btn-sm" style="color:white"> back</button> </a>
-
-   <div  id="printableArea">
-
-      <div class="card">
-         <div class="card-body">
-         <div class="page-header">
+    <div class="content">
+        <div class="page-header">
             <div class="page-title">
-            <h4>Sales Order - InvoiceBill</h4>
-
+                <h4>Print Area View</h4>
             </div>
-         </div>
-         <div style="background-color: #dbe4d629;">
-
-               <div class="row py-2" style="margin-bottom: 20px;">
-                  <div class="col-lg-6  col-sm-5 col-4">
-                  <img src="{{ asset('assets/backend/img/spmlogo.png') }}" alt="Logo" style="width: 100px">
-                  </div>
-                  <div class="col-lg-6  col-sm-7 col-8" style="margin-top: 5px;">
-                     <span style="font-weight:600">SPM, NS83, 84 | RR, OT166, 167, 117, Gandhi Market, Trichy 8.</span>
-                     <span style="font-weight:600"><p><img src="{{ asset('assets/backend/img/mobileicon.png') }}" style="margin-top:4px;">&nbsp; <span>9842428882, 9994065696, 9842528789</span></p></span>
-                  </div>
-               </div>
-               <h4 class="py-1" style="font-size:18px;color: black; font-weight:800">{{ $customer_upper }}</h4>
-               <div class="row">
-                  <div class="col-lg-10  col-sm-8 col-8">
-                  <span style="font-size:13px" >Bill No. &nbsp; &nbsp; &nbsp;<span style="font-weight:600"># {{ $SalesData->bill_no}}</span></span>
-                  </div>
-                  <div class="col-lg-2  col-sm-4 col-4">
-                  <span style="font-size:13px" >Date: &nbsp;<span style="font-weight:600">{{ date('d-m-Y', strtotime($SalesData->date))}}</span></span>
-                  </div>
-               </div>
-
-                     <table style="width: 100%;line-height: inherit;text-align: left;overflow: auto;margin:15px auto;">
-                        <tr class="heading " style="background:#eee;">
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Product Name
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Bag / Kg
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Count
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Price / Count
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Amount
-                           </td>
-                        </tr>
-                        @foreach ($SalesProduct_darta as $index => $SalesProduct_darta_arr)
-                                @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
-                        <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                                        @foreach ($productlist as $products)
-                                                @if ($products->id == $SalesProduct_darta_arr->productlist_id)
-                                                    {{ $products->name }}
-                                                @endif
-                                            @endforeach
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $SalesProduct_darta_arr->bagorkg }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $SalesProduct_darta_arr->count }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $SalesProduct_darta_arr->price_per_kg }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $SalesProduct_darta_arr->total_price }}
-                           </td>
-                        </tr>
-                        @endif
-                           @endforeach
-                     </table>
-                     <div class="row">
-                           <div class="col-lg-7  col-sm-5 col-3"></div>
-                           <div class="col-lg-5  col-sm-7 col-9">
-                              <div class="total-order w-100 max-widthauto">
-                                 <ul>
-                                    <li>
-                                       <h4 style="font-size: 13px;color:green;font-weight: 600;">Extra Charge</h4>
-                                       <h5 style="font-size: 15px;color:green;font-weight: 600;">₹ <span  class="">{{ $SalesData->extra_cost}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:blue;font-weight: 600;">Gross Amount</h4>
-                                       <h5 style="font-size: 15px;color:blue;font-weight: 600;">₹ <span  class="">{{ $SalesData->gross_amount}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:red;font-weight: 600;">Old Balance</h4>
-                                       <h5 style="font-size: 15px;color:red;font-weight: 600;">₹ <span  class="">{{ $SalesData->old_balance}}</span></h5>
-                                    </li>
-                                    <li>
-                                       <h4 style="font-size: 13px;color:blue;font-weight: 600;">Grand Total</h4>
-                                       <h5 style="font-size: 15px;color:blue;font-weight: 600;">₹ <span  class="">{{ $SalesData->grand_total}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:green;font-weight: 600;">Paid Amount</h4>
-                                       <h5 style="font-size: 13px;color:green;font-weight: 600;">₹ <span  class="">{{ $SalesData->paid_amount}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:red;font-weight: 600;">Nett Balance</h4>
-                                       <h5 style="font-size: 13px;color:red;font-weight: 600;">₹ <span  class="">{{ $SalesData->balance_amount}}</span></h5>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                     </div>
-
-
+            <div style="display: flex;">
+                <button onclick="printDiv('printableArea')" class="btn btn-success me-2"><i class="fa fa-print"></i>
+                    Print</button>
             </div>
+        </div>
 
-
-         </div>
-      </div>
-   </div>
-
-</div>
-
-@endsection
+        <div class="content">
+            <div id="printableArea" style="width:105mm;height:148mm">
+                <div class="card">
+                    <div>
+                        <img src="{{ asset('assets/backend/img/spmheader.png') }}" style="margin-top: 10px;">
+                        <hr style="margin-top: -8px; background-color : blue">
+                    </div>
+                    <div style="margin-right: 10px; margin-left: 10px; margin-top: -15px;">
+                        <div>
+                            <p style="text-align: left; margin-bottom: 5px; color: green;">தேதி மற்றும் நேரம் : <span
+                                    style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }} -
+                                    {{ date('h:i A', strtotime($SalesData->time)) }}</span></p>
+                            <p style="text-align: left; margin-bottom: 5px; color: green;">ரசிது எண் : <span style="color: black;">#
+                                    {{ $SalesData->bill_no }}</span></p>
+                            <p style="text-align: left; color: green;">உயர்திரு : <span
+                                    style="color: black;">{{ $customer_upper }}</span> அவர்கள்</p>
+                        </div>
+                        <div>
+                            <table style="line-height: inherit;text-align: left;overflow: auto;margin:15px auto;">
+                                <tr class="heading " style="background:#eee;">
+                                    <td
+                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        Rate
+                                    </td>
+                                    <td
+                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        Particulars
+                                    </td>
+                                    <td
+                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        Count
+                                    </td>
+                                    <td
+                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        Note
+                                    </td>
+                                    <td
+                                        style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        Amount
+                                    </td>
+                                </tr>
+                                @foreach ($SalesProduct_darta as $index => $SalesProduct_darta_arr)
+                                    @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
+                                        <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
+                                            <td
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                {{ $SalesProduct_darta_arr->price_per_kg }}
+                                            </td>
+                                            <td
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                @foreach ($productlist as $products)
+                                                    @if ($products->id == $SalesProduct_darta_arr->productlist_id)
+                                                        {{ $products->name }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                            <td
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                {{ $SalesProduct_darta_arr->count }} -
+                                                {{ $SalesProduct_darta_arr->bagorkg }}
+                                            </td>
+                                            <td
+                                                style="padding: 10px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                {{ $SalesProduct_darta_arr->note }}
+                                            </td>
+                                            <td
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                {{ $SalesProduct_darta_arr->total_price }}
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </table>
+                        </div>
+                        <div>
+                            <div class="total-order w-100 max-widthauto">
+                                <ul style="text-align: right;">
+                                    <li style="margin-top: -15px;">
+                                        <h4 style="color:black;">Extra Charge</h4>
+                                        <h5 style="color:black;">₹ <span
+                                                class="">{{ $SalesData->extra_cost }}</span></h5>
+                                    </li>
+                                    <hr style="margin-top: -5px;">
+                                    <li style="margin-top: -20px;">
+                                        <h4 style="color:blue;">Gross Amount</h4>
+                                        <h5 style="color:blue;">₹ <span
+                                                class="">{{ $SalesData->gross_amount }}</span></h5>
+                                    </li>
+                                    <hr style="margin-top: -4px;">
+                                    <li style="margin-top: -20px;">
+                                        <h4 style="color:red;">Old Balance</h4>
+                                        <h5 style="color:red;">₹ <span
+                                                class="">{{ $SalesData->old_balance }}</span></h5>
+                                    </li>
+                                    <hr style="margin-top: -5px;">
+                                    <li style="margin-top: -20px;">
+                                        <h4 style="color:blue;">Grand Total</h4>
+                                        <h5 style="color:blue;">₹ <span
+                                                class="">{{ $SalesData->grand_total }}</span></h5>
+                                    </li>
+                                    <hr style="margin-top: -5px;">
+                                    <li style="margin-top: -20px;">
+                                        <h4 style="color:green;">Paid Amount</h4>
+                                        <h5 style="color:green;">₹ <span
+                                                class="">{{ $SalesData->paid_amount }}</span></h5>
+                                    </li>
+                                    <hr style="margin-top: -4px;">
+                                    <li style="margin-top: -20px;">
+                                        <h4 style="color:red;">Nett Balance</h4>
+                                        <h5 style="color:red;">₹ <span
+                                                class="">{{ $SalesData->balance_amount }}</span></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection
