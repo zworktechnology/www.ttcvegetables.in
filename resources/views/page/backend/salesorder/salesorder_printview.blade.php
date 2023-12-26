@@ -13,54 +13,55 @@
         </div>
 
         <div class="content">
-            <div id="printableArea" style="width:105mm;height:148mm">
+            <div id="printableArea" style="width:148mm; height:210mm">
                 <div class="card">
                     <div>
                         <img src="{{ asset('assets/backend/img/spmheader.png') }}" style="margin-top: 10px;">
                         <hr style="margin-top: -8px; background-color : blue">
                     </div>
-                    <div style="margin-right: 10px; margin-left: 10px; margin-top: -15px;">
+                    <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
                         <div>
-                            <p style="text-align: left; margin-bottom: 5px; color: green;">தேதி : <span
-                                    style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
-                            {{-- <p style="text-align: left; margin-bottom: 5px; color: green;">ரசிது எண் : <span style="color: black;">#
-                                    {{ $SalesData->bill_no }}</span></p> --}}
+                            <div style="display: flex">
+                                <p style="text-align: right; margin-bottom: 5px; color: green;">ரசிது எண் : <span
+                                        style="color: black;">#
+                                        {{ $SalesData->bill_no }}</span></p>
+                                <p style="text-align: right; margin-bottom: 5px; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p style="text-align: right; margin-bottom: 5px; color: green;">தேதி : <span
+                                        style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
+                            </div>
                             <p style="text-align: left; color: green;">உயர்திரு : <span
                                     style="color: black;">{{ $customer_upper }}</span> அவர்கள்</p>
                         </div>
                         <div>
-                            <table style="line-height: inherit; text-align: left; overflow: auto;">
-                                <tr class="heading " style="background:#eee; margin-top: 2px;">
-                                    <td
-                                        style="vertical-align: middle;color: black;padding: 10px; ">
-                                        Rate
+                            <table
+                                style="line-height: inherit;text-align: left;overflow: auto; width:100%; margin-top: 10px;">
+                                <tr class="heading " style="background:#eee;">
+                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        <b>Rate</b>
                                     </td>
-                                    <td
-                                        style="vertical-align: middle;color: black;padding: 10px; ">
-                                        Particulars
+                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        <b>Particulars</b>
                                     </td>
-                                    <td
-                                        style="vertical-align: middle;color: black;padding: 10px; ">
-                                        Count
+                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        <b>Count</b>
                                     </td>
-                                    <td
-                                        style="vertical-align: middle;color: black;padding: 10px; ">
-                                        Note
+                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        <b>Note</b>
                                     </td>
-                                    <td
-                                        style="vertical-align: middle;color: black;padding: 10px; ">
-                                        Amount
+                                    <td style="padding: 5px;vertical-align: middle;color: black;padding: 10px; ">
+                                        <b>Amount</b>
                                     </td>
                                 </tr>
                                 @foreach ($SalesProduct_darta as $index => $SalesProduct_darta_arr)
                                     @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
-                                        <tr class="details" style="border-bottom:1px solid #E9ECEF ; font-size: 10px;">
+                                        <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
                                             <td
-                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
                                                 {{ $SalesProduct_darta_arr->price_per_kg }}
                                             </td>
                                             <td
-                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
                                                 @foreach ($productlist as $products)
                                                     @if ($products->id == $SalesProduct_darta_arr->productlist_id)
                                                         {{ $products->name }}
@@ -68,16 +69,16 @@
                                                 @endforeach
                                             </td>
                                             <td
-                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
                                                 {{ $SalesProduct_darta_arr->count }} -
                                                 {{ $SalesProduct_darta_arr->bagorkg }}
                                             </td>
                                             <td
-                                                style="padding: 5px 10px 5px 10px; vertical-align: top;vertical-align: inherit; color:#000;">
+                                                style="padding: 10px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;color:#000;">
                                                 {{ $SalesProduct_darta_arr->note }}
                                             </td>
                                             <td
-                                                style="padding: 5px 10px 5px 10px; vertical-align: top; vertical-align: inherit; color:#000;">
+                                                style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
                                                 {{ $SalesProduct_darta_arr->total_price }}
                                             </td>
                                         </tr>
@@ -90,8 +91,8 @@
                                 <ul style="text-align: right;">
                                     <li style="margin-top: -5px;">
                                         <h4 style="color:black;">Extra Charge</h4>
-                                        <h5 style="color:black;">₹ <span
-                                                class="">{{ $SalesData->extra_cost }}</span></h5>
+                                        <h5 style="color:black;">₹ <span class="">{{ $SalesData->extra_cost }}</span>
+                                        </h5>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
@@ -102,14 +103,14 @@
                                     <hr style="margin-top: -4px;">
                                     <li style="margin-top: -20px;">
                                         <h4 style="color:red;">Old Balance</h4>
-                                        <h5 style="color:red;">₹ <span
-                                                class="">{{ $SalesData->old_balance }}</span></h5>
+                                        <h5 style="color:red;">₹ <span class="">{{ $SalesData->old_balance }}</span>
+                                        </h5>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
                                         <h4 style="color:blue;">Grand Total</h4>
-                                        <h5 style="color:blue;">₹ <span
-                                                class="">{{ $SalesData->grand_total }}</span></h5>
+                                        <h5 style="color:blue;">₹ <span class="">{{ $SalesData->grand_total }}</span>
+                                        </h5>
                                     </li>
                                     <hr style="margin-top: -5px;">
                                     <li style="margin-top: -20px;">
