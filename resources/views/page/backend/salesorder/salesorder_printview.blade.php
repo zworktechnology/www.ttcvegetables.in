@@ -22,11 +22,11 @@
                     <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
                         <div>
                             <div style="display: flex">
-                                <p style="text-align: left; color: green;">உயர்திரு : <span
+                                <p style="text-align: left; margin-bottom: 3px; color: green;">உயர்திரு : <span
                                     style="color: black;">{{ $customer_upper }}</span></p>
-                                <p style="text-align: right; margin-bottom: 5px; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+                                <p style="text-align: right; margin-bottom: 3px; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                <p style="text-align: right; margin-bottom: 5px; color: green;">தேதி : <span
+                                <p style="text-align: right; margin-bottom: 3px; color: green;">தேதி : <span
                                         style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
                             </div>
                         </div>
