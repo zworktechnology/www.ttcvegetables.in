@@ -79,7 +79,7 @@
                                             </td>
                                             <td
                                                 style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
-                                                {{ $SalesProduct_darta_arr->total_price }}
+                                                {{ $SalesProduct_darta_arr->total_price }}.00
                                             </td>
                                         </tr>
                                     @endif
