@@ -21,19 +21,19 @@
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
                         <div>
-                            <div style="display: flex">
-                                <p style="text-align: left; margin-bottom: 3px; color: green;">திரு : <span
-                                        style="color: black;">{{ $customer_upper }}</span></p>
-                                <p style="text-align: right; margin-bottom: 3px; color: black;">
+                            <div style="display: flex; font-weight: 900">
+                                <p style="text-align: left; margin-bottom: 3px; color: darkblue;">திரு : <span
+                                        style="color: darkblue;">{{ $customer_upper }}</span></p>
+                                <p style="text-align: right; margin-bottom: 3px; color: darkblue;">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     |
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                                <p style="text-align: right; margin-bottom: 3px; color: green;">தேதி : <span
-                                        style="color: black;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
+                                <p style="text-align: right; margin-bottom: 3px; color: darkblue;">தேதி : <span
+                                        style="color: darkblue;">{{ date('d-m-Y', strtotime($SalesData->date)) }}</span></p>
                             </div>
                         </div>
-                        <div>
+                        <div style="margin-top: 5px;">
                             <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
                                 <tr class="heading "
                                     style="background:#eee; border-bottom: 1px solid lightgray ; border-top: 1px solid lightgray ;">
@@ -49,7 +49,7 @@
                                     <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Note</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: green;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green; text-align: right;">
                                         <b>Amount</b>
                                     </td>
                                 </tr>
@@ -78,7 +78,7 @@
                                                 {{ $SalesProduct_darta_arr->note }}
                                             </td>
                                             <td
-                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: right;">
                                                 {{ $SalesProduct_darta_arr->total_price }}.00
                                             </td>
                                         </tr>
@@ -89,7 +89,7 @@
                         <div class="row" style="margin-top: 3px;">
                             <div class="col-5"></div>
                             <div class="col-3">
-                                <p style="text-align: left; margin-bottom: 3px; color: black;">EXTRA CHARGE</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: black;">COOLI</p>
                                 <p style="text-align: left; margin-bottom: 3px; color: green;">GROSS AMOUNT</p>
                                 <p style="text-align: left; margin-bottom: 3px; color: red;">OLD BALANCE</p>
                                 <p style="text-align: left; margin-bottom: 3px; color: blue;">GRAND TOTAL</p>
@@ -105,12 +105,12 @@
                                 <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                             </div>
                             <div class="col-3">
-                                <p style="text-align: left; margin-bottom: 3px; color: black; border-bottom:1px solid lightgray;">₹ {{ $SalesData->extra_cost }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green;">₹ {{ $SalesData->gross_amount }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray;">₹ {{ $SalesData->old_balance }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: blue;">₹ {{ $SalesData->grand_total }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray;">₹ {{ $SalesData->paid_amount }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red;">₹ {{ $SalesData->balance_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: black; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->extra_cost }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹ {{ $SalesData->gross_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->old_balance }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ {{ $SalesData->grand_total }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->paid_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red; text-align: right;">₹ {{ $SalesData->balance_amount }}</p>
                             </div>
                         </div>
                     </div>
