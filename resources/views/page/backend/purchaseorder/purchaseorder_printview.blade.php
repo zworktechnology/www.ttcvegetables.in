@@ -1,133 +1,128 @@
 @extends('layout.backend.auth')
 
 @section('content')
-
-
-<div class="content">
-<button  onclick="printDiv('printableArea')"  class="btn-success btn-sm" ><i class="fa fa-print"></i> Print</button>
-      <a href="{{ route('purchaseorder.purchaseorder_index') }}"><button  class="btn-danger btn-sm" style="color:white"> back</button> </a>
-
-   <div  id="printableArea">
-
-      <div class="card">
-         <div class="card-body">
-         <div class="page-header">
+    <div class="content">
+        <div class="page-header">
             <div class="page-title">
-            <h4>Purchase Order - InvoiceBill</h4>
-
+                <h4>Print Area View</h4>
             </div>
-         </div>
-         <div style="background-color: #dbe4d629;">
+            <div style="display: flex;">
+                <button onclick="printDiv('printableArea')" class="btn btn-success me-2"><i class="fa fa-print"></i>
+                    Print</button>
+            </div>
+        </div>
 
-                  <div class="row py-2" style="margin-bottom: 20px;">
-                     <div class="col-lg-6  col-sm-5 col-4">
-                     <img src="{{ asset('assets/backend/img/spmlogo.png') }}" alt="Logo" style="width: 100px">
-                     </div>
-                     <div class="col-lg-6  col-sm-7 col-8" style="margin-top: 5px;">
-                        <span style="font-weight:600">SPM, NS83, 84 | RR, OT166, 167, 117, Gandhi Market, Trichy 8.</span>
-                        <span style="font-weight:600"><p><img src="{{ asset('assets/backend/img/mobileicon.png') }}" style="margin-top:4px;">&nbsp; <span>9842428882, 9994065696, 9842528789</span></p></span>
-                     </div>
-                  </div>
-               <h4 class="py-1" style="font-size:18px;color: black; font-weight:800">{{ $supplier_upper }}</h4>
-               <div class="row">
-                  <div class="col-lg-10  col-sm-8 col-8">
-                  <span style="font-size:13px" >Bill No.  &nbsp;<span style="font-weight:600"># {{ $PurchaseData->bill_no}}</span></span>
-                  </div>
-                  <div class="col-lg-2  col-sm-4 col-4">
-                  <span style="font-size:13px" >Date: &nbsp;<span style="font-weight:600">{{ date('d-m-Y', strtotime($PurchaseData->date))}}</span></span>
-                  </div>
-               </div>
-
-                     <table style="width: 100%;line-height: inherit;text-align: left;overflow: auto;margin:15px auto;">
-                        <tr class="heading " style="background:#eee;">
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Product Name
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Bag / Kg
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Count
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Price / Count
-                           </td>
-                           <td style="padding: 5px;vertical-align: middle;font-weight: 600;color: black;font-size: 13px;padding: 10px; ">
-                           Amount
-                           </td>
-                        </tr>
-                        @foreach ($PurchaseProducts as $index => $PurchaseProducts_array)
-                              @if ($PurchaseProducts_array->purchase_id == $PurchaseData->id)
-                        <tr class="details" style="border-bottom:1px solid #E9ECEF ;">
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           @foreach ($productlist as $products)
-                                       @if ($products->id == $PurchaseProducts_array->productlist_id)
-                                       {{ $products->name }}
-                                       @endif
+        <div class="content">
+            <div id="printableArea" style="width:148mm; height:210mm">
+                <div>
+                    <div>
+                        <img src="{{ asset('assets/backend/img/spmheader1.png') }}" style="margin-top: 5px;">
+                        <hr style="margin-top: -8px; background-color : blue">
+                    </div>
+                    <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
+                        <div>
+                            <div style="display: flex; font-weight: 900">
+                                <p style="text-align: left; margin-bottom: 3px; color: darkblue;">திரு : <span
+                                        style="color: darkblue;">{{ $supplier_upper }}</span></p>
+                                <p style="text-align: right; margin-bottom: 3px; color: darkblue;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    |
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p style="text-align: right; margin-bottom: 3px; color: darkblue;">தேதி : <span
+                                        style="color: darkblue;">{{ date('d-m-Y', strtotime($PurchaseData->date)) }}</span>
+                                </p>
+                            </div>
+                            <div style="margin-top: 5px;">
+                                <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
+                                    <tr class="heading "
+                                        style="background:#eee; border-bottom: 1px solid lightgray ; border-top: 1px solid lightgray ;">
+                                        <td style="padding: 2px;vertical-align: middle;color: green;">
+                                            <b>Rate</b>
+                                        </td>
+                                        <td style="padding: 2px;vertical-align: middle;color: green;">
+                                            <b>Particulars</b>
+                                        </td>
+                                        <td style="padding: 2px;vertical-align: middle;color: green;">
+                                            <b>Count</b>
+                                        </td>
+                                        <td style="padding: 2px;vertical-align: middle;color: green;">
+                                            <b>Note</b>
+                                        </td>
+                                        <td style="padding: 2px;vertical-align: middle;color: green; text-align: right;">
+                                            <b>Amount</b>
+                                        </td>
+                                    </tr>
+                                    @foreach ($PurchaseProducts as $index => $PurchaseProducts_array)
+                                        @if ($PurchaseProducts_array->purchase_id == $PurchaseData->id)
+                                            <tr class="details" style="border-bottom:1px solid lightgray ;">
+                                                <td
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                    {{ $PurchaseProducts_array->price_per_kg }}
+                                                </td>
+                                                <td
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                    @foreach ($productlist as $products)
+                                                        @if ($products->id == $PurchaseProducts_array->productlist_id)
+                                                            {{ $products->name }}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                    {{ $PurchaseProducts_array->count }} -
+                                                    {{ $PurchaseProducts_array->bagorkg }}
+                                                </td>
+                                                <td
+                                                    style="padding: 2px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                    {{ $PurchaseProducts_array->note }}
+                                                </td>
+                                                <td
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: right;">
+                                                    {{ $PurchaseProducts_array->total_price }}.00
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $PurchaseProducts_array->bagorkg }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top;vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $PurchaseProducts_array->count }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $PurchaseProducts_array->price_per_kg }}
-                           </td>
-                           <td style="padding: 10px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;font-size: 13px;color:#000;font-weight: 600;">
-                           {{ $PurchaseProducts_array->total_price }}
-                           </td>
-                        </tr>
-                        @endif
-                           @endforeach
-                     </table>
-                     <div class="row">
-                           <div class="col-lg-7  col-sm-5 col-3"></div>
-                           <div class="col-lg-5  col-sm-7 col-9">
-                              <div class="total-order w-100 max-widthauto">
-                                 <ul>
-                                    <li>
-                                       <h4 style="font-size: 13px;color:blue;font-weight: 600;">Commission Amount</h4>
-                                       <h5 style="font-size: 13px;color:blue;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->commission_amount}}</span></h5>
-                                    </li>
-                                    <li>
-                                       <h4 style="font-size: 13px;color:green;font-weight: 600;">Extra Charge</h4>
-                                       <h5 style="font-size: 13px;color:green;font-weight: 600;">₹ <span  class="">{{ $extracostamount}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:blue;font-weight: 600;">Gross Amount</h4>
-                                       <h5 style="font-size: 13px;color:blue;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->gross_amount}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:red;font-weight: 600;">Old Balance</h4>
-                                       <h5 style="font-size: 13px;color:red;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->old_balance}}</span></h5>
-                                    </li>
-                                    <li>
-                                       <h4 style="font-size: 13px;color:blue;font-weight: 600;">Grand Total</h4>
-                                       <h5 style="font-size: 13px;color:blue;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->grand_total}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:green;font-weight: 600;">Paid Amount</h4>
-                                       <h5 style="font-size: 13px;color:green;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->paid_amount}}</span></h5>
-                                    </li>
-                                    <li class="">
-                                       <h4 style="font-size: 13px;color:red;font-weight: 600;">Nett Balance</h4>
-                                       <h5 style="font-size: 13px;color:red;font-weight: 600;">₹ <span  class="">{{ $PurchaseData->balance_amount}}</span></h5>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                     </div>
-
-
+                                </table>
+                            </div>
+                            <div class="row" style="margin-top: 3px;">
+                                <p style="text-align: left; margin-bottom: 3px; color: darkblue;">Extra Cost</p>
+                                <div class="col-3">
+                                    <p style="text-align: left; margin-bottom: 3px; color: black;">COOLI</p>
+                                </div>
+                                <div class="col-1">
+                                    <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
+                                </div>
+                                <div class="col-2">
+                                    <p style="text-align: right; margin-bottom: 3px; color: black; border-right:1px solid black; padding-right : 2px;">₹ 0.00</p>
+                                </div>
+                                <div class="col-3">
+                                    <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">GROSS AMOUNT</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red; border-left:1px solid black; padding-left : 2px;">OLD BALANCE</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: blue; border-left:1px solid black; padding-left : 2px;">GRAND TOTAL</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">PAID AMOUNT</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red; border-left:1px solid black; padding-left : 52x;">NET AMOUNT</p>
+                                </div>
+                                <div class="col-1">
+                                    <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
+                                </div>
+                                <div class="col-2">
+                                    <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹ </p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ </p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ </p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray; text-align: right;">₹ </p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: red; text-align: right;">₹ </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-         </div>
-      </div>
-   </div>
-
-</div>
-
+        </div>
+    </div>
 @endsection
