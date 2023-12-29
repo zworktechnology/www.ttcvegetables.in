@@ -88,15 +88,17 @@
                             </div>
                             <div class="row" style="margin-top: 3px;">
                                 <p style="text-align: left; margin-bottom: 3px; color: darkblue; Padding-left : 30px;">Extra Cost</p>
+                                @foreach ($PurchaseExtracosts as $index => $PurchaseExtracosts_arr)
                                 <div class="col-3">
-                                    <p style="text-align: left; margin-bottom: 3px; color: black; Padding-left : 20px;">COOLI</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: black; Padding-left : 20px;">{{ $PurchaseExtracosts_arr->extracost_note }}</p>
                                 </div>
                                 <div class="col-1">
                                     <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
                                 </div>
                                 <div class="col-2">
-                                    <p style="text-align: right; margin-bottom: 3px; color: black; border-right:1px solid black; padding-right : 2px;">₹ 0.00</p>
+                                    <p style="text-align: right; margin-bottom: 3px; color: black; border-right:1px solid black; padding-right : 2px;">₹ {{ $PurchaseExtracosts_arr->extracost }}</p>
                                 </div>
+                                @endforeach
                                 <div class="col-3">
                                     <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">GROSS AMOUNT</p>
                                     <p style="text-align: left; margin-bottom: 3px; color: red; border-left:1px solid black; padding-left : 2px;">OLD BALANCE</p>

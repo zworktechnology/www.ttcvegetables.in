@@ -3814,8 +3814,9 @@ class PurchaseController extends Controller
         $productlist = Productlist::where('soft_delete', '!=', 1)->where('status', '!=', 1)->get();
         $PurchaseProducts = PurchaseProduct::where('purchase_id', '=', $PurchaseData->id)->get();
         $extracostamount = $PurchaseData->tot_comm_extracost - $PurchaseData->commission_amount;
+        $PurchaseExtracosts = PurchaseExtracost::where('purchase_id', '=', $PurchaseData->id)->get();
 
-        return view('page.backend.purchaseorder.purchaseorder_printview', compact('PurchaseData', 'suppliername', 'branchname', 'bankname', 'PurchaseProducts', 'productlist', 'supplier_upper', 'extracostamount'));
+        return view('page.backend.purchaseorder.purchaseorder_printview', compact('PurchaseData', 'suppliername', 'branchname', 'bankname', 'PurchaseProducts', 'productlist', 'supplier_upper', 'extracostamount', 'PurchaseExtracosts'));
     }
 
 
