@@ -17,7 +17,7 @@
                 <div>
                     <div>
                         <img src="{{ asset('assets/backend/img/spmheader1.png') }}" style="margin-top: 5px;">
-                        <hr style="margin-top: -8px; background-color : blue">
+                        <hr style="margin-top: -1px; background-color : blue">
                     </div>
                     <div style="margin-right: 10px; margin-left: 10px; margin-top: -10px;">
                         <div>
