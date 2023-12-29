@@ -37,7 +37,7 @@
                             <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
                                 <tr class="heading "
                                     style="background:#eee; border-bottom: 1px solid lightgray ; border-top: 1px solid lightgray ;">
-                                    <td style="padding: 2px;vertical-align: middle;color: green;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green; Padding-left : 20px;">
                                         <b>Rate</b>
                                     </td>
                                     <td style="padding: 2px;vertical-align: middle;color: green;">
@@ -49,7 +49,7 @@
                                     <td style="padding: 2px;vertical-align: middle;color: green;">
                                         <b>Note</b>
                                     </td>
-                                    <td style="padding: 2px;vertical-align: middle;color: green; text-align: right;">
+                                    <td style="padding: 2px;vertical-align: middle;color: green; text-align: left;">
                                         <b>Amount</b>
                                     </td>
                                 </tr>
@@ -57,7 +57,7 @@
                                     @if ($SalesProduct_darta_arr->sales_id == $SalesData->id)
                                         <tr class="details" style="border-bottom:1px solid lightgray ;">
                                             <td
-                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; Padding-left : 20px;">
                                                 {{ $SalesProduct_darta_arr->price_per_kg }}
                                             </td>
                                             <td
@@ -78,7 +78,7 @@
                                                 {{ $SalesProduct_darta_arr->note }}
                                             </td>
                                             <td
-                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: right;">
+                                                style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: left;">
                                                 {{ $SalesProduct_darta_arr->total_price }}.00
                                             </td>
                                         </tr>
@@ -105,12 +105,12 @@
                                 <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                             </div>
                             <div class="col-3">
-                                <p style="text-align: left; margin-bottom: 3px; color: black; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->extra_cost }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹ {{ $SalesData->gross_amount }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->old_balance }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ {{ $SalesData->grand_total }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $SalesData->paid_amount }}</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red; text-align: right;">₹ {{ $SalesData->balance_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: black; border-bottom:1px solid lightgray; text-align: left;">₹ {{ $SalesData->extra_cost }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green; text-align: left;">₹ {{ $SalesData->gross_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: left;">₹ {{ $SalesData->old_balance }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: left;">₹ {{ $SalesData->grand_total }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray; text-align: left;">₹ {{ $SalesData->paid_amount }}</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red; text-align: left;">₹ {{ $SalesData->balance_amount }}</p>
                             </div>
                         </div>
                     </div>

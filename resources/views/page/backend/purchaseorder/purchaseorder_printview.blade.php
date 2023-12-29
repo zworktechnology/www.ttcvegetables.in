@@ -37,7 +37,7 @@
                                 <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
                                     <tr class="heading "
                                         style="background:#eee; border-bottom: 1px solid lightgray ; border-top: 1px solid lightgray ;">
-                                        <td style="padding: 2px;vertical-align: middle;color: green;">
+                                        <td style="padding: 2px;vertical-align: middle;color: green; Padding-left : 20px;">
                                             <b>Rate</b>
                                         </td>
                                         <td style="padding: 2px;vertical-align: middle;color: green;">
@@ -55,9 +55,9 @@
                                     </tr>
                                     @foreach ($PurchaseProducts as $index => $PurchaseProducts_array)
                                         @if ($PurchaseProducts_array->purchase_id == $PurchaseData->id)
-                                            <tr class="details" style="border-bottom:1px solid lightgray ;">
+                                            <tr class="details" style="border-bottom:1px solid lightgray;">
                                                 <td
-                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000;">
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; Padding-left : 20px;">
                                                     {{ $PurchaseProducts_array->price_per_kg }}
                                                 </td>
                                                 <td
@@ -87,9 +87,9 @@
                                 </table>
                             </div>
                             <div class="row" style="margin-top: 3px;">
-                                <p style="text-align: left; margin-bottom: 3px; color: darkblue;">Extra Cost</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: darkblue; Padding-left : 30px;">Extra Cost</p>
                                 <div class="col-3">
-                                    <p style="text-align: left; margin-bottom: 3px; color: black;">COOLI</p>
+                                    <p style="text-align: left; margin-bottom: 3px; color: black; Padding-left : 20px;">COOLI</p>
                                 </div>
                                 <div class="col-1">
                                     <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
