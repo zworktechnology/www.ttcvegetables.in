@@ -146,10 +146,16 @@
                                     <tr>
                                         <td style="font-size:15px; color: black;" class="text-end">Extra Cost<span
                                             style="color: red;">*</span></td>
-                                        <td colspan="4"><input type="hidden" name="purchase_extracost_id"/>
-                                            <input type="text" class="form-control"
-                                                id="extracost_note" placeholder="Note" value=""
-                                                name="extracost_note[]" required /></td>
+                                        <td colspan="4">
+                                            <input type="hidden" name="purchase_extracost_id"/>
+                                            <select class=" form-control bagorkg" name="extracost_note[]" id="extracost_note" required>
+                                                <option value="" selected hidden class="text-muted">Select</option>
+                                                <option value="Rent">Rent</option>
+                                                <option value="Cooli">Cooli</option>
+                                                <option value="Gate">Gate</option>
+                                                <option value="Advance">Advance</option>
+                                            </select>
+                                        </td>
 
                                         <td><input type="text" class="form-control extracost" id="extracost"
                                                 placeholder="Extra Cost" required name="extracost[]"

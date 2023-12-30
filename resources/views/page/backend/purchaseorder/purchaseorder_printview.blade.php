@@ -107,24 +107,24 @@
                                     <div class="col-6" style="display: flex;">
                                         <div class="col-6">
                                             <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">GROSS AMOUNT</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">EXPENSES</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: transparent; border-left:1px solid black; padding-left : 2px;">Total</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: red; border-left:1px solid black; padding-left : 2px;">OLD BALANCE</p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: blue; border-left:1px solid black; padding-left : 2px;">GRAND TOTAL</p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: green; border-left:1px solid black; padding-left : 2px;">PAID AMOUNT</p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: red; border-left:1px solid black; padding-left : 52x;">NET AMOUNT</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: transparent ; border-left:1px solid black; padding-left : 2px;">Total</p>
                                         </div>
                                         <div class="col-2">
                                             <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                                         </div>
                                         <div class="col-4">
                                             <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹ </p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right; border-bottom:1px solid lightgray;">₹ </p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ </p>
                                             <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ </p>
                                             <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: green; border-bottom:1px solid lightgray; text-align: right;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: red; text-align: right;">₹ </p>
                                         </div>
                                     </div>
                                 </div>

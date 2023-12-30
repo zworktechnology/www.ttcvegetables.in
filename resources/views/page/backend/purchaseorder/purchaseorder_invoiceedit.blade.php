@@ -127,10 +127,16 @@
                                     <tr>
                                         <td style="font-size:15px; color: black;" class="text-end">Extra Cost<span
                                             style="color: red;">*</span></td>
-                                        <td colspan="4"><input type="hidden" name="purchase_extracost_id"/>
-                                            <input type="text" class="form-control"readonly
-                                                id="extracost_note" placeholder="Note" value="{{ $Purchase_Extracosts->extracost_note }}"
-                                                name="extracost_note[]"  /></td>
+                                        <td colspan="4">
+                                            <input type="hidden" name="purchase_extracost_id"/>
+                                            <select class=" form-control bagorkg" name="extracost_note[]" id="extracost_note" required>
+                                                <option value="" selected hidden class="text-muted">Select</option>
+                                                <option value="Rent">Rent</option>
+                                                <option value="Cooli">Cooli</option>
+                                                <option value="Gate">Gate</option>
+                                                <option value="Advance">Advance</option>
+                                            </select>
+                                        </td>
 
                                         <td colspan="1"><input type="text" class="form-control extracost" id="extracost"
                                                 placeholder="Extra Cost"  name="extracost[]" readonly
