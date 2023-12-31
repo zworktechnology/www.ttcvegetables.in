@@ -4,7 +4,7 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Customer View</h4>
+                <h4>Customer View - <span style="color:red;">{{ $Customername }}</span></h4>
             </div>
 
             @php
@@ -45,34 +45,35 @@
         </div>
         <div class="row" >
             <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget">
+                <div class="dash-widget" style="background: #a08bd0;">
                     <div class="dash-widgetcontent">
-                        <h5>{{ $Customername }}</h5>
-                        <h6 style="color:red">Customer</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash1">
-                    <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $tot_saleAmount }}"></span></h5>
+                    @php $totalamounts = $tot_saleAmount + $paymentsale_discount; @endphp
+                        <h5>₹ <span class="counters" data-count="{{ $totalamounts }}"></span></h5>
                         <h6>Total Sales Amount</h6>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash2">
+                <div class="dash-widget dash1" style="background: #92d8a3;">
                     <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $total_amount_paid }}"></span></h5>
-                        <h6>Total Payment Received Amount</h6>
+                        <h5>₹ <span class="counters" data-count="{{ $paymentsale_discount }}"></span></h5>
+                        <h6>Total Discount</h6>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash3">
+                <div class="dash-widget dash2" style="background: #dac88e;">
+                    <div class="dash-widgetcontent">
+                        <h5>₹ <span class="counters" data-count="{{ $total_amount_paid }}"></span></h5>
+                        <h6>Total Payment Received</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="dash-widget dash3" style="background: #d48282;">
                     <div class="dash-widgetcontent">
                         <h5>₹ <span class="counters" data-count="{{ $total_balance }}"></span></h5>
-                        <h6>Total Pending Balance Amount</h6>
+                        <h6>Total Pending Balance</h6>
                     </div>
                 </div>
             </div>

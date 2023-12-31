@@ -17,6 +17,7 @@ class Customer extends Model
         'shop_name',
         'shop_address',
         'shop_contact_number',
+        'old_balance',
         'status',
         'soft_delete'
     ];

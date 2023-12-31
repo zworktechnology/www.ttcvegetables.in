@@ -2954,6 +2954,12 @@ class SalesController extends Controller
             $sales_date = $request->get('sales_date');
             $s_bill_no = 1;
 
+            if($request->get('salespayable_amount') != ""){
+                $payment = $request->get('salespayable_amount');
+            }else {
+                $payment = 0;
+            }
+
             // Branch
             $GetBranch = Branch::findOrFail($sales_branch_id);
             $Branch_Name = $GetBranch->shop_name;
@@ -2992,7 +2998,10 @@ class SalesController extends Controller
             $data->gross_amount = $request->get('sales_gross_amount');
             $data->old_balance = $request->get('sales_old_balance');
             $data->grand_total = $request->get('sales_grand_total');
-            $data->paid_amount = $request->get('salespayable_amount');
+
+            
+
+            $data->paid_amount = $payment;
             $data->balance_amount = $request->get('sales_pending_amount');
             $data->bill_no = $invoiceno;
             $data->sales_order = 1;
@@ -3044,14 +3053,14 @@ class SalesController extends Controller
             }else {
                 $gross_amount = $request->get('sales_gross_amount');
                 $payable_amount = $request->get('salespayable_amount');
-                $balance_amount = $gross_amount - $payable_amount;
+                $balance_amount = $gross_amount - $payment;
 
                 $data = new BranchwiseBalance();
 
                 $data->customer_id = $sales_customerid;
                 $data->branch_id = $sales_branch_id;
                 $data->sales_amount = $gross_amount;
-                $data->sales_paid = $payable_amount;
+                $data->sales_paid = $payment;
                 $data->sales_balance = $balance_amount;
                 $data->save();
             }

@@ -84,7 +84,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    <input type="hidden" name="tot_expense_amount" id="tot_expense_amount" value=""/>
+                                    <input type="hidden" name="tot_expense_amount" id="tot_expense_amount" value="{{$data->amount}}"/>
                                 </tbody>
                             </table>
                         </div>

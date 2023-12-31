@@ -8156,7 +8156,7 @@ span.select2-container.select2-container--default.select2-container--open {
     margin-bottom: 19px;
     border-radius: 6px;
     padding: 20px;
-    border: 1px solid #a08bd0
+    /* border: 1px solid #a08bd0 */
 }
 
 .dash-widget.dash1 .dash-widgetimg span {

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('shop_name')->nullable();
             $table->string('shop_address')->nullable();
             $table->string('shop_contact_number')->nullable();
+            $table->string('old_balance')->nullable();
             $table->string('status')->default(0);
             $table->boolean('soft_delete')->default(0);
             $table->timestamps();

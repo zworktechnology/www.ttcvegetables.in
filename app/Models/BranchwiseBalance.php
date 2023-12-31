@@ -18,6 +18,7 @@ class BranchwiseBalance extends Model
         'purchase_paid',
         'purchase_balance',
         'sales_amount',
+        'sale_discount',
         'sales_paid',
         'sales_balance'
     ];

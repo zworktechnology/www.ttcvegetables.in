@@ -3290,6 +3290,12 @@ class PurchaseController extends Controller
             $bill_date = $request->get('date');
             $s_bill_no = 1;
 
+            if($request->get('payable_amount') != ""){
+                $payment = $request->get('payable_amount');
+            }else {
+                $payment = 0;
+            }
+
             // Branch
             $GetBranch = Branch::findOrFail($bill_branchid);
             $Branch_Name = $GetBranch->shop_name;
@@ -3329,7 +3335,10 @@ class PurchaseController extends Controller
             $data->gross_amount = $request->get('gross_amount');
             $data->old_balance = $request->get('old_balance');
             $data->grand_total = $request->get('grand_total');
-            $data->paid_amount = $request->get('payable_amount');
+
+            
+
+            $data->paid_amount = $payment;
             $data->balance_amount = $request->get('pending_amount');
             $data->bill_no = $invoiceno;
             $data->purchase_order = '1';
@@ -3396,14 +3405,14 @@ class PurchaseController extends Controller
             }else {
                 $gross_amount = $request->get('gross_amount');
                 $payable_amount = $request->get('payable_amount');
-                $balance_amount = $gross_amount - $payable_amount;
+                $balance_amount = $gross_amount - $payment;
 
                 $data = new BranchwiseBalance();
 
                 $data->supplier_id = $supplier_id;
                 $data->branch_id = $bill_branchid;
                 $data->purchase_amount = $request->get('gross_amount');
-                $data->purchase_paid = $request->get('payable_amount');
+                $data->purchase_paid = $payment;
                 $data->purchase_balance = $balance_amount;
                 $data->save();
             }

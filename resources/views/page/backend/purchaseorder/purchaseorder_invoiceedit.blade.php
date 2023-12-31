@@ -131,10 +131,10 @@
                                             <input type="hidden" name="purchase_extracost_id"/>
                                             <select class=" form-control bagorkg" name="extracost_note[]" id="extracost_note" required>
                                                 <option value="" selected hidden class="text-muted">Select</option>
-                                                <option value="Rent">Rent</option>
-                                                <option value="Cooli">Cooli</option>
-                                                <option value="Gate">Gate</option>
-                                                <option value="Advance">Advance</option>
+                                                <option value="Rent"{{ $Purchase_Extracosts->extracost_note == 'Rent' ? 'selected' : '' }}>Rent</option>
+                                                <option value="Cooli"{{ $Purchase_Extracosts->extracost_note == 'Cooli' ? 'selected' : '' }}>Cooli</option>
+                                                <option value="Gate"{{ $Purchase_Extracosts->extracost_note == 'Gate' ? 'selected' : '' }}>Gate</option>
+                                                <option value="Advance"{{ $Purchase_Extracosts->extracost_note == 'Advance' ? 'selected' : '' }}>Advance</option>
                                             </select>
                                         </td>
 

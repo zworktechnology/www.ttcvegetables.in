@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('purchase_balance')->nullable();
 
             $table->string('sales_amount')->nullable();
+            $table->string('sale_discount')->nullable();
             $table->string('sales_paid')->nullable();
             $table->string('sales_balance')->nullable();
 

@@ -24,7 +24,7 @@
             <div class="page-btn">
                 <div style="display:flex;">
 
-                    <input type="button" style="margin-right:10px" class="btn btn-lightgreen waves-effect waves-light btn-added badges bg-green" id="viewtotal" value="View Total">
+                    <input type="button" style="margin-right:10px" class="btn btn-lightgreen waves-effect waves-light btn-added badges bg-green" id="viewsuppliertotal" value="View Total">
 
                     <button type="button" style="margin-right:10px" class="btn btn-primary waves-effect waves-light btn-added" data-bs-toggle="modal"
                         data-bs-target=".supplier-modal-xl">Add Supplier</button>
@@ -83,7 +83,7 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash1">
                     <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $total_purchaseAmount }}"></span></h5>
+                        <h5>₹ <span class="counters" data-count="{{ $TotalPurchase }}"></span></h5>
                         <h6>Total Purchase Value</h6>
                     </div>
                 </div>
@@ -116,6 +116,7 @@
                                 <th>Sl. No</th>
                                 <th>Name</th>
                                 <th>Total Purchase</th>
+                                <th>Total Discount</th>
                                 <th>Total Paid</th>
                                 <th>Total Balance</th>
                                 <th>Action</th>
@@ -127,6 +128,7 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ $suppliertdata['name'] }}</td>
                                     <td>₹ {{ $suppliertdata['total_purchase_amt'] }}</td>
+                                    <td>₹ {{ $suppliertdata['total_discount_amont'] }}</td>
                                     <td>₹ {{ $suppliertdata['total_paid'] }}</td>
                                     <td>₹ {{ $suppliertdata['balance_amount'] }}</td>
                                     <td>

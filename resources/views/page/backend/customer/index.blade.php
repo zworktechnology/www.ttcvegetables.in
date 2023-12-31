@@ -83,7 +83,7 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash1">
                     <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $totalSAleAmount }}"></span></h5>
+                        <h5>₹ <span class="counters" data-count="{{ $TotalSale }}"></span></h5>
                         <h6>Total Sales Value</h6>
                     </div>
                 </div>
@@ -91,13 +91,13 @@
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash2">
                     <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{$TotaSalePaid}}"></span></h5>
+                        <h5>₹ <span class="counters" data-count="{{$total_saleamount_paid}}"></span></h5>
                         <h6>Total Paid Value</h6>
                     </div>
                 </div>
             </div>
             @php
-            $total = $totalSAleAmount - $TotaSalePaid;
+            $total = $TotalSale - $total_saleamount_paid;
             @endphp
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="dash-widget dash3">
@@ -120,6 +120,7 @@
                                 <th>Sl. No</th>
                                 <th>Name</th>
                                 <th>Total Sale</th>
+                                <th>Total Discount</th>
                                 <th>Total Paid</th>
                                 <th>Total Balance</th>
                                 <th>Status</th>
@@ -131,6 +132,7 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ $customertdata['name'] }}</td>
                                     <td>₹ {{ $customertdata['total_sale_amt'] }}</td>
+                                    <td>₹ {{ $customertdata['totpayment_discount'] }}</td>
                                     <td>₹ {{ $customertdata['total_paid'] }}</td>
                                     <td>₹ {{ $customertdata['balance_amount'] }}</td>
                                     <td>

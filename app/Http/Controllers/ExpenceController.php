@@ -278,6 +278,7 @@ class ExpenceController extends Controller
             }
         }
 
+
         $total = 0;
         
         foreach ($request->get('expense_detialid') as $key => $expense_detialid) {
@@ -286,7 +287,7 @@ class ExpenceController extends Controller
                 $total =  $request->get('tot_expense_amount');
 
                 $expense_note = $request->expense_note[$key];
-                $expense_amount = $request->tot_expense_amount[$key];
+                $expense_amount = $request->expense_amount[$key];
 
                 DB::table('expensedetails')->where('id', $expense_detialid)->update([
                     'expense_note' => $expense_note,  'expense_amount' => $expense_amount
