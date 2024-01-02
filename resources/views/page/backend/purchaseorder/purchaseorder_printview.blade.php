@@ -87,9 +87,20 @@
                                 </table>
                             </div>
                             <div class="row" style="margin-top: 3px; margin-top: 70mm;">
+                                <p style="text-align: left; margin-bottom: 3px; color: darkblue; Padding-left : 20px;">Extra Cost</p>
                                 <div class="col-12" style="display: flex;">
                                     <div class="col-6">
-                                        <p style="text-align: left; margin-bottom: 3px; color: darkblue; Padding-left : 10px;">Extra Cost</p>
+                                        <div style="display: flex">
+                                            <div class="col-6">
+                                                <p style="text-align: left; margin-bottom: 3px; color: black; Padding-left : 10px;">COMMISSION</p>
+                                            </div>
+                                            <div class="col-2">
+                                                <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px;">₹ {{ $PurchaseData->commission_amount }}</p>
+                                            </div>
+                                        </div>
                                         @foreach ($PurchaseExtracosts as $index => $PurchaseExtracosts_arr)
                                         <div style="display: flex">
                                             <div class="col-6">
@@ -120,11 +131,11 @@
                                             <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
                                         </div>
                                         <div class="col-4">
-                                            <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right; border-bottom:1px solid lightgray;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ </p>
-                                            <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ </p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right;">₹  {{ $PurchaseData->total_amount }}</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: green; text-align: right; border-bottom:1px solid lightgray;">₹ {{ $PurchaseData->tot_comm_extracost }}</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ {{ $PurchaseData->gross_amount }}</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right;">₹ {{ $PurchaseData->old_balance }}.00</p>
+                                            <p style="text-align: left; margin-bottom: 3px; color: blue; text-align: right;">₹ {{ $PurchaseData->grand_total }}</p>
                                         </div>
                                     </div>
                                 </div>
