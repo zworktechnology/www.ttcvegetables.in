@@ -150,8 +150,8 @@
                                             <input type="hidden" name="purchase_extracost_id"/>
                                             <select class=" form-control bagorkg" name="extracost_note[]" id="extracost_note" required>
                                                 <option value="" selected hidden class="text-muted">Select</option>
-                                                <option value="Rent">Rent</option>
-                                                <option value="Cooli">Cooli</option>
+                                                <option value="Hire">Hire</option>
+                                                <option value="Wage">Wage</option>
                                                 <option value="Gate">Gate</option>
                                                 <option value="Advance">Advance</option>
                                             </select>

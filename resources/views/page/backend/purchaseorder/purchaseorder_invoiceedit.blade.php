@@ -89,7 +89,7 @@
                                             <td></td>
                                             <td class="text-end"><input type="text" class="form-control total_price" readonly
                                                     id="total_price" style="background-color: #e9ecef;"
-                                                    name="total_price[]" placeholder="" value="{{ $Purchase_Products->total_price	 }}"/></td>
+                                                    name="total_price[]" placeholder="" value="{{ $Purchase_Products->total_price }}"/></td>
 
                                             </td>
                         </tr>
@@ -131,8 +131,8 @@
                                             <input type="hidden" name="purchase_extracost_id"/>
                                             <select class=" form-control bagorkg" name="extracost_note[]" id="extracost_note" required>
                                                 <option value="" selected hidden class="text-muted">Select</option>
-                                                <option value="Rent"{{ $Purchase_Extracosts->extracost_note == 'Rent' ? 'selected' : '' }}>Rent</option>
-                                                <option value="Cooli"{{ $Purchase_Extracosts->extracost_note == 'Cooli' ? 'selected' : '' }}>Cooli</option>
+                                                <option value="Hire"{{ $Purchase_Extracosts->extracost_note == 'Hire' ? 'selected' : '' }}>Hire</option>
+                                                <option value="Wage"{{ $Purchase_Extracosts->extracost_note == 'Wage' ? 'selected' : '' }}>Wage</option>
                                                 <option value="Gate"{{ $Purchase_Extracosts->extracost_note == 'Gate' ? 'selected' : '' }}>Gate</option>
                                                 <option value="Advance"{{ $Purchase_Extracosts->extracost_note == 'Advance' ? 'selected' : '' }}>Advance</option>
                                             </select>
