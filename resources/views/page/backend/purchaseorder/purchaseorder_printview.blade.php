@@ -98,7 +98,7 @@
                                                 <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
                                             </div>
                                             <div class="col-4">
-                                                <p style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 30px;">₹ {{ $PurchaseData->commission_amount }}</p>
+                                                <p style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">₹ {{ $PurchaseData->commission_amount }}</p>
                                             </div>
                                         </div>
                                         @foreach ($PurchaseExtracosts as $index => $PurchaseExtracosts_arr)
@@ -110,7 +110,7 @@
                                                 <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
                                             </div>
                                             <div class="col-4">
-                                                <p style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 30px;">₹ {{ $PurchaseExtracosts_arr->extracost }}</p>
+                                                <p style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">₹ {{ $PurchaseExtracosts_arr->extracost }}</p>
                                             </div>
                                         </div>
                                         @endforeach
@@ -122,7 +122,7 @@
                                                 <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                                             </div>
                                             <div class="col-4">
-                                                <p style="text-align: right; margin-bottom: 3px; color: red; padding-right : 2px; padding-right: 30px;">₹ {{ $PurchaseData->tot_comm_extracost }}</p>
+                                                <p style="text-align: right; margin-bottom: 3px; color: red; padding-right : 2px; padding-right: 20px;">₹ {{ $PurchaseData->tot_comm_extracost }}</p>
                                             </div>
                                         </div>
                                     </div>
