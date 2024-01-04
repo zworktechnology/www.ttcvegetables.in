@@ -1,6 +1,8 @@
 @extends('layout.backend.auth')
 
 @section('content')
+<style>
+</style>
     <div class="content">
 
                 @php

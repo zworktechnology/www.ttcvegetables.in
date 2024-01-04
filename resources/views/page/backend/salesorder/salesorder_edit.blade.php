@@ -19,7 +19,7 @@
                <div class="col-lg-16 col-sm-6 col-12" hidden>
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">From Branch<span style="color: red;"> *</span></label>
-                     <select class="select sales_branch_id" name="sales_branch_id" id="sales_branch_id" disabled>
+                     <select class="select sales_branch_id" name="sales_branch_id" id="sales_branch_id" >
                         <option value="" disabled selected hiddden>Select Branch</option>
                            @foreach ($branch as $branches)
                               <option value="{{ $branches->id }}"@if ($branches->id === $SalesData->branch_id) selected='selected' @endif>{{ $branches->shop_name }}</option>
@@ -39,14 +39,14 @@
                <div class="col-lg-3 col-sm-3 col-12">
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span style="color: red;"> *</span></label>
-                     <input type="date" name="sales_date" placeholder="" readonly value="{{ $SalesData->date }}">
+                     <input type="date" name="sales_date" placeholder=""  value="{{ $SalesData->date }}">
                   </div>
                </div>
 
                <div class="col-lg-3 col-sm-3 col-12">
                   <div class="form-group">
                      <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Time<span style="color: red;"> *</span></label>
-                     <input type="time" name="sales_time" placeholder="" readonly value="{{ $SalesData->time }}">
+                     <input type="time" name="sales_time" placeholder=""  value="{{ $SalesData->time }}">
                   </div>
                </div>
 
@@ -88,14 +88,20 @@
                         <tr>
                            <td class="">
                               <input type="hidden"id="sales_detail_id"name="sales_detail_id[]" value="{{ $Sales_Products->id }}"/>
-                              @foreach ($productlist as $products)
-                                 @if ($products->id == $Sales_Products->productlist_id)
-                                    <input type="text"class="form-control" name="product_name[]" value="{{ $products->name }}" readonly>
-                                    <input type="hidden" id="sales_product_id" name="sales_product_id[]" value="{{ $Sales_Products->productlist_id }}" />
-                                 @endif
-                              @endforeach
+                             
+                              <select class="select form-control" name="sales_product_id[]" id="sales_product_id">
+                                 <option value="" disabled selected hiddden>Select Product</option>
+                                 @foreach ($productlist as $products)
+                                    <option value="{{ $products->id }}"@if ($products->id === $Sales_Products->productlist_id) selected='selected' @endif>{{ $products->name }}</option>
+                                 @endforeach
+                              </select>
                            </td>
-                           <td><input type="text" class="form-control" id="sales_bagorkg" readonly name="sales_bagorkg[]" placeholder="Bag" value="{{ $Sales_Products->bagorkg }}" required /></td>
+                           <td>
+                           <select class=" form-control sales_bagorkg" name="sales_bagorkg[]" id="sales_bagorkg1"required>
+                                 <option value="" selected hidden class="text-muted">Select</option>
+                                     <option value="bag"{{ $Sales_Products->bagorkg == 'bag' ? 'selected' : '' }}>Bag</option>
+                                    <option value="kg"{{ $Sales_Products->bagorkg == 'kg' ? 'selected' : '' }}>Kg</option>
+                              </select></td>
                            <td><input type="text" class="form-control sales_count" id="sales_count"  name="sales_count[]" placeholder="kgs" value="{{ $Sales_Products->count }}" required /></td>
                            <td><input type="text" class="form-control sales_note" id="sales_note"  name="sales_note[]" placeholder="note" value="{{ $Sales_Products->note }}" required /></td>
                            <td><input type="text" class="form-control sales_priceperkg"  id="sales_priceperkg" name="sales_priceperkg[]" placeholder="Price Per Count" value="{{ $Sales_Products->price_per_kg }}" required /></td>
@@ -117,8 +123,8 @@
                         <tr>
 
                            <td colspan="3" style="font-size:15px;color: black;" class="text-end">Extra Cost<span style="color: red;"> *</span></td>
-                           <td colspan="2"><input type="text" class="form-control" id="sales_extracost_note" placeholder="Note" readonly value="{{ $SalesData->note }}" name="sales_extracost_note" required/></td>
-                           <td><input type="text" class="form-control sales_extracost" id="sales_extracost" placeholder="Extra Cost" readonly name="sales_extracost" value="{{ $SalesData->extra_cost }}"/></td>
+                           <td colspan="2"><input type="text" class="form-control" id="sales_extracost_note" placeholder="Note"  value="{{ $SalesData->note }}" name="sales_extracost_note" required/></td>
+                           <td><input type="text" class="form-control sales_extracost" id="sales_extracost" placeholder="Extra Cost"  name="sales_extracost" value="{{ $SalesData->extra_cost }}"/></td>
                         </tr>
                         <tr>
                            <td colspan="5" class="text-end" style="font-size:15px;color: black;">Gross Amount</td>
@@ -134,7 +140,7 @@
                         </tr>
                         <tr>
                            <td colspan="2" class="text-end" style="font-size:15px;color: black;">Bank<span style="color: red;"> *</span></td>
-                           <td colspan="2"><select class="select" name="sales_bank_id" id="sales_bank_id" disabled>
+                           <td colspan="2"><select class="select" name="sales_bank_id" id="sales_bank_id" >
                             <option value="" disabled selected hiddden>Select Bank</option>
                             @foreach ($bank as $banks)
                                <option value="{{ $banks->id }}"@if ($banks->id === $SalesData->bank_id) selected='selected' @endif>{{ $banks->name }}</option>

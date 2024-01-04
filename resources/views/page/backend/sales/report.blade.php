@@ -121,6 +121,7 @@
                                             <th style="">Particulars</th>
                                             <th style="">Debit</th>
                                             <th style="">Credit</th>
+                                            <th>Discount</th>
                                             <th style="">Total</th>
                                         </tr>
                                     </thead>
@@ -131,7 +132,7 @@
                                                 <tr>
                                                 <td>{{ ++$keydata }}</td>
                                                 <td>#{{ $Sales_datas['bill_no'] }}</td>
-                                                    <td>{{ date('d M Y', strtotime($Sales_datas['date'])) }} - {{ date('h:i A', strtotime($Sales_datas['time'])) }}</td>
+                                                    <td>{{ date('Y-m-d', strtotime($Sales_datas['date'])) }} - {{ date('h:i A', strtotime($Sales_datas['time'])) }}</td>
                                                     <td>{{ $Sales_datas['customer_name'] }}</td>
                                                     {{-- <td>{{ $Sales_datas['branch_name'] }}</td> --}}
                                                     <td>{{ $Sales_datas['type'] }}</td>
@@ -139,7 +140,9 @@
                                                     @if ($Sales_datas['type'] == 'SALES')
                                                         @foreach ($Sales_datas['sales_terms'] as $index => $terms_array)
                                                         @if ($terms_array['sales_id'] == $Sales_datas['id'])
+                                                        @if ($Sales_datas['sales_order'] == 1)
                                                         {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }} {{ $terms_array['bag'] }} - ₹ {{ $terms_array['price_per_kg'] }}<br/>
+                                                        @endif
                                                         @endif
                                                         @endforeach
                                                     @endif
@@ -149,6 +152,7 @@
                                                     <td>{{ $Sales_datas['gross_amount'] }}</td>
 
                                                     <td>{{ $Sales_datas['paid_amount'] }}</td>
+                                                    <td>{{ $Sales_datas['discount'] }}</td>
                                                     <td>{{ $Sales_datas['balance_amount'] }}</td>
                                                 </tr>
 

@@ -687,7 +687,6 @@ class SupplierController extends Controller
 
         if($last_word != 'supplier'){
 
-
             $SupplierData = Supplier::where('unique_key', '=', $unique_key)->first();
 
             $today = Carbon::now()->format('Y-m-d');
@@ -732,13 +731,15 @@ class SupplierController extends Controller
 
 
                 if($datas->status != ""){
-                    $paid = $datas->payment_paid_amount;
-                    $balance = $datas->payment_pending;
+                    $paid = $datas->paid_amount;
+                    $balance = $datas->balance_amount;
                     $type='PURHCASE';
+                    $discount = '';
                 }else {
-                    $paid = $datas->amount + $datas->purchasepayment_discount;
+                    $paid = $datas->amount;
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
+                    $discount = $datas->purchasepayment_discount;
                 }
 
                 $Purchase_data[] = array(
@@ -756,11 +757,13 @@ class SupplierController extends Controller
                     'type' => $type,
                     'id' => $datas->id,
                     'sales_terms' => $terms,
+                    'discount' => $discount,
                     'status' => $datas->status,
                     'branchheading' => '',
                     'customerheading' => '',
                     'fromdateheading' => '',
                     'todateheading' => '',
+                    'datetime' => $datas->date . $datas->time,
 
                 );
             }
@@ -846,8 +849,8 @@ class SupplierController extends Controller
 
 
             usort($Purchase_data, function($a1, $a2) {
-                $value1 = strtotime($a1['date']);
-                $value2 = strtotime($a2['date']);
+                $value1 = strtotime($a1['datetime']);
+                $value2 = strtotime($a2['datetime']);
                 return ($value1 < $value2) ? 1 : -1;
              });
 
@@ -901,13 +904,15 @@ class SupplierController extends Controller
 
 
                 if($datas->status != ""){
-                    $paid = $datas->payment_paid_amount;
-                    $balance = $datas->payment_pending;
+                    $paid = $datas->paid_amount;
+                    $balance = $datas->balance_amount;
                     $type='PURHCASE';
+                    $discount = '';
                 }else {
-                    $paid = $datas->amount + $datas->purchasepayment_discount;
+                    $paid = $datas->amount;
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
+                    $discount = $datas->purchasepayment_discount;
                 }
 
                 $Purchase_data[] = array(
@@ -925,11 +930,13 @@ class SupplierController extends Controller
                     'type' => $type,
                     'id' => $datas->id,
                     'sales_terms' => $terms,
+                    'discount' => $discount,
                     'status' => $datas->status,
                     'branchheading' => '',
                     'customerheading' => '',
                     'fromdateheading' => '',
                     'todateheading' => '',
+                    'datetime' => $datas->date . $datas->time,
 
                 );
             }
@@ -1015,8 +1022,8 @@ class SupplierController extends Controller
 
 
             usort($Purchase_data, function($a1, $a2) {
-                $value1 = strtotime($a1['date']);
-                $value2 = strtotime($a2['date']);
+                $value1 = strtotime($a1['datetime']);
+                $value2 = strtotime($a2['datetime']);
                 return ($value1 < $value2) ? 1 : -1;
              });
 
@@ -1092,13 +1099,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1116,11 +1125,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1231,13 +1242,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1255,11 +1268,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1367,13 +1382,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1391,11 +1408,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1504,13 +1523,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1528,11 +1549,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1639,13 +1662,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1663,11 +1688,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1772,13 +1799,15 @@ class SupplierController extends Controller
 
 
                     if($datas->status != ""){
-                        $paid = $datas->payment_paid_amount;
-                        $balance = $datas->payment_pending;
+                        $paid = $datas->paid_amount;
+                        $balance = $datas->balance_amount;
                         $type='PURHCASE';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->purchasepayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->purchasepayment_discount;
                     }
 
                     $Purchase_data[] = array(
@@ -1796,11 +1825,13 @@ class SupplierController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => '',
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1863,8 +1894,8 @@ class SupplierController extends Controller
 
 
         usort($Purchase_data, function($a1, $a2) {
-            $value1 = strtotime($a1['date']);
-            $value2 = strtotime($a2['date']);
+            $value1 = strtotime($a1['datetime']);
+            $value2 = strtotime($a2['datetime']);
             return ($value1 < $value2) ? 1 : -1;
          });
 

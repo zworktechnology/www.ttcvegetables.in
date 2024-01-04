@@ -723,10 +723,12 @@ class CustomerController extends Controller
                     $paid = $datas->paid_amount;
                     $balance = $datas->balance_amount;
                     $type='SALES';
+                    $discount = '';
                 }else {
-                    $paid = $datas->amount + $datas->salespayment_discount;
+                    $paid = $datas->amount;
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
+                    $discount = $datas->salespayment_discount;
                 }
 
                 $Sales_data[] = array(
@@ -744,11 +746,13 @@ class CustomerController extends Controller
                     'type' => $type,
                     'id' => $datas->id,
                     'sales_terms' => $terms,
+                    'discount' => $discount,
                     'status' => $datas->status,
                     'branchheading' => $branch_name->shop_name,
                     'customerheading' => '',
                     'fromdateheading' => '',
                     'todateheading' => '',
+                    'datetime' => $datas->date . $datas->time,
 
                 );
             }
@@ -834,8 +838,8 @@ class CustomerController extends Controller
 
 
             usort($Sales_data, function($a1, $a2) {
-                $value1 = strtotime($a1['date']);
-                $value2 = strtotime($a2['date']);
+                $value1 = strtotime($a1['datetime']);
+                $value2 = strtotime($a2['datetime']);
                 return ($value1 < $value2) ? 1 : -1;
              });
 
@@ -891,10 +895,12 @@ class CustomerController extends Controller
                     $paid = $datas->paid_amount;
                     $balance = $datas->balance_amount;
                     $type='SALES';
+                    $discount = '';
                 }else {
-                    $paid = $datas->amount + $datas->salespayment_discount;
+                    $paid = $datas->amount;
                     $balance = $datas->payment_pending;
                     $type='PAYMENT';
+                    $discount = $datas->salespayment_discount;
                 }
 
                 $Sales_data[] = array(
@@ -909,6 +915,7 @@ class CustomerController extends Controller
                     'grand_total' => $datas->grand_total,
                     'balance_amount' => $balance,
                     'type' => $type,
+                    'discount' => $discount,
                     'id' => $datas->id,
                     'sales_terms' => $terms,
                     'status' => $datas->status,
@@ -916,6 +923,7 @@ class CustomerController extends Controller
                     'customerheading' => '',
                     'fromdateheading' => '',
                     'todateheading' => '',
+                    'datetime' => $datas->date . $datas->time,
 
                 );
             }
@@ -991,8 +999,8 @@ class CustomerController extends Controller
 
 
             usort($Sales_data, function($a1, $a2) {
-                $value1 = strtotime($a1['date']);
-                $value2 = strtotime($a2['date']);
+                $value1 = strtotime($a1['datetime']);
+                $value2 = strtotime($a2['datetime']);
                 return ($value1 < $value2) ? 1 : -1;
              });
 
@@ -1070,10 +1078,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1089,6 +1099,7 @@ class CustomerController extends Controller
                         'grand_total' => $datas->grand_total,
                         'balance_amount' => $balance,
                         'type' => $type,
+                        'discount' => $discount,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
                         'status' => $datas->status,
@@ -1096,6 +1107,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1207,10 +1219,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1226,6 +1240,7 @@ class CustomerController extends Controller
                         'grand_total' => $datas->grand_total,
                         'balance_amount' => $balance,
                         'type' => $type,
+                        'discount' => $discount,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
                         'status' => $datas->status,
@@ -1233,6 +1248,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1337,10 +1353,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1356,6 +1374,7 @@ class CustomerController extends Controller
                         'grand_total' => $datas->grand_total,
                         'balance_amount' => $balance,
                         'type' => $type,
+                        'discount' => $discount,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
                         'status' => $datas->status,
@@ -1363,6 +1382,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1476,10 +1496,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1497,11 +1519,13 @@ class CustomerController extends Controller
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
+                        'discount' => $discount,
                         'status' => $datas->status,
                         'branchheading' => $branch_name->shop_name,
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1606,10 +1630,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1625,6 +1651,7 @@ class CustomerController extends Controller
                         'grand_total' => $datas->grand_total,
                         'balance_amount' => $balance,
                         'type' => $type,
+                        'discount' => $discount,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
                         'status' => $datas->status,
@@ -1632,6 +1659,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1732,10 +1760,12 @@ class CustomerController extends Controller
                         $paid = $datas->paid_amount;
                         $balance = $datas->balance_amount;
                         $type='SALES';
+                        $discount = '';
                     }else {
-                        $paid = $datas->amount + $datas->salespayment_discount;
+                        $paid = $datas->amount;
                         $balance = $datas->payment_pending;
                         $type='PAYMENT';
+                        $discount = $datas->salespayment_discount;
                     }
 
                     $Sales_data[] = array(
@@ -1750,6 +1780,7 @@ class CustomerController extends Controller
                         'sales_order' => $datas->sales_order,
                         'grand_total' => $datas->grand_total,
                         'balance_amount' => $balance,
+                        'discount' => $discount,
                         'type' => $type,
                         'id' => $datas->id,
                         'sales_terms' => $terms,
@@ -1758,6 +1789,7 @@ class CustomerController extends Controller
                         'customerheading' => '',
                         'fromdateheading' => '',
                         'todateheading' => '',
+                        'datetime' => $datas->date . $datas->time,
 
                     );
                 }
@@ -1819,8 +1851,8 @@ class CustomerController extends Controller
 
 
         usort($Sales_data, function($a1, $a2) {
-            $value1 = strtotime($a1['date']);
-            $value2 = strtotime($a2['date']);
+            $value1 = strtotime($a1['datetime']);
+            $value2 = strtotime($a2['datetime']);
             return ($value1 < $value2) ? 1 : -1;
          });
 

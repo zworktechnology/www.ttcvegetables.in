@@ -104,6 +104,7 @@
                                             <th style="">Particulars</th>
                                             <th style="">Debit</th>
                                             <th style="">Credit</th>
+                                            <th style="">Discount</th>
                                             <th style="">Total</th>
                                         </tr>
                                     </thead>
@@ -113,7 +114,7 @@
                                             @if ($Purchase_datas['unique_key'] != '')
                                                 <tr>
                                                 <td>{{ ++$keydata }}</td>
-                                                    <td>{{ date('d M Y', strtotime($Purchase_datas['date'])) }} - {{ date('h:i A', strtotime($Purchase_datas['time'])) }}</td>
+                                                    <td>{{ date('Y-m-d', strtotime($Purchase_datas['date'])) }} - {{ date('h:i A', strtotime($Purchase_datas['time'])) }}</td>
                                                     {{-- <td>{{ $Purchase_datas['supplier_name'] }}</td> --}}
                                                     {{-- <td>{{ $Purchase_datas['branch_name'] }}</td> --}}
                                                     <td>{{ $Purchase_datas['type'] }}</td>
@@ -131,6 +132,7 @@
                                                     <td>{{ $Purchase_datas['gross_amount'] }}</td>
 
                                                     <td>{{ $Purchase_datas['paid_amount'] }}</td>
+                                                    <td>{{ $Purchase_datas['discount'] }}</td>
                                                     <td>{{ $Purchase_datas['balance_amount'] }}</td>
                                                 </tr>
 

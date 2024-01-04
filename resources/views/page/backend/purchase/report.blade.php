@@ -44,7 +44,7 @@
                                 <label>Supplier</label>
                                 <select class="form-control js-example-basic-single select" name="purchasereport_supplier" id="purchasereport_supplier">
                                     <option value="" selected>Select Supplier</option>
-                                    @foreach ($supplier as $suppliers)
+                                    @foreach ($supplierarr as $suppliers)
                                         <option value="{{ $suppliers->id }}">{{ $suppliers->name }}</option>
                                     @endforeach
                                 </select>
@@ -73,7 +73,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                    @foreach ($purchase_data as $keydata => $purchase)
+                    @foreach ($Purchase_data as $keydata => $purchase)
                         @if ($purchase['unique_key'] != '')
 
                         @if($keydata == 0)
@@ -107,62 +107,50 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        @if ($purchase_data != '')
+                        @if ($Purchase_data != '')
                             <div class="table-responsive">
                                 <table class="table  customerdatanew">
                                     <thead style="background: #5e54c966;">
                                         <tr>
                                             <th>S.No</th>
-                                            {{-- <th>Type</th> --}}
                                             <th>Bill No</th>
                                             <th>Date & Time</th>
                                             <th>Supplier</th>
-                                            {{-- <th>Branch</th> --}}
+                                            <th>Type</th>
                                             <th>Particulars</th>
-                                            <th>Grand Total</th>
-                                            {{-- <th>Paid</th> --}}
+                                            <th>Debit</th>
+                                            <th>Credit</th>
+                                            <th>Discount</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody style="background: #f8f9fa;">
 
-                                        @foreach ($purchase_data as $keydata => $purchasedata)
+                                        @foreach ($Purchase_data as $keydata => $purchasedata)
                                             @if ($purchasedata['unique_key'] != '')
                                                 <tr>
 
                                                     <td>{{ ++$keydata }}</td>
-                                                    {{-- @if ($purchasedata['purchase_order'] == NULL)
-                                                    <td style="text-transform: uppercase;color:#198754"> Purchase </td>
-                                                    @elseif ($purchasedata['purchase_order'] == '1')
-                                                    <td style="text-transform: uppercase;color:red;">Purchase Order</td>
-                                                    @endif --}}
                                                     <td>#{{ $purchasedata['bill_no'] }}</td>
-                                                    <td>{{ date('d M Y', strtotime($purchasedata['date'])) }} - {{ date('h:i A', strtotime($purchasedata['time'])) }}</td>
+                                                    <td>{{ date('Y-m-d', strtotime($purchasedata['date'])) }} - {{ date('h:i A', strtotime($purchasedata['time'])) }}</td>
                                                     <td>{{ $purchasedata['supplier_name'] }}</td>
-                                                    {{-- <td>{{ $purchasedata['branch_name'] }}</td> --}}
+                                                    <td>{{ $purchasedata['type'] }}</td>
                                                     <td style="text-transform: uppercase;">
                                                     @foreach ($purchasedata['terms'] as $index => $terms_array)
                                                     @if ($terms_array['purchase_id'] == $purchasedata['id'])
+                                                    @if ($purchasedata['purchase_order'] == 1)
                                                     {{ $terms_array['product_name'] }} - {{ $terms_array['kgs'] }} {{ $terms_array['bag'] }} - ₹ {{ $terms_array['price_per_kg'] }}<br/>
+                                                    @endif
                                                     @endif
                                                     @endforeach
                                                     </td>
                                                     <td>{{ $purchasedata['gross_amount'] }}</td>
-                                                    {{-- <td>{{ $purchasedata['paid_amount'] }}</td> --}}
+                                                    <td>{{ $purchasedata['paid_amount'] }}</td> 
+                                                    <td>{{ $purchasedata['discount'] }}</td>
+                                                    <td>{{ $purchasedata['balance_amount'] }}</td> 
                                                 </tr>
 
-                                                <div class="modal fade purchaseview-modal-xl{{ $purchasedata['unique_key'] }}"
-                                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                                    aria-labelledby="purchaseviewLargeModalLabel{{ $purchasedata['unique_key'] }}"
-                                                    aria-hidden="true">
-                                                    @include('page.backend.purchase.view')
-                                                </div>
-
-                                                <div class="modal fade purchasedelete-modal-xl{{ $purchasedata['unique_key'] }}"
-                                                    tabindex="-1" role="dialog"
-                                                    aria-labelledby="purchasedeleteLargeModalLabel{{ $purchasedata['unique_key'] }}"
-                                                    aria-hidden="true">
-                                                    @include('page.backend.purchase.delete')
-                                                </div>
+                                                
                                             @endif
                                         @endforeach
                                     </tbody>
