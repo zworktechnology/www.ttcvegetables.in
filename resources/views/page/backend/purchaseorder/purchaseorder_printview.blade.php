@@ -29,7 +29,7 @@
                                             style="color: darkblue;">{{ $supplier_upper }}</span></p>
                                 </div>
                                 <div class="col-6">
-                                    <p style="text-align: right; margin-bottom: 3px; color: darkblue;">தேதி : <span
+                                    <p style="text-align: right; padding-right: 15px;  margin-bottom: 3px; color: darkblue;">தேதி : <span
                                             style="color: darkblue;">{{ date('d-m-Y', strtotime($PurchaseData->date)) }}</span>
                                     </p>
                                 </div>
