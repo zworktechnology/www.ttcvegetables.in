@@ -80,10 +80,11 @@
                            <th style="font-size:15px; width:12%;">Note </th>
                            <th style="font-size:15px; width:18%;">Price / Count</th>
                            <th style="font-size:15px; width:20%;">Amount</th>
+                           <th style="font-size:15px; width:10%;">Action</th>
 
                         </tr>
                      </thead>
-                     <tbody id="sales_productfields">
+                     <tbody id="sales_orderfields">
                      @foreach ($SalesProducts as $index => $Sales_Products)
                         <tr>
                            <td class="">
@@ -106,7 +107,10 @@
                            <td><input type="text" class="form-control sales_note" id="sales_note"  name="sales_note[]" placeholder="note" value="{{ $Sales_Products->note }}" required /></td>
                            <td><input type="text" class="form-control sales_priceperkg"  id="sales_priceperkg" name="sales_priceperkg[]" placeholder="Price Per Count" value="{{ $Sales_Products->price_per_kg }}" required /></td>
                            <td class="text-end"><input type="text" class="form-control sales_total_price" readonly id="sales_total_price"  style="background-color: #e9ecef;" name="sales_total_price[]" placeholder="" value="{{ $Sales_Products->total_price }}" required /></td>
-
+                           <td><button style="width: 35px;"class="py-1 text-white font-medium rounded-lg text-sm  text-center btn btn-primary addsalesorderfields"
+                              type="button" id="" value="Add">+</button>
+                            <button style="width: 35px;" class="text-white py-1 font-medium rounded-lg text-sm  text-center btn btn-danger remove-salestr" type="button" >-</button>
+                           </td>
                         </tr>
                         @endforeach
                      </tbody>

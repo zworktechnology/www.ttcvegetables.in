@@ -3206,7 +3206,21 @@ class SalesController extends Controller
 
         // Purchase Products Table
 
+        $getinsertedP_Products = SalesProduct::where('sales_id', '=', $SalesId)->get();
+        $Purchaseproducts = array();
+        foreach ($getinsertedP_Products as $key => $getinserted_P_Products) {
+            $Purchaseproducts[] = $getinserted_P_Products->id;
+        }
 
+        $updatedpurchaseproduct_id = $request->sales_detail_id;
+        $updated_PurchaseProduct_id = array_filter($updatedpurchaseproduct_id);
+        $different_ids = array_merge(array_diff($Purchaseproducts, $updated_PurchaseProduct_id), array_diff($updated_PurchaseProduct_id, $Purchaseproducts));
+
+        if (!empty($different_ids)) {
+            foreach ($different_ids as $key => $different_id) {
+                SalesProduct::where('id', $different_id)->delete();
+            }
+        }
 
 
         foreach ($request->get('sales_detail_id') as $key => $sales_detail_id) {

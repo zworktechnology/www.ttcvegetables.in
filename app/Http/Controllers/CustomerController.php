@@ -205,10 +205,10 @@ class CustomerController extends Controller
             }
 
             $payment_discount = Salespayment::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->where('branch_id', '=', $branch_id)->sum('salespayment_discount');
-            if($payment_discount != ""){
+            if($payment_discount != ''){
                 $totpayment_discount = $payment_discount;
             }else {
-                $totpayment_discount = '0';
+                $totpayment_discount = 0;
             }
 
             $TOTALDiscount += $totpayment_discount;
@@ -224,11 +224,11 @@ class CustomerController extends Controller
                 $totalpaidsale = $totalsaleAmt->sales_paid;
                 $totalsalebla = $totalsaleAmt->sales_balance;
             }else {
-                $totalsale = '';
-                $totalpaidsale = '';
-                $totalsalebla = '';
+                $totalsale = 0;
+                $totalpaidsale = 0;
+                $totalsalebla = 0;
             }
-
+            $total_sake_amount = $totalsale + $totpayment_discount;
 
             $customerarr_data[] = array(
                 'unique_key' => $datas->unique_key,
@@ -240,7 +240,7 @@ class CustomerController extends Controller
                 'email_address' => $datas->email_address,
                 'shop_address' => $datas->shop_address,
                 'shop_contact_number' => $datas->shop_contact_number,
-                'total_sale_amt' => $totalsale + $totpayment_discount,
+                'total_sale_amt' => $total_sake_amount,
                 'total_paid' => $totalpaidsale,
                 'balance_amount' => $totalsalebla,
                 'totpayment_discount' => $totpayment_discount,
