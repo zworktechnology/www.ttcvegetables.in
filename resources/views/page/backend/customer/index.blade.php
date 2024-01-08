@@ -31,9 +31,9 @@
                         data-bs-target=".cusomer-modal-xl">Add Customer</button>
 
                         @if ($last_word != "customer")
-                        <a href="/customerpdf_export/{{$last_word}}" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
+                        <a href="/customer_pdf_export/{{$last_word}}" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
                         @else
-                        <a href="/allbranchpdf_export" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
+                        <a href="/allcustomer_pdf_export" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
                         @endif
 
 

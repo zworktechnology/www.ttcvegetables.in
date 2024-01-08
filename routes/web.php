@@ -366,6 +366,10 @@ Route::get('/customerpdf_export/{last_word}', [CustomerController::class, 'custo
 Route::get('/allbranchpdf_export', [CustomerController::class, 'allbranchpdf_export']);
 Route::get('/supplierview/{unique_key}/{last_word}', [SupplierController::class, 'supplierview']);
 Route::get('/customerview/{unique_key}/{last_word}', [CustomerController::class, 'customerview']);
+Route::get('/supplierpdf_export/{last_word}', [SupplierController::class, 'supplierpdf_export']);
+Route::get('/supplierallpdf_export', [SupplierController::class, 'supplierallpdf_export']);
+Route::get('/customer_pdf_export/{last_word}', [CustomerController::class, 'customer_pdf_export']);
+Route::get('/allcustomer_pdf_export', [CustomerController::class, 'allcustomer_pdf_export']);
 
 Route::get('/purchasebranch/{branch_id}', [PurchaseController::class, 'purchasebranch']);
 Route::get('/purchase_branchdata/{today}/{branch_id}', [PurchaseController::class, 'purchase_branchdata']);

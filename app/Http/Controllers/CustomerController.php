@@ -1899,6 +1899,137 @@ class CustomerController extends Controller
 
 
 
+    public function customer_pdf_export($last_word) {
+        $data = Customer::where('soft_delete', '!=', 1)->get();
+
+        $customerarr_data = [];
+        foreach ($data as $key => $datas) {
+            $Customer_name = Customer::findOrFail($datas->id);
+
+            // Total Sale
+            $total_sale_amt = Sales::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('gross_amount');
+            if($total_sale_amt != ""){
+                $tot_saleAmount = $total_sale_amt;
+            }else {
+                $tot_saleAmount = '0';
+            }
+
+
+            // Total Paid
+            $total_paid = Sales::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('paid_amount');
+            if($total_paid != ""){
+                $total_paid_Amount = $total_paid;
+            }else {
+                $total_paid_Amount = '0';
+            }
+            $payment_total_paid = Salespayment::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('amount');
+            if($payment_total_paid != ""){
+                $total_payment_paid = $payment_total_paid;
+            }else {
+                $total_payment_paid = '0';
+            }
+
+
+            $payment_discount = Salespayment::where('soft_delete', '!=', 1)->where('customer_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('salespayment_discount');
+            if($payment_discount != ""){
+                $totpayment_discount = $payment_discount;
+            }else {
+                $totpayment_discount = '0';
+            }
+            $total_amount_paid = $total_paid_Amount + $total_payment_paid + $totpayment_discount;
+
+
+            // Total Balance
+            $total_balance = $tot_saleAmount - $total_amount_paid;
+
+
+            $totalsaleAmt = BranchwiseBalance::where('customer_id', '=', $datas->id)->where('branch_id', '=', $last_word)->first();
+            if($totalsaleAmt != ""){
+                $totalsale = $totalsaleAmt->sales_amount;
+                $totalpaidsale = $totalsaleAmt->sales_paid;
+                $totalsalebla = $totalsaleAmt->sales_balance;
+            }else {
+                $totalsale = '';
+                $totalpaidsale = '';
+                $totalsalebla = '';
+            }
+
+            $customerarr_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'name' => $Customer_name->name,
+                'contact_number' => $datas->contact_number,
+                'shop_name' => $datas->shop_name,
+                'status' => $datas->status,
+                'id' => $datas->id,
+                'email_address' => $datas->email_address,
+                'shop_address' => $datas->shop_address,
+                'shop_contact_number' => $datas->shop_contact_number,
+                'total_sale_amt' => $totalsale,
+                'total_paid' => $totalpaidsale,
+                'balance_amount' => $totalsalebla,
+                'totpayment_discount' => $totpayment_discount,
+            );
+
+
+            $price = array();
+            foreach ($customerarr_data as $key => $row)
+            {
+                $price[$key] = $row['balance_amount'];
+            }
+            array_multisort($price, SORT_DESC, $customerarr_data);
+        }
+
+
+        $total_sale_amount = Sales::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('gross_amount');
+            if($total_sale_amount != ""){
+                $totsaleAmount = $total_sale_amount;
+            }else {
+                $totsaleAmount = '0';
+            }
+
+            $CustomerOldbalanceTot = Customer::where('soft_delete', '!=', 1)->sum('old_balance');
+
+            $TotalSale = $totsaleAmount + $CustomerOldbalanceTot;
+
+
+            // Total Paid
+            $total_salepaid = Sales::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('paid_amount');
+            if($total_salepaid != ""){
+                $total_salepaid_Amount = $total_salepaid;
+            }else {
+                $total_salepaid_Amount = '0';
+            }
+            $payment_saletotal_paid = Salespayment::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('amount');
+            if($payment_saletotal_paid != ""){
+                $total_sakepayment_paid = $payment_saletotal_paid;
+            }else {
+                $total_sakepayment_paid = '0';
+            }
+
+            $payment_sale_discount = Salespayment::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('salespayment_discount');
+            if($payment_sale_discount != ""){
+                $paymentsale_discount = $payment_sale_discount;
+            }else {
+                $paymentsale_discount = '0';
+            }
+            $total_saleamount_paid = $total_salepaid_Amount + $total_sakepayment_paid + $paymentsale_discount;
+
+
+            // Total Balance
+            $saletotal_balance = $TotalSale - $total_saleamount_paid;
+            $branch_name = Branch::findOrFail($last_word);
+
+            $today = Carbon::now()->format('Y-m-d');
+            $current_date = date('d-m-Y', strtotime($today));
+
+
+            
+
+            return view('page.backend.customer.pdfview', compact('customerarr_data', 'TotalSale', 'total_saleamount_paid', 'saletotal_balance', 'current_date', 'totsaleAmount'));
+    }
+
+
+
 
 
 

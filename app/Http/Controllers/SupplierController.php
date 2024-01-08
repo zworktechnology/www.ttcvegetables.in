@@ -1961,4 +1961,234 @@ class SupplierController extends Controller
         }
     }
 
+
+
+    public function supplierpdf_export($last_word) {
+        $data = Supplier::where('soft_delete', '!=', 1)->get();
+        $supplierarr_data = [];
+        foreach ($data as $key => $datas) {
+
+            $supplier_name = Supplier::findOrFail($datas->id);
+            // Grand total
+            $total_purchase_amt = Purchase::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('gross_amount');
+            if($total_purchase_amt != ""){
+                $tot_purchaseAmount = $total_purchase_amt;
+            }else {
+                $tot_purchaseAmount = '0';
+            }
+
+            // Total Paid
+            $total_paid = Purchase::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('paid_amount');
+            if($total_paid != ""){
+                $total_paid_Amount = $total_paid;
+            }else {
+                $total_paid_Amount = '0';
+            }
+            $payment_total_paid = PurchasePayment::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('amount');
+            if($payment_total_paid != ""){
+                $total_payment_paid = $payment_total_paid;
+            }else {
+                $total_payment_paid = '0';
+            }
+
+            $total_discount = PurchasePayment::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->where('branch_id', '=', $last_word)->sum('purchasepayment_discount');
+            if($total_discount != ""){
+                $total_discount_amont = $total_discount;
+            }else {
+                $total_discount_amont = '0';
+            }
+
+            $total_amount_paid = $total_paid_Amount + $total_payment_paid + $total_discount_amont;
+
+
+
+            // Total Balance
+            $total_balance = $tot_purchaseAmount - $total_amount_paid;
+
+            $totalpurchase = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_amount');
+            $totalpaidpurchase = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_paid');
+            $totalpurchasebla = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_balance');
+
+            $supplierarr_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'name' => $supplier_name->name,
+                'contact_number' => $datas->contact_number,
+                'shop_name' => $datas->shop_name,
+                'total_purchase_amt' => $totalpurchase + $total_discount_amont,
+                'total_paid' => $totalpaidpurchase,
+                'balance_amount' => $totalpurchasebla,
+                'total_discount_amont' => $total_discount_amont,
+            );
+
+            $price = array();
+            foreach ($supplierarr_data as $key => $row)
+            {
+                $price[$key] = $row['balance_amount'];
+            }
+            array_multisort($price, SORT_DESC, $supplierarr_data);
+
+        }
+
+
+        $total_purchase_amount = Purchase::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('gross_amount');
+        if($total_purchase_amount != ""){
+            $total_purchaseAmount = $total_purchase_amount;
+        }else {
+            $total_purchaseAmount = '0';
+        }
+
+        $supplierOldbalanceTot = Supplier::where('soft_delete', '!=', 1)->sum('old_balance');
+
+        $TotalPurchase = $total_purchaseAmount + $supplierOldbalanceTot;
+
+
+        $total_amuntpaid = Purchase::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('paid_amount');
+        if($total_amuntpaid != ""){
+            $totalpaid_Amount = $total_amuntpaid;
+        }else {
+            $totalpaid_Amount = '0';
+        }
+        $paymenttotal_paid = PurchasePayment::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('amount');
+        if($paymenttotal_paid != ""){
+            $totalpayment_paid = $paymenttotal_paid;
+        }else {
+            $totalpayment_paid = '0';
+        }
+
+
+        $discountpaid = PurchasePayment::where('soft_delete', '!=', 1)->where('branch_id', '=', $last_word)->sum('purchasepayment_discount');
+        if($discountpaid != ""){
+            $discount_paid = $discountpaid;
+        }else {
+            $discount_paid = '0';
+        }
+
+        $totalamount_paid = $totalpaid_Amount + $totalpayment_paid + $discount_paid;
+
+
+
+        // Total Balance
+        $totalbalance = $TotalPurchase - $totalamount_paid;
+
+       
+
+        return view('page.backend.supplier.pdfview', compact('supplierarr_data', 'TotalPurchase', 'totalamount_paid', 'totalbalance', 'total_purchaseAmount'));
+    }
+
+
+
+    public function supplierallpdf_export() {
+
+        $data = Supplier::where('soft_delete', '!=', 1)->get();
+        $supplierarr_data = [];
+        foreach ($data as $key => $datas) {
+
+            $supplier_name = Supplier::findOrFail($datas->id);
+            // Grand total
+            $total_purchase_amt = Purchase::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->sum('gross_amount');
+            if($total_purchase_amt != ""){
+                $tot_purchaseAmount = $total_purchase_amt;
+            }else {
+                $tot_purchaseAmount = '0';
+            }
+
+            // Total Paid
+            $total_paid = Purchase::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->sum('paid_amount');
+            if($total_paid != ""){
+                $total_paid_Amount = $total_paid;
+            }else {
+                $total_paid_Amount = '0';
+            }
+            $payment_total_paid = PurchasePayment::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->sum('amount');
+            if($payment_total_paid != ""){
+                $total_payment_paid = $payment_total_paid;
+            }else {
+                $total_payment_paid = '0';
+            }
+
+            $total_discount = PurchasePayment::where('soft_delete', '!=', 1)->where('supplier_id', '=', $datas->id)->sum('purchasepayment_discount');
+            if($total_discount != ""){
+                $total_discount_amont = $total_discount;
+            }else {
+                $total_discount_amont = '0';
+            }
+
+            $total_amount_paid = $total_paid_Amount + $total_payment_paid + $total_discount_amont;
+
+
+
+            // Total Balance
+            $total_balance = $tot_purchaseAmount - $total_amount_paid;
+
+
+            $totalpurchase = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_amount');
+            $totalpaidpurchase = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_paid');
+            $totalpurchasebla = BranchwiseBalance::where('supplier_id', '=', $datas->id)->sum('purchase_balance');
+
+
+
+            $supplierarr_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'name' => $supplier_name->name,
+                'contact_number' => $datas->contact_number,
+                'shop_name' => $datas->shop_name,
+                'total_purchase_amt' => $totalpurchase + $total_discount_amont,
+                'total_paid' => $totalpaidpurchase,
+                'balance_amount' => $totalpurchasebla,
+                'total_discount_amont' => $total_discount_amont,
+            );
+
+
+            $price = array();
+            foreach ($supplierarr_data as $key => $row)
+            {
+                $price[$key] = $row['balance_amount'];
+            }
+            array_multisort($price, SORT_DESC, $supplierarr_data);
+
+        }
+
+        $total_purchase_amount = Purchase::where('soft_delete', '!=', 1)->sum('gross_amount');
+        if($total_purchase_amount != ""){
+            $total_purchaseAmount = $total_purchase_amount;
+        }else {
+            $total_purchaseAmount = '0';
+        }
+
+
+        $supplierOldbalanceTot = Supplier::where('soft_delete', '!=', 1)->sum('old_balance');
+
+        $TotalPurchase = $total_purchaseAmount + $supplierOldbalanceTot;
+
+
+        $total_amuntpaid = Purchase::where('soft_delete', '!=', 1)->sum('paid_amount');
+        if($total_amuntpaid != ""){
+            $totalpaid_Amount = $total_amuntpaid;
+        }else {
+            $totalpaid_Amount = '0';
+        }
+        $paymenttotal_paid = PurchasePayment::where('soft_delete', '!=', 1)->sum('amount');
+        if($paymenttotal_paid != ""){
+            $totalpayment_paid = $paymenttotal_paid;
+        }else {
+            $totalpayment_paid = '0';
+        }
+
+
+        $discountpaid = PurchasePayment::where('soft_delete', '!=', 1)->sum('purchasepayment_discount');
+        if($discountpaid != ""){
+            $discount_paid = $discountpaid;
+        }else {
+            $discount_paid = '0';
+        }
+
+        $totalamount_paid = $totalpaid_Amount + $totalpayment_paid + $discount_paid;
+
+
+
+        // Total Balance
+        $totalbalance = $TotalPurchase - $totalamount_paid;
+        return view('page.backend.supplier.pdfview', compact('supplierarr_data', 'TotalPurchase', 'totalamount_paid', 'totalbalance', 'total_purchaseAmount'));
+    }
+
 }

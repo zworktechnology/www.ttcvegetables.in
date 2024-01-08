@@ -32,12 +32,11 @@
                         data-bs-target=".supplier-modal-xl">Add Supplier</button>
 
                     @if ($last_word != "supplier")
-                    <a href="/pdf_export/{{$last_word}}" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
+                    <a href="/supplierpdf_export/{{$last_word}}" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
                     @else
-                    <a href="/allpdf_export" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
+                    <a href="/supplierallpdf_export" class="badges bg-lightgrey btn btn-added">Pdf Export</a>
                     @endif
                 </div>
-
             </div>
         </div>
 
