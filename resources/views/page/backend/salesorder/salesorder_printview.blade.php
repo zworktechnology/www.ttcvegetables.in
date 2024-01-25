@@ -88,12 +88,12 @@
                         <div class="row" style="margin-top: 3px;">
                             <div class="col-5"></div>
                             <div class="col-3">
-                                <p style="text-align: left; margin-bottom: 3px; color: black;">COOLI</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green;">GROSS AMOUNT</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red;">OLD BALANCE</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: blue;">GRAND TOTAL</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green;">PAID AMOUNT</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red;">NET AMOUNT</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: black;">கூலி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green;">பில் தொகை</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red;">முன் பாக்கி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: blue;">மொத்த பாக்கி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green;">வரவு</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red;">மொத்த பாக்கி</p>
                             </div>
                             <div class="col-1">
                                 <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>

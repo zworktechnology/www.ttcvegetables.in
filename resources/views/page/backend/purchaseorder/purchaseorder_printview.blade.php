@@ -52,7 +52,7 @@
                                             <b>Note</b>
                                         </td>
                                         <td
-                                            style="padding: 2px;vertical-align: middle;color: green; text-align: right; padding-right: 15px;">
+                                            style="padding: 2px;vertical-align: middle;color: green; text-align: left; padding-right: 15px;">
                                             <b>Amount</b>
                                         </td>
                                     </tr>
@@ -81,7 +81,7 @@
                                                     {{ $PurchaseProducts_array->note }}
                                                 </td>
                                                 <td
-                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: right; padding-right: 15px;">
+                                                    style="padding: 2px;vertical-align: top; vertical-align: inherit;vertical-align: inherit;color:#000; text-align: left; padding-right: 15px;">
                                                     {{ $PurchaseProducts_array->total_price }}.00
                                                 </td>
                                             </tr>
@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="col-4">
                                                 <p
-                                                    style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">
+                                                    style="text-align: left; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">
                                                     ₹ {{ $PurchaseData->commission_amount }}</p>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <p
-                                                        style="text-align: right; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">
+                                                        style="text-align: left; margin-bottom: 3px; color: black; padding-right : 2px; padding-right: 20px;">
                                                         ₹ {{ $PurchaseExtracosts_arr->extracost }}</p>
                                                 </div>
                                             </div>
@@ -137,7 +137,7 @@
                                             </div>
                                             <div class="col-4">
                                                 <p
-                                                    style="text-align: right; margin-bottom: 3px; color: red; padding-right : 2px; padding-right: 20px;">
+                                                    style="text-align: left; margin-bottom: 3px; color: red; padding-right : 2px; padding-right: 20px;">
                                                     ₹ {{ $PurchaseData->tot_comm_extracost }}</p>
                                             </div>
                                         </div>
@@ -169,19 +169,19 @@
                                         </div>
                                         <div class="col-4">
                                             <p
-                                                style="text-align: left; margin-bottom: 3px; color: green; text-align: right; padding-right: 15px;">
+                                                style="text-align: left; margin-bottom: 3px; color: green; padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->total_amount }}</p>
                                             <p
-                                                style="text-align: left; margin-bottom: 3px; color: black; text-align: right; border-bottom:1px solid lightgray; padding-right: 15px;">
+                                                style="text-align: left; margin-bottom: 3px; color: black;  border-bottom:1px solid lightgray; padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->tot_comm_extracost }}</p>
                                             <p
-                                                style="text-align: left; margin-bottom: 3px; color: blue; text-align: right; padding-right: 15px;">
+                                                style="text-align: left; margin-bottom: 3px; color: blue; padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->gross_amount }}</p>
                                             <p
-                                                style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; text-align: right; padding-right: 15px;">
+                                                style="text-align: left; margin-bottom: 3px; color: red; border-bottom:1px solid lightgray; padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->old_balance }}.00</p>
                                             <p
-                                                style="text-align: left; margin-bottom: 3px; color: blue; text-align: right; padding-right: 15px;">
+                                                style="text-align: left; margin-bottom: 3px; color: blue;padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->grand_total }}</p>
                                         </div>
                                     </div>
