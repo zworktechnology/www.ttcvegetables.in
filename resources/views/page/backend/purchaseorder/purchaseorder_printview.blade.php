@@ -11,7 +11,7 @@
                     Print</button>
             </div>
         </div>
-        
+
 
         <div class="content">
             <div id="printableArea" style="width:148mm; height:210mm">
@@ -160,14 +160,14 @@
                                                 style="text-align: left; margin-bottom: 3px; color: transparent ; border-left:1px solid black; padding-left : 2px;">
                                                 Total</p>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-1">
                                             <p style="text-align: left; margin-bottom: 3px; color: green;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: red;">:</p>
                                             <p style="text-align: left; margin-bottom: 3px; color: blue;">:</p>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-5">
                                             <p
                                                 style="text-align: left; margin-bottom: 3px; color: green; padding-right: 15px;">
                                                 ₹ {{ $PurchaseData->total_amount }}</p>
