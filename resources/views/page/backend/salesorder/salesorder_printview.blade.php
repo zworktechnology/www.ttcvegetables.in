@@ -89,11 +89,11 @@
                             <div class="col-5"></div>
                             <div class="col-3">
                                 <p style="text-align: left; margin-bottom: 3px; color: black;">கூலி</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: green;">பில் தொகை</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red;">முன் பாக்கி</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: blue;">மொத்த பாக்கி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: green;">பில்தொகை</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red;">முன்பாக்கி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: blue;">மொத்தபாக்கி</p>
                                 <p style="text-align: left; margin-bottom: 3px; color: green;">வரவு</p>
-                                <p style="text-align: left; margin-bottom: 3px; color: red;">மொத்த பாக்கி</p>
+                                <p style="text-align: left; margin-bottom: 3px; color: red;">மொத்தபாக்கி</p>
                             </div>
                             <div class="col-1">
                                 <p style="text-align: left; margin-bottom: 3px; color: black;">:</p>
