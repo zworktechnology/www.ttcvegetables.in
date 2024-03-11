@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div style="margin-top: 5px;">
-                            <table style="line-height: inherit;text-align: left;overflow: auto; width:100%;">
+                            <table style="line-height: inherit;text-align: left;overflow: auto; width:100%; font-size:12px;">
                                 <tr class="heading "
                                     style="background:#eee; border-bottom: 1px solid lightgray ; border-top: 1px solid lightgray ;">
                                     <td style="padding: 2px;vertical-align: middle;color: green; Padding-left : 20px;">
@@ -85,7 +85,7 @@
                                 @endforeach
                             </table>
                         </div>
-                        <div class="row" style="margin-top: 3px;">
+                        <div class="row" style="margin-top: 3px; font-size:12px;">
                             <div class="col-5"></div>
                             <div class="col-3">
                                 <p style="text-align: left; margin-bottom: 3px; color: black;">கூலி</p>
