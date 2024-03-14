@@ -1452,26 +1452,26 @@ $(document).on('click', '.remove-salestr', function() {
         });
 
 
-        $(document).on("keyup", 'input.payment_payableamount', function() {
-            var payment_payableamount = $(this).val();
-            var oldblance = $(".oldblance").val();
+        // $(document).on("keyup", 'input.payment_payableamount', function() {
+        //     var payment_payableamount = $(this).val();
+        //     var oldblance = $(".oldblance").val();
 
-            if (Number(payment_payableamount) > Number(oldblance)) {
-                alert('!Paid Amount is More than of Total!');
-                $(".payment_payableamount").val('');
-            }
-        });
+        //     if (Number(payment_payableamount) > Number(oldblance)) {
+        //         alert('!Paid Amount is More than of Total!');
+        //         $(".payment_payableamount").val('');
+        //     }
+        // });
 
 
-        $(document).on("keyup", 'input.spayment_payableamount', function() {
-            var spayment_payableamount = $(this).val();
-            var sales_oldblance = $(".sales_oldblance").val();
+        // $(document).on("keyup", 'input.spayment_payableamount', function() {
+        //     var spayment_payableamount = $(this).val();
+        //     var sales_oldblance = $(".sales_oldblance").val();
 
-            if (Number(spayment_payableamount) > Number(sales_oldblance)) {
-                alert('!Paid Amount is More than of Total!');
-                $(".spayment_payableamount").val('');
-            }
-        });
+        //     if (Number(spayment_payableamount) > Number(sales_oldblance)) {
+        //         alert('!Paid Amount is More than of Total!');
+        //         $(".spayment_payableamount").val('');
+        //     }
+        // });
 
 
     function purchasesubmitForm(btn) {
